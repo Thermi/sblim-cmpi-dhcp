@@ -1,0 +1,25 @@
+********************************************************************************
+class : Linux_DHCPRegisteredProfile
+objectPath : Linux_DHCPRegisteredProfile.InstanceID="IBM:DHCP Server Profile-0.1.1"
+modifyInst : InstanceID="IBM-1:DHCP Server Profile-0.1.1"
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                     set
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED

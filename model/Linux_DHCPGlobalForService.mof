@@ -1,0 +1,16 @@
+[Description("This Class is a bridge between the classes in the global scope and the service itself. All the global class entities would be linked through the DHCPGlobal class and they inturn would represent Entities like Subnet , Sharednet ..etc.  and hence the Entities are actually made uniques in terms of Service scope.")
+,Association]
+
+class Linux_DHCPGlobalForService : CIM_ElementSettingData {
+
+	[Key, Override("ManagedElement"), 
+	Max (1), 
+	Min (1)]
+	Linux_DHCPService REF ManagedElement;
+	
+	[Key, Override("SettingData")]
+	Linux_DHCPGlobal REF SettingData;
+	
+	
+	};
+		

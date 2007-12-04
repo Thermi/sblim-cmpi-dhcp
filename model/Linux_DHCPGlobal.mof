@@ -1,0 +1,8 @@
+[Description("Any Entity which is defined in the Global Scope would be using this class to represent itself.All the Entities may also be Global since all are entending the same base class DHCPEntity.")
+]
+
+class Linux_DHCPGlobal : Linux_DHCPEntity {
+
+	
+	};
+		

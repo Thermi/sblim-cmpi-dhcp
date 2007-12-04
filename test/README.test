@@ -1,0 +1,43 @@
+Test Environment for SBLIM DHCP Instrumentation
+##############################################################################
+
+The SBLIM project offers a Test Suite to perform tests against the provider 
+implementation and consistency tests against system values. These tests check 
+the general functionality.
+
+
+Prerequisites 
+##############################################################################
+
+- sblim-cmpi-dhcp package installed and configured properly
+- SBLIM testsuite package installed
+- SBLIM wbemcli package installed
+
+
+
+Pepare Test
+##############################################################################
+
+The test cases are prepared automatically during the build process 
+(configure step)
+
+
+
+Install Configuration Files
+##############################################################################
+
+When using an RPM package, the tests will be installed with the 'test' RPM
+package itself.
+Using the 'TAR ball' or the 'CVS extract', the tests will be installed during 
+'make install'
+
+
+
+Run Test
+##############################################################################
+
+Run the test in the testsuite directory (typically /usr/share/sblim-testsuite)
+by executing the following commands:
+
+  ./test-cmpi-dhcp.sh
+  echo Status: $SBLIM_TESTSUITE_RUN

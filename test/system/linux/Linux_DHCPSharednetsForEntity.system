@@ -1,0 +1,9 @@
+********************************************************************************
+association : Linux_DHCPSharednetsForEntity
+
+--------------------------------------------------------------------------------
+Linux_DHCPSharednet : -target Linux_DHCPGlobal -eq 0
+Linux_DHCPGlobal : -target Linux_DHCPSharednet -eq 1
+
+--------------------------------------------------------------------------------
+

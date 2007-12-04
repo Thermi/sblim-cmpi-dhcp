@@ -1,0 +1,9 @@
+********************************************************************************
+association : Linux_DHCPServiceConfigurationForService 
+
+--------------------------------------------------------------------------------
+Linux_DHCPServiceConfiguration : -target Linux_DHCPService -eq 1
+Linux_DHCPService : -target Linux_DHCPServiceConfiguration -eq 1
+
+--------------------------------------------------------------------------------
+

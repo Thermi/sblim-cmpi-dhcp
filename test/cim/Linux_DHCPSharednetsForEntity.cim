@@ -1,0 +1,28 @@
+********************************************************************************
+association : Linux_DHCPSharednetsForEntity
+objectPath : Linux_DHCPSharednetsForEntity.GroupComponent="root/cimv2:Linux_DHCPGroup.InstanceID=\"WBEM-SMT:Linux_DHCPGroup:Global=0:Group=8301597f9b17084c\"",PartComponent="root/cimv2:Linux_DHCPSharednet.InstanceID=\"WBEM-SMT:Linux_DHCPSharednet:Global=0:Group=8301597f9b17084c:Sharednet=15e3bde9f85bf7d8\""
+sourceRole : GroupComponent 
+targetRole : PartComponent
+sourceClass : Linux_DHCPEntity
+targetClass : Linux_DHCPSharednet
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames

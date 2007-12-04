@@ -1,0 +1,28 @@
+********************************************************************************
+association : Linux_DHCPOptionsForEntity
+objectPath : Linux_DHCPOptionsForEntity.GroupComponent="root/cimv2:Linux_DHCPSubnet.InstanceID=\"WBEM-SMT:Linux_DHCPSubnet:Global=0:Subnet=37f57591b0de0\"",PartComponent="root/cimv2:Linux_DHCPOptions.InstanceID=\"WBEM-SMT:Linux_DHCPOptions:Global=0:Subnet=37f57591b0de0:Option=ebfa26607d238b40\"" 
+sourceRole : GroupComponent 
+targetRole : PartComponent
+sourceClass : Linux_DHCPEntity
+targetClass : Linux_DHCPOptions
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames

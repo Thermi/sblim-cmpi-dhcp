@@ -1,0 +1,1592 @@
+# English translations for SBLIM CMPI Provider for WBEM-SMT DHCP task package.
+# Copyright (C) 2007 IBM Corp.
+# This file is distributed under the same license as the SBLIM CMPI Provider for WBEM-SMT DHCP task package.
+# Wolfgang Taphorn <taphorn@de.ibm.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: SBLIM CMPI Provider for WBEM-SMT DHCP task 0.5.2\n"
+"Report-Msgid-Bugs-To: sblim-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2007-11-30 17:59+0100\n"
+"PO-Revision-Date: 2007-11-30 17:59+0100\n"
+"Last-Translator: Wolfgang Taphorn <taphorn@de.ibm.com>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: include/sblim-dhcp.h:71
+msgid "TRY OUT"
+msgstr "TRY OUT"
+
+#: resource-access/provider-support.c:214
+msgid "dhcp_conf_tree = NULL OR dhcpd.conf file not found"
+msgstr "dhcp_conf_tree = NULL OR dhcpd.conf file not found"
+
+#: resource-access/provider-support.c:221
+msgid "Entity does not exist OR dhcpd.conf file not found"
+msgstr "Entity does not exist OR dhcpd.conf file not found"
+
+#: resource-access/ra-support.c:631
+msgid "dhcpd.conf not found"
+msgstr "dhcpd.conf not found"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:45
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:72
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:123
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:246
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:66
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:72
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:131
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:140
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:197
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:244
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:44
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:70
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:121
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:247
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:73
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:80
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:131
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:149
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:45
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:71
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:126
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:322
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:44
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:70
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:122
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:323
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:72
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:78
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:129
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:146
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:45
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:71
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:123
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:326
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:73
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:79
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:130
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:147
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:44
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:70
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:120
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:244
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:72
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:78
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:129
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:146
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:44
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:73
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:129
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:44
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:75
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:128
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:63
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:69
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:119
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:128
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:234
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:277
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:44
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:71
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:121
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:311
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:73
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:79
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:130
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:148
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:44
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:70
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:121
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:330
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:76
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:82
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:133
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:150
+msgid "Dynamic Memory Allocation Failed"
+msgstr "Dynamic Memory Allocation Failed"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:52
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:226
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:51
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:229
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:229
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:291
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:50
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:229
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:290
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:51
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:231
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:293
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:50
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:228
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:51
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:52
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:50
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:221
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:280
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:50
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:225
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:295
+msgid "Entity Not Found"
+msgstr "Entity Not Found"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:100
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:84
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:92
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:100
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:108
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:191
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:206
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:214
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:225
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c:233
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:105
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:98
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:91
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:98
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:104
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:110
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:213
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:219
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:105
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:102
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:214
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:99
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:214
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:88
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:95
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:102
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:109
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:209
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:215
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:104
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:100
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:216
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:89
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:96
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:103
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:110
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:210
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:216
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:105
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:98
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:88
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:95
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:102
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:109
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:208
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:214
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:105
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:106
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:105
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:78
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:85
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:92
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:99
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:228
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:242
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:249
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:259
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c:266
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:104
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:99
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:206
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:88
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:95
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:102
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:109
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:212
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:218
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:105
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:98
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:210
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:92
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:98
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:106
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:113
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:213
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:219
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:105
+msgid "Object Path is NULL"
+msgstr "Object Path is NULL"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:106
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:104
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:108
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:105
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:106
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:104
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:112
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:111
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:105
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:105
+msgid "Failed to fetch the key element data"
+msgstr "Failed to fetch the key element data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:114
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:112
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:117
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:113
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:114
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:112
+#: provider/Linux_DHCPService/Linux_DHCPService_Resource.c:119
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c:118
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:113
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:113
+msgid "Cmpi instance name is NULL"
+msgstr "Cmpi instance name is NULL"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:207
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:185
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:292
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:213
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:185
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:290
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:275
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:274
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:184
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:288
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:277
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:185
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:289
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:212
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:185
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:285
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:182
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:289
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:264
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:185
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:290
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:279
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:185
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:290
+msgid "Instance is NULL"
+msgstr "Instance is NULL"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:215
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:219
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:281
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:280
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:283
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:218
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:270
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:285
+msgid "ParentID not specified properly or not provided"
+msgstr "ParentID not specified properly or not provided"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c:235
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup_Resource.c:236
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:312
+#: provider/Linux_DHCPPool/Linux_DHCPPool_Resource.c:234
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:301
+msgid "Failed creating a Node"
+msgstr "Failed creating a Node"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:74
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:176
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:276
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:374
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:446
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:527
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:74
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:176
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:276
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:374
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:447
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:531
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:75
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:177
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:279
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:382
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:455
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:539
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:74
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:176
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:276
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:374
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:446
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:529
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:75
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:177
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:277
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:375
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:447
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:529
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:74
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:176
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:276
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:374
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:446
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:529
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:234
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:253
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:271
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:292
+#: provider/Linux_DHCPService/Linux_DHCPService.c:77
+#: provider/Linux_DHCPService/Linux_DHCPService.c:186
+#: provider/Linux_DHCPService/Linux_DHCPService.c:294
+#: provider/Linux_DHCPService/Linux_DHCPService.c:399
+#: provider/Linux_DHCPService/Linux_DHCPService.c:478
+#: provider/Linux_DHCPService/Linux_DHCPService.c:565
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:77
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:186
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:294
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:396
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:475
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:562
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:74
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:176
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:276
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:374
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:446
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:529
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:74
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:176
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:276
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:374
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:446
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:528
+msgid "This function is not supported"
+msgstr "This function is not supported"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:81
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:183
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:283
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:381
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:456
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:533
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:74
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:168
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:266
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:379
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:447
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:607
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:706
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:809
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:937
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:81
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:183
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:283
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:381
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:456
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:537
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:74
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:168
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:264
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:380
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:448
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:590
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:678
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:783
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:882
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:82
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:184
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:286
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:389
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:465
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:545
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:75
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:167
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:261
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:371
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:439
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:581
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:669
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:773
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:872
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:81
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:183
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:283
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:381
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:455
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:535
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:73
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:167
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:263
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:376
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:445
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:587
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:675
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:780
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:879
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:82
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:184
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:284
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:382
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:456
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:535
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:74
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:168
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:264
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:377
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:447
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:590
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:678
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:783
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:882
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:81
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:183
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:283
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:381
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:455
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:535
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:74
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:168
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:264
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:373
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:443
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:586
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:674
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:779
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:878
+#: provider/Linux_DHCPService/Linux_DHCPService.c:84
+#: provider/Linux_DHCPService/Linux_DHCPService.c:193
+#: provider/Linux_DHCPService/Linux_DHCPService.c:301
+#: provider/Linux_DHCPService/Linux_DHCPService.c:406
+#: provider/Linux_DHCPService/Linux_DHCPService.c:491
+#: provider/Linux_DHCPService/Linux_DHCPService.c:572
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:84
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:193
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:301
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:403
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:488
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:569
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:73
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:165
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:263
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:376
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:445
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:604
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:702
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:803
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:933
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:81
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:183
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:283
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:381
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:455
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:535
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:74
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:168
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:265
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:378
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:448
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:591
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:679
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:784
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:883
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:81
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:183
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:283
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:381
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:455
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:534
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:74
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:168
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:265
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:378
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:448
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:591
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:679
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:784
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:883
+msgid "Failed to get list of system resources"
+msgstr "Failed to get list of system resources"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:91
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:193
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:301
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:84
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:91
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:178
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:285
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:91
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:193
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:301
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:84
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:91
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:178
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:282
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:92
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:194
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:306
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:85
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:92
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:177
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:278
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:91
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:193
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:301
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:83
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:90
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:177
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:281
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:92
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:194
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:302
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:84
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:91
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:178
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:282
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:91
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:193
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:301
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:84
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:91
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:178
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:278
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:96
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:145
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:192
+#: provider/Linux_DHCPService/Linux_DHCPService.c:94
+#: provider/Linux_DHCPService/Linux_DHCPService.c:203
+#: provider/Linux_DHCPService/Linux_DHCPService.c:319
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:94
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:203
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:319
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:83
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:90
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:175
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:282
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:91
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:193
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:301
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:84
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:91
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:178
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:283
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:91
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:193
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:301
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:84
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:91
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:178
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:283
+msgid "Creation of CMPIObjectPath failed"
+msgstr "Creation of CMPIObjectPath failed"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:98
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:200
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:308
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:98
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:200
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:308
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:99
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:201
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:313
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:98
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:200
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:308
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:99
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:201
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:309
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:98
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:200
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:308
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:103
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:152
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:199
+#: provider/Linux_DHCPService/Linux_DHCPService.c:101
+#: provider/Linux_DHCPService/Linux_DHCPService.c:210
+#: provider/Linux_DHCPService/Linux_DHCPService.c:326
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:101
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:210
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:326
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:98
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:200
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:308
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:98
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:200
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:308
+msgid "Creation of CMPIInstance failed"
+msgstr "Creation of CMPIInstance failed"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:105
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:214
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:322
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:98
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:200
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:308
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:834
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:857
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:960
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:979
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:105
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:214
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:322
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:98
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:200
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:308
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:809
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:908
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:106
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:215
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:327
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:99
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:198
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:299
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:799
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:898
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:105
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:214
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:322
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:97
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:199
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:304
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:806
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:905
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:106
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:215
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:323
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:98
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:200
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:305
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:809
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:908
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:105
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:214
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:322
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:98
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:201
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:301
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:805
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:904
+#: provider/Linux_DHCPService/Linux_DHCPService.c:108
+#: provider/Linux_DHCPService/Linux_DHCPService.c:224
+#: provider/Linux_DHCPService/Linux_DHCPService.c:340
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:108
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:224
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:340
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:97
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:197
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:305
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:829
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:852
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:957
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:976
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:105
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:214
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:322
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:98
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:201
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:306
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:810
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:909
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:105
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:214
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:322
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:98
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:201
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:306
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:810
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:909
+msgid "Failed to set property values from resource data"
+msgstr "Failed to set property values from resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:112
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:221
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:329
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:406
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:486
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:558
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:112
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:221
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:329
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:406
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:489
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:562
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:113
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:222
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:335
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:414
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:498
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:570
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:112
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:221
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:329
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:406
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:488
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:560
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:113
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:222
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:330
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:407
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:488
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:560
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:112
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:221
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:329
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:406
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:488
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:560
+#: provider/Linux_DHCPService/Linux_DHCPService.c:115
+#: provider/Linux_DHCPService/Linux_DHCPService.c:231
+#: provider/Linux_DHCPService/Linux_DHCPService.c:347
+#: provider/Linux_DHCPService/Linux_DHCPService.c:431
+#: provider/Linux_DHCPService/Linux_DHCPService.c:516
+#: provider/Linux_DHCPService/Linux_DHCPService.c:597
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:115
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:231
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:346
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:428
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:513
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:594
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:112
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:221
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:329
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:406
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:488
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:560
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:112
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:221
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:329
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:406
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:487
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:559
+msgid "Failed to free resource data"
+msgstr "Failed to free resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:119
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:119
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:120
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:119
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:120
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:119
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:112
+#: provider/Linux_DHCPService/Linux_DHCPService.c:122
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:122
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:119
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:119
+msgid "Failed to get CMPIObjectPath from CMPIInstance"
+msgstr "Failed to get CMPIObjectPath from CMPIInstance"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:131
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:232
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:290
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:388
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:463
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:540
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:116
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:117
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:211
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:212
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:274
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:386
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:454
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:633
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:739
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:869
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:989
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:131
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:232
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:290
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:388
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:463
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:544
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:116
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:117
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:211
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:212
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:271
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:387
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:455
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:620
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:720
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:819
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:917
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:132
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:233
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:294
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:396
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:472
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:552
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:116
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:209
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:268
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:378
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:446
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:611
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:710
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:809
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:907
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:131
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:232
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:290
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:388
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:462
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:542
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:115
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:116
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:210
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:211
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:270
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:383
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:452
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:617
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:717
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:816
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:914
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:132
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:233
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:291
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:389
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:463
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:542
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:116
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:117
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:211
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:212
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:271
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:384
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:454
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:620
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:720
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:819
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:917
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:131
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:232
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:290
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:388
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:462
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:542
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:116
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:117
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:212
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:213
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:271
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:380
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:450
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:616
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:716
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:815
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:913
+#: provider/Linux_DHCPService/Linux_DHCPService.c:134
+#: provider/Linux_DHCPService/Linux_DHCPService.c:242
+#: provider/Linux_DHCPService/Linux_DHCPService.c:308
+#: provider/Linux_DHCPService/Linux_DHCPService.c:413
+#: provider/Linux_DHCPService/Linux_DHCPService.c:498
+#: provider/Linux_DHCPService/Linux_DHCPService.c:579
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:134
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:242
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:308
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:410
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:495
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:576
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:115
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:116
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:208
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:209
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:271
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:383
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:452
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:630
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:735
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:864
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:986
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:131
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:232
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:290
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:388
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:462
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:542
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:116
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:117
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:212
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:213
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:272
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:385
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:455
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:621
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:721
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:820
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:918
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:131
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:232
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:290
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:388
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:462
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:541
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:116
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:117
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:212
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:213
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:272
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:385
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:455
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:621
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:721
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:820
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:918
+msgid "Failed to get resource data"
+msgstr "Failed to get resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:138
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:239
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:336
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:413
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:493
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:565
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:131
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:226
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:322
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:410
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:649
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:755
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:884
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:1004
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:138
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:239
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:336
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:413
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:496
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:569
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:131
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:226
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:322
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:411
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:636
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:736
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:834
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:932
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:139
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:240
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:342
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:421
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:505
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:577
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:130
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:223
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:313
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:402
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:627
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:726
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:824
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:922
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:138
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:239
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:336
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:413
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:495
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:567
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:130
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:225
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:318
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:407
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:633
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:733
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:831
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:929
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:139
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:240
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:337
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:414
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:495
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:567
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:131
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:226
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:319
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:409
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:636
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:736
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:834
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:932
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:138
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:239
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:336
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:413
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:495
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:567
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:131
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:227
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:315
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:405
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:632
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:732
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:830
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:928
+#: provider/Linux_DHCPService/Linux_DHCPService.c:141
+#: provider/Linux_DHCPService/Linux_DHCPService.c:249
+#: provider/Linux_DHCPService/Linux_DHCPService.c:354
+#: provider/Linux_DHCPService/Linux_DHCPService.c:438
+#: provider/Linux_DHCPService/Linux_DHCPService.c:523
+#: provider/Linux_DHCPService/Linux_DHCPService.c:604
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:141
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:249
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:352
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:435
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:520
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:601
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:129
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:223
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:319
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:407
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:646
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:751
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:880
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:1001
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:138
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:239
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:336
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:413
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:495
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:567
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:131
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:227
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:320
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:410
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:637
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:737
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:835
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:933
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:138
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:239
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:336
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:413
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:494
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:565
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:131
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:227
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:320
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:410
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:637
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:737
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:835
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:933
+msgid "Failed to free list of system resources"
+msgstr "Failed to free list of system resources"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:207
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:315
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:207
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:315
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:208
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:320
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:207
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:315
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:208
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:316
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:207
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:315
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:159
+#: provider/Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c:206
+#: provider/Linux_DHCPService/Linux_DHCPService.c:217
+#: provider/Linux_DHCPService/Linux_DHCPService.c:333
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:217
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:333
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:207
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:315
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:207
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:315
+msgid "Failed to set property filter"
+msgstr "Failed to set property filter"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:294
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:392
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:544
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:277
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:278
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:389
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:457
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:294
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:392
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:548
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:274
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:275
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:390
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:458
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:298
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:400
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:556
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:271
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:381
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:449
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:294
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:392
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:546
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:273
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:274
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:386
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:455
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:295
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:393
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:546
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:274
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:275
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:387
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:388
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:457
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:458
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:294
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:392
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:546
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:383
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:384
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:453
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:454
+#: provider/Linux_DHCPService/Linux_DHCPService.c:312
+#: provider/Linux_DHCPService/Linux_DHCPService.c:417
+#: provider/Linux_DHCPService/Linux_DHCPService.c:583
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:312
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:414
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:580
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:274
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:275
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:386
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:455
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:294
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:392
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:546
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:275
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:276
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:388
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:389
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:458
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:459
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:294
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:392
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:545
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:275
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:276
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:388
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:389
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:458
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:459
+msgid "Target instance not found"
+msgstr "Target instance not found"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:399
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:399
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:407
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:399
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:400
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:399
+#: provider/Linux_DHCPService/Linux_DHCPService.c:424
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:421
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:399
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:399
+msgid "Failed to modify resource data"
+msgstr "Failed to modify resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:467
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:467
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:476
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:466
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:467
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:466
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:466
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:466
+msgid "Target instance already exists"
+msgstr "Target instance already exists"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:474
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:474
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:483
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:473
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:474
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:473
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:473
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:473
+msgid "Failed to create resource data"
+msgstr "Failed to create resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:551
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:555
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:563
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:553
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:553
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:553
+#: provider/Linux_DHCPService/Linux_DHCPService.c:590
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:587
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:553
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:552
+msgid "Failed to delete resource data"
+msgstr "Failed to delete resource data"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:620
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:624
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:632
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:622
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:622
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:622
+#: provider/Linux_DHCPService/Linux_DHCPService.c:673
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:670
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:622
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:620
+msgid "Failed to initialize instance provider"
+msgstr "Failed to initialize instance provider"
+
+#: provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c:647
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:651
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:659
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:649
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:649
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:649
+#: provider/Linux_DHCPService/Linux_DHCPService.c:707
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:704
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:649
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:647
+msgid "Failed to cleanup instance provider"
+msgstr "Failed to cleanup instance provider"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:106
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:106
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:106
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:105
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:106
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:106
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:105
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:106
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:106
+msgid "Cannot get CMPIObjectPath for instance"
+msgstr "Cannot get CMPIObjectPath for instance"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:124
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:219
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:315
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:403
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:471
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:642
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:748
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:877
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:997
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:124
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:219
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:315
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:404
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:472
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:629
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:729
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:827
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:925
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:123
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:216
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:306
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:395
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:463
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:620
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:719
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:817
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:915
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:123
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:218
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:311
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:400
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:469
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:626
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:726
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:824
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:922
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:124
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:219
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:312
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:402
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:472
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:629
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:729
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:827
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:925
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:124
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:220
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:308
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:398
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:468
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:625
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:725
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:823
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:921
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:122
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:216
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:312
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:400
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:469
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:639
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:744
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:873
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:994
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:124
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:220
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:313
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:403
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:473
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:630
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:730
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:828
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:926
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:124
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:220
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:313
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:403
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:473
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:630
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:730
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:828
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:926
+msgid "Failed to free system resource"
+msgstr "Failed to free system resource"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:186
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:293
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:828
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:851
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:955
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:974
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:186
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:291
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:803
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:902
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:184
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:285
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:793
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:892
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:185
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:289
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:800
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:899
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:186
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:290
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:803
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:902
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:186
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:286
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:799
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:898
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:183
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:290
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:823
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:846
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:952
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:971
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:186
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:291
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:804
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:903
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:186
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:291
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:804
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:903
+msgid "Create CMPIInstance failed."
+msgstr "Create CMPIInstance failed."
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:193
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:301
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:193
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:301
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:191
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:292
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:192
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:297
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:193
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:298
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:194
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:294
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:190
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:298
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:194
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:299
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:194
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:299
+msgid "Cannot set property filter"
+msgstr "Cannot set property filter"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:300
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:300
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:296
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:297
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:293
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:297
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:298
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:298
+msgid "cannot set property filter"
+msgstr "cannot set property filter"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:396
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:397
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:388
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:393
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:395
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:391
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:393
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:396
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:396
+msgid "Failed to create resource data from instance"
+msgstr "Failed to create resource data from instance"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:464
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:465
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:456
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:462
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:465
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:461
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:462
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:466
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:466
+msgid "Failed to delete resource"
+msgstr "Failed to delete resource"
+
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:822
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:845
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:950
+#: provider/Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c:969
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:797
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:896
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:787
+#: provider/Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c:886
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:794
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c:893
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:797
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c:896
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:793
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c:892
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:817
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:840
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:947
+#: provider/Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c:966
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:798
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:897
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:798
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c:897
+msgid "Create CMPIObjectPath failed."
+msgstr "Create CMPIObjectPath failed."
+
+#: provider/Linux_DHCPGroup/Linux_DHCPGroup.c:482
+#: provider/Linux_DHCPHost/Linux_DHCPHost.c:491
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions.c:481
+#: provider/Linux_DHCPParams/Linux_DHCPParams.c:482
+#: provider/Linux_DHCPPool/Linux_DHCPPool.c:481
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet.c:481
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet.c:481
+msgid "Failed to build object path for the new instance"
+msgstr "Failed to build object path for the new instance"
+
+#: provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c:228
+#: provider/Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c:225
+#: provider/Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c:226
+#: provider/Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c:223
+#: provider/Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c:227
+#: provider/Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c:228
+msgid "Invalid instance ID or InstanceID not found"
+msgstr "Invalid instance ID or InstanceID not found"
+
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:220
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:220
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:222
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:212
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:216
+msgid "Invalid instance ID"
+msgstr "Invalid instance ID"
+
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:235
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:247
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:249
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:227
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:231
+msgid "Invalid instance Name"
+msgstr "Invalid instance Name"
+
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:245
+msgid "A host with the name already exists"
+msgstr "A host with the name already exists"
+
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:297
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:310
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:307
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:287
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:301
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:317
+msgid "Name field not specified properly or not provided"
+msgstr "Name field not specified properly or not provided"
+
+#: provider/Linux_DHCPHost/Linux_DHCPHost_Resource.c:304
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:294
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:309
+msgid "Duplicate Entity already exists"
+msgstr "Duplicate Entity already exists"
+
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:235
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:237
+msgid "Invalid instance Value"
+msgstr "Invalid instance Value"
+
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:296
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:299
+msgid "Value field not specified properly or not provided"
+msgstr "Value field not specified properly or not provided"
+
+#: provider/Linux_DHCPOptions/Linux_DHCPOptions_Resource.c:303
+msgid "A duplicate option already exists in this scope"
+msgstr "A duplicate option already exists in this scope"
+
+#: provider/Linux_DHCPParams/Linux_DHCPParams_Resource.c:314
+msgid "A duplicate param already exists in this scope"
+msgstr "A duplicate param already exists in this scope"
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:484
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:481
+msgid "Failed to get the object path for the new instance"
+msgstr "Failed to get the object path for the new instance"
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:502
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:499
+msgid "The instance already exists"
+msgstr "The instance already exists"
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:509
+#: provider/Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c:506
+msgid "Failed to create the new resource"
+msgstr "Failed to create the new resource"
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:749
+msgid "Failed to get list of system resources."
+msgstr "Failed to get list of system resources."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:756
+msgid "Failed to get resource data."
+msgstr "Failed to get resource data."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:760
+msgid "Target instance was not found."
+msgstr "Target instance was not found."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:766
+msgid "The submitted reference contains an invalid class."
+msgstr "The submitted reference contains an invalid class."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:783
+msgid "Incorrect number of input arguments for method \"SartService\"."
+msgstr "Incorrect number of input arguments for method \"SartService\"."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:793
+msgid "Execution of method \"StartService\" failed."
+msgstr "Execution of method \"StartService\" failed."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:817
+msgid "Incorrect number of input arguments for method \"SopService\"."
+msgstr "Incorrect number of input arguments for method \"SopService\"."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:827
+msgid "Execution of method \"StopService\" failed."
+msgstr "Execution of method \"StopService\" failed."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:839
+msgid "This function is not known by this provider."
+msgstr "This function is not known by this provider."
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:872
+msgid "Failed to initialize method provider"
+msgstr "Failed to initialize method provider"
+
+#: provider/Linux_DHCPService/Linux_DHCPService.c:897
+msgid "Failed to cleanup method provider"
+msgstr "Failed to cleanup method provider"
+
+#: provider/Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c:237
+msgid "A shared-network with this name already exists"
+msgstr "A shared-network with this name already exists"
+
+#: provider/Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c:241
+msgid "A subnet on this IP-Address already exists"
+msgstr "A subnet on this IP-Address already exists"

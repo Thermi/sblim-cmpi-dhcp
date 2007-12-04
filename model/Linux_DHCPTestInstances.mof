@@ -1,0 +1,317 @@
+
+//-- Instance of DHCP Service
+
+instance of Linux_DHCPService {
+        SystemCreationClassName="CIM_Service";
+        SystemName="prkarnam.in.ibm.com";
+        CreationClassName="DHCPClass";
+        Name="dhcp";
+        PrimaryOwnerName="";
+        Started=true;
+};
+
+//--
+
+instance of Linux_DHCPServiceConfiguration {
+	Name="dhcpConfiguration";
+	configurationFile="\etc\dhcpd\dhcpd.conf";
+	};
+	
+
+instance of Linux_DHCPServiceConfigurationForService {
+	Element="Linux_DHCPService.SystemCreationClassName=\"CIM_Service\",SystemName=\"prkarnam.in.ibm.com\",CreationClassName=\"DHCPClass\",Name=\"dhcp\"";
+	Configuration="Linux_DHCPServiceConfiguration.Name=\"dhcpConfiguration\"";
+	};
+		
+
+//-- instance of DHCP global entity
+
+instance of Linux_DHCPGlobal  {
+InstanceID="WBEM_SMT:Linux_DHCPGlobal::dhcp::global";
+ElementName="global";
+};
+
+//--
+
+//-- instance of association between DHCPglobal and service
+
+instance of Linux_DHCPGlobalForService   {
+ManagedElement="Linux_DHCPService.SystemCreationClassName=\"CIM_Service\",SystemName=\"prkarnam.in.ibm.com\",CreationClassName=\"DHCPClass\",Name=\"dhcp\"";
+SettingData="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+};
+
+//--
+
+// -- Instances for Options in the global scope
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::interface-mtu";
+ElementName="interface-mtu";
+values="500";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name";
+ElementName="domain-name";
+values="nuts.com";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name-servers";
+ElementName="domain-name-servers";
+values="255.255.255.255";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::dhcp-server-identification";
+ElementName="dhcp-server-identification";
+values="202.142.11.1";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::ip-forwarding";
+ElementName="ip-forwarding";
+values="false";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::default-ip-ttl";
+ElementName="default-ip-ttl";
+values="20";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::default-tcp-ttl";
+ElementName="default-tcp-ttl";
+values="25";
+};
+
+//--
+
+//-- Association instances for options with global scope
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::interface-mtu\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name-servers\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::dhcp-server-identification\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::ip-forwarding\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+Partcomponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::default-ip-ttl\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::default-tcp-ttl\"";
+};
+
+//--
+
+//-- instances of Parameters of global scope
+
+instance of Linux_DHCPParams   {
+InstanceID="WBEM_SMT:Linux_DHCPParams::dhcp::default-lease-time";
+ElementName="default-lease-time";
+values="86400";
+};
+
+instance of Linux_DHCPParams   {
+InstanceID="WBEM_SMT:Linux_DHCPParams::dhcp::max-lease-time";
+ElementName="max-lease-time";
+values="604800";
+};
+
+//--
+
+//-- instances of association of params with the global scope
+
+instance of Linux_DHCPParamsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPParams.InstanceID=\"WBEM_SMT:Linux_DHCPParams::dhcp::default-lease-time\"";
+};
+
+instance of Linux_DHCPParamsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPParams.InstanceID=\"WBEM_SMT:Linux_DHCPParams::dhcp::max-lease-time\"";
+};
+
+//--
+
+//-- instance of the subnet in the global scope
+
+instance of Linux_DHCPSubnet  {
+InstanceID="WBEM_SMT:Linux_DHCPSubnet::dhcp::172.16.3.0";
+ElementName="172.16.3.0";
+Netmask="255.255.255.0";
+};
+
+//--
+
+//-- instances of the options for the subnet 172.16.3.0
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::routers";
+ElementName="routers";
+values="172.16.3.25";
+};
+
+instance of Linux_DHCPOptions   {
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::broadcast-address";
+ElementName="broadcast-address";
+values="172.16.3.255";
+};
+
+//--
+
+//-- instances of associations of subnets in the global scope
+
+instance of Linux_DHCPSubnetsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::172.16.3.0\"";
+};
+
+//-- options of the subnet associated to subnet
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::172.16.3.0\"";
+Partcomponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::routers\"";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::172.16.3.0\"";
+Partcomponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::broadcast-address\"";
+};
+
+//--
+
+//-- Pool insdide the Subnet
+
+instance of Linux_DHCPPool  {
+InstanceID="WBEM_SMT:Linux_DHCPPool::dhcp::172.16.3.250";
+ElementName="172.16.3.250";
+IPAddrEnd="172.16.3.253";
+};
+
+//-- association of the Pool to subnet
+
+instance of Linux_DHCPPoolsForEntity   {
+GroupComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::172.16.3.0\"";
+PartComponent="Linux_DHCPPool.InstanceID=\"WBEM_SMT:Linux_DHCPPool::dhcp::172.16.3.250\"";
+};
+
+//-- Host entry
+
+instance of Linux_DHCPHost  {
+InstanceID="WBEM_SMT:Linux_DHCPHost::dhcp::host_inside_pool";
+ElementName="host_inside_pool";
+IPAddr="172.16.3.4";
+MACAddr="00:99:c7:b4:ac:04";
+};
+
+//-- association of the host to pool
+
+instance of Linux_DHCPHostsForEntity   {
+GroupComponent="Linux_DHCPPool.InstanceID=\"WBEM_SMT:Linux_DHCPPool::dhcp::172.16.3.250\"";
+PartComponent="Linux_DHCPHost.InstanceID=\"WBEM_SMT:Linux_DHCPHost::dhcp::host_inside_pool\"";
+};
+
+//-- group in the global scope
+
+instance of Linux_DHCPGroup  {
+InstanceID="WBEM_SMT:Linux_DHCPGroup::dhcp::group=111";
+ElementName="group=111";
+};
+
+//-- association of group with the global scope.
+
+instance of Linux_DHCPGroupsForEntity   {
+GroupComponent="Linux_DHCPGlobal.InstanceID=\"WBEM_SMT:Linux_DHCPGlobal::dhcp::global\"";
+PartComponent="Linux_DHCPGroup.InstanceID=\"WBEM_SMT:Linux_DHCPGroup::dhcp::group=111\"";
+};
+
+//-- params in the group
+
+instance of Linux_DHCPParams{
+InstanceID="WBEM_SMT:Linux_DHCPParams::dhcp::server-name";
+ElementName="server-name";
+values="OurServer";
+};
+
+instance of Linux_DHCPParamsForEntity   {
+GroupComponent="Linux_DHCPGroup.InstanceID=\"WBEM_SMT:Linux_DHCPGroup::dhcp::group=111\"";
+PartComponent="LinuxDHCPParams.InstanceID=\"WBEM_SMT:Linux_DHCPParams::dhcp::server-name\"";
+};
+
+//-- sharednet inside the group
+
+instance of Linux_DHCPSharednet{
+InstanceID="WBEM_SMT:Linux_DHCPSharednet::dhcp::Sharenet-in-grp";
+ElementName="Sharenet-in-grp";
+};
+
+instance of Linux_DHCPSharednetsForEntity   {
+GroupComponent="Linux_DHCPGroup.InstanceID=\"WBEM_SMT:Linux_DHCPGroup::dhcp::group=111\"";
+PartComponent="Linux_DHCPSharednet.InstanceID=\"WBEM_SMT:Linux_DHCPSharednet::dhcp::Sharenet-in-grp\"";
+};
+
+
+//-- option for the sharednet
+
+instance of Linux_DHCPOptions{
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::routers";
+ElementName="routers";
+values="204.254.220.1";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="LinuxDHCPSharednet.InstanceID=\"WBEM_SMT:Linux_DHCPSharednet::dhcp::Sharenet-in-grp\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::routers\"";
+};
+
+//-- subnet inside the sharednet
+
+instance of Linux_DHCPSubnet{
+InstanceID="WBEM_SMT:Linux_DHCPSubnet::dhcp::204.254.220.0";
+ElementName="204.254.220.0";
+Netmask="255.255.255.224";
+};
+
+instance of Linux_DHCPSubnetsForEntity   {
+GroupComponent="Linux_DHCPSharednet.InstanceID=\"WBEM_SMT:Linux_DHCPSharednet::dhcp::Sharenet-in-grp\"";
+PartComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::204.254.220.0\"";
+};
+
+//-- option inside the subnet
+
+instance of Linux_DHCPOptions{
+InstanceID="WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name";
+ElementName="domain-name";
+values="sharenet-in-grp";
+};
+
+instance of Linux_DHCPOptionsForEntity   {
+GroupComponent="Linux_DHCPSubnet.InstanceID=\"WBEM_SMT:Linux_DHCPSubnet::dhcp::204.254.220.0\"";
+PartComponent="Linux_DHCPOptions.InstanceID=\"WBEM_SMT:Linux_DHCPOptions::dhcp::domain-name\"";
+};
+
+        

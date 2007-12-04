@@ -1,0 +1,14 @@
+********************************************************************************
+class : Linux_DHCPGlobal
+
+--------------------------------------------------------------------------------
+Linux_DHCPGlobal : -eq 1
+
+--------------------------------------------------------------------------------
+InstanceID : -eq WBEM-SMT:Linux_DHCPGlobal:Global=0 
+
+Name : -empty
+Caption : -empty
+Description : -empty
+ElementName : -eq Global 
+

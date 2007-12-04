@@ -1,0 +1,130 @@
+/* --------------------------------------------------------------------------*/
+README
+
+(C) Copyright IBM Corp. 2007
+
+THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+
+You can obtain a current copy of the Common Public License from
+http://www.opensource.org/licenses/cpl1.0.php
+
+Author:       Wolfgang Taphorn <taphorn@de.ibm.com>
+Date  :	      04/12/2007
+
+Contributors: Tony Gargya <gargya@de.ibm.com>
+
+/* --------------------------------------------------------------------------*/
+
+SBLIM CMPI DHCP Instrumentation README
+--------------------------------------
+
+Introduction
+------------
+
+The cmpi-dhcp package provides access to the dhcp configuration data 
+via CIMOM technology/infrastructure.
+
+
+Client Interface
+----------------
+Since the usage of the CIM Client API is not userfriendly enough to manage the 
+complexity of the task, a Web Based front end has been developed and published 
+on the SBLIM project page on SourceForge.
+The Client Interface allows to configure the service properly and offers 
+guidance in the form of wizards to create new entities or make other complex
+configuration.
+It can be retrieved from the following URL:
+https://sourceforge.net/project/showfiles.php?group_id=128809&package_id=214076
+
+
+Management Application
+----------------------
+This package includes only the instrumentation and does not offer a management
+application. The management application is available for download on 
+https://sourceforge.net/project/showfiles.php?group_id=128809&package_id=214076
+Please refer to the README of the sblim-wbemsmt-* packages on how to setup the
+system to get the application running.
+
+
+Package Contents
+----------------
+
+./README                This file
+./model/*               Contains DHCP CIM Model
+./provider/*            The instrumented classes/associations    
+./resource-access/*     cmpi-dhcp specific resource access layer code 
+
+If checked out from CVS:
+./autoconfiscate.sh Contains support to setup the autoconf/automake build environment 
+
+
+Build-time Prerequisites
+------------------------
+- CMPI enabled CIMOM installed (e.g. Pegasus 2.5)
+- automake 1.9.2 or higher
+- libtool 1.5.8 or higher 
+- tools-libra built and installed
+
+Run-time Prerequisites
+----------------------
+- CMPI enabled CIMOM installed 
+  Pegasus 2.5 requires Patch for Pegasus Bug 4220 
+- CIM Schema Version 2.9 loaded into the CIMOM's repository
+- CIMOM running as user root
+- Perl interpreter
+- bind 9.2.3 or higher 
+- correctly configured properties in smt_dhcp_ra_support.conf
+ 
+Build/Install Instructions
+--------------------------
+
+The simplest way to compile and install this package is:
+
+  1. If checked out from CVS 'cd' to the directory containing the package's source code and type
+     './autoconfiscate.sh' to setup the autoconf/automake build environment.
+       
+  2. Type './configure' to configure the package for your system.
+
+  3. Type 'make' to build the libraries
+
+  4. su to root and type 'make install' to install the libraries and the header files.
+
+  5. su to root and type 'make postinstall' to load and register the classes/association classes and their providers
+
+This package is GNU autotool enabled, refer to the file named INSTALL for generic instructions.
+
+The generated configure script tries to determine where the CMPI header files
+are located. For this purpose it searches a set of well-known locations.
+The "canonical" location is /usr/include/cmpi or /usr/local/include/cmpi,
+depending on how configure is invoked.
+
+Further, configure "determines" where providers are to be installed. Actually,
+there's no detection logic. The provider directory will always be
+/usr/lib/cmpi or /usr/local/lib/cmpi. If a CIM server requires a particular
+directory this can be selected by specifying the PROVIDERDIR variable.
+
+And finally, configure tries to find out which CIM server type is being used.
+This is necessary in order to select the appropriate schema and provider
+registration technique. If the CIM server is not or incorrectly identified,
+it is possible to specify it via the CIMSERVER variable.
+Supported values are pegasus, sfcb, openwbem and sniacimom.
+
+For instance, in order to configure for a locally installed Pegasus you can
+issue the following command:
+./configure CIMSERVER=pegasus PROVIDERDIR=$PEGASUS_HOME/lib
+
+Load Schema into CIMOM's repository
+-----------------------------------
+
+- with Pegasus / OpenWBEM /sfcb :
+-------------------------------
+is done during the "make postinstall".
+
+- with OpenCimom/SNIA CIMOM :
+---------------------------
+Start the cimbrowser (/usr/sniacimom/bin). Load the schema file Linux_DHCP.mof with 
+"File" -> "Reload Mof" into the namespace root/cimv2. Before at least IBMQualifiers, 
+CIM Core and CIM System schemata have to be loaded into the repository.
+

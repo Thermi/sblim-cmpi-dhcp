@@ -1,0 +1,15 @@
+[Description(" An Entity is the base class which represents an individual entity in the DHCP configuration file. An Entity may be an Option/Parameter pertatining to global scope or to any of the logical groupings of the networks defined using the Subnet, Sharednet , Pool , Host .etc declarations. All such Enities extend this class and define their own set of Attributes. For example if there is an Subnet then class representing a Subnet would be extending this Entity class and then would define its parameters which are specific to Subnet.")
+]
+
+class Linux_DHCPEntity : CIM_SettingData {
+
+	[Write ,
+	 Description("The Parent Instance ID ")]
+	string ParentID;
+	
+	[Write ,
+	 Description("Name of the entity.")]
+	string Name;	
+	
+	};
+		

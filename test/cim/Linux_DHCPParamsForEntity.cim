@@ -1,0 +1,28 @@
+********************************************************************************
+association : Linux_DHCPHostsForEntity
+objectPath : Linux_DHCPParamsForEntity.GroupComponent="root/cimv2:Linux_DHCPGlobal.InstanceID=\"WBEM-SMT:Linux_DHCPGlobal:Global=0\"",PartComponent="root/cimv2:Linux_DHCPParams.InstanceID=\"WBEM-SMT:Linux_DHCPParams:Global=0:Param=afeb88b37435f600\"" 
+sourceRole : GroupComponent 
+targetRole : PartComponent
+sourceClass : Linux_DHCPEntity
+targetClass : Linux_DHCPHost
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames

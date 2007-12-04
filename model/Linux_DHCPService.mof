@@ -1,0 +1,7 @@
+[Description("Entity that repsresents the DHCP Service ")
+]
+class Linux_DHCPService : CIM_Service {
+
+	
+	};
+		

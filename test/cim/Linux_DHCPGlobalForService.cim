@@ -1,0 +1,28 @@
+********************************************************************************
+association : Linux_DHCPGlobalForService
+objectPath : Linux_DHCPGlobalForService.ManagedElement="root/cimv2:Linux_DHCPService.CreationClassName=\"Linux_DHCPService\",Name=\"Dhcp\",SystemCreationClassName=\"Linux_DHCPService\",SystemName=\"rhino1\"",SettingData="root/cimv2:Linux_DHCPGlobal.InstanceID=\"WBEM-SMT:Linux_DHCPGlobal:Global=0\""
+sourceRole : ManagedElement
+targetRole : SettingData
+sourceClass : Linux_DHCPService
+targetClass : Linux_DHCPGlobal
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames

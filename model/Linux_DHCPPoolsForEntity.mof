@@ -1,0 +1,17 @@
+[Description("The hierarchial structure fo the dhcp viz subnets inside sharednets ,pools within subnets ..etc can be achieved by using this association.Here the Pool entity is associated with DHCPEntity which can be any of the classes extending the DHCPEntity class."),
+Association]
+
+class Linux_DHCPPoolsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPPool REF PartComponent;
+	
+	
+	};
+		

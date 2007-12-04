@@ -1,0 +1,17 @@
+[Description(" Entity to represent the Hosts in the dhcp.conf file.")
+]
+
+
+class Linux_DHCPHost : Linux_DHCPEntity {
+
+	[Write ,
+	 Description(" The static IP Address that is to be assigneds to a specific host. The unique host is identifeid 	by 	the MAC address of that network device.")]
+	string IPAddr;
+	
+	[Write ,
+	 Description(" The MAC Address is the Hardware address of the Network Device Controller.")]
+	string MACAddr;
+	
+	
+	};
+		

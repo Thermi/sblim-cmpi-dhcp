@@ -1,0 +1,223 @@
+[Abstract]
+class Linux_DHCPEntity : CIM_SettingData {
+	
+	};
+
+
+class Linux_DHCPService : CIM_Service {
+
+	};
+
+
+class Linux_DHCPServiceConfiguration : CIM_Configuration {
+
+	[Write]
+	string configurationFile;
+	
+	};
+		
+class Linux_DHCPGlobal : Linux_DHCPEntity {
+
+	};
+
+class Linux_DHCPGroup : Linux_DHCPEntity {
+
+	};
+
+class Linux_DHCPHost : Linux_DHCPEntity {
+
+	[Write]
+	string IPAddr;
+	
+	[Write]
+	string MACAddr;
+	
+	
+	};
+
+class Linux_DHCPOptions : CIM_SettingData {
+
+	[Write]
+	string values;
+	
+	};
+
+class Linux_DHCPParams : CIM_SettingData {
+
+	[Write]
+	string values;
+	
+	};
+		
+class Linux_DHCPPool : Linux_DHCPEntity {
+
+	[Write]
+	string IPAddrEnd;
+	
+	};
+		
+class Linux_DHCPSharednet : Linux_DHCPEntity {
+
+	
+	};
+		
+class Linux_DHCPSubnet : Linux_DHCPEntity {
+
+	[Write]
+	string Netmask;
+	
+	
+	};
+
+// -- association classes
+		
+[Association]
+
+class Linux_DHCPGlobalForService : CIM_ElementSettingData {
+
+	[Key, Override("ManagedElement"), 
+	Max (1), 
+	Min (1)]
+	Linux_DHCPService REF ManagedElement;
+	
+	[Key, Override("SettingData")]
+	Linux_DHCPGlobal REF SettingData;
+	
+	
+	};
+		
+
+[Association]
+
+class Linux_DHCPGroupsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPGroup REF PartComponent;
+	
+	
+	};
+		
+
+		
+[Association]
+
+class Linux_DHCPHostsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPHost REF PartComponent;
+	
+	
+	};
+
+[Association]
+class Linux_DHCPSharednetsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPHost REF PartComponent;
+	
+	
+	};
+		
+[Association]
+
+class Linux_DHCPOptionsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPOptions REF PartComponent;
+	
+	
+	};
+		
+	
+[Association, 
+Aggregation]
+
+class Linux_DHCPParamsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPParams REF PartComponent;
+	
+	
+	};
+		
+
+		
+[Association]
+
+class Linux_DHCPPoolsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPPool REF PartComponent;
+	
+	
+	};
+		
+[Association]
+
+class Linux_DHCPServiceConfigurationForService : CIM_ElementConfiguration {
+
+	[Key, Override("Element"),Max (1), 
+	Min (1)]
+	Linux_DHCPService REF Element;
+	
+	[Key, Override("Configuration"),Max (1), 
+	Min (1)]
+	Linux_DHCPServiceConfiguration REF Configuration;
+	
+	
+	};
+		
+		
+[Association, 
+Aggregation]
+
+class Linux_DHCPSubnetsForEntity : CIM_Component {
+
+	[Key, Override("GroupComponent"), 
+	Max (1), 
+	Min (1), 
+	Aggregate]
+	Linux_DHCPEntity REF GroupComponent;
+	
+	[Key, Override("PartComponent")]
+	Linux_DHCPSubnet REF PartComponent;
+	
+	
+	};
+		

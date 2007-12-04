@@ -1,0 +1,14 @@
+********************************************************************************
+class : Linux_DHCPGroup
+
+--------------------------------------------------------------------------------
+Linux_DHCPGroup : -eq 6
+
+--------------------------------------------------------------------------------
+InstanceID : -eq WBEM-SMT:Linux_DHCPGroup:Global=0:Group=8301597f4b5267c4 
+
+Name : -empty
+Caption : -empty
+Description : -empty
+ElementName : -eq Group
+

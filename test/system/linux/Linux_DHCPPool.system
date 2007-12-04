@@ -1,0 +1,14 @@
+********************************************************************************
+class : Linux_DHCPPool
+
+--------------------------------------------------------------------------------
+Linux_DHCPPool : -eq 7
+
+--------------------------------------------------------------------------------
+InstanceID : -eq WBEM-SMT:Linux_DHCPPool:Global=0:Subnet=37f575836b5f0:Pool=ae3a5153108e9430 
+
+Name : -empty
+Caption : -empty
+Description : -empty
+ElementName : -eq Pool
+

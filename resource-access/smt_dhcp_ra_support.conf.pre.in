@@ -1,0 +1,19 @@
+##############################################################################
+# Configuration file for the resource access layer of the
+# sblim cmpi-dhcp instrumentation
+#
+
+##############################################################################
+# The 'dhcpconf' attribute is used to define the location and the name of the 
+# DHCP configuration file.
+dhcpconf   = "/etc/dhcpd.conf"
+
+##############################################################################
+# The 'initscript' attribute is used to define the directory and name of the
+# init script used to start/stop/restart the DHCP service.
+#initscript = "/etc/rc.d/init.d/dhcpd"
+
+###############################################################################
+# The 'scriptdir' attribute is used to define the directory where several
+# scripts are located. These are used by the resource access layer.
+#scriptdir  = "@SCRIPTDIR@/"

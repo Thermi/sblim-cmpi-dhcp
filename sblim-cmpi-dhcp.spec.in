@@ -1,0 +1,164 @@
+#
+# sblim-cmpi-dhcp.spec.in
+#
+# Package spec for cmpi-dhcp
+#
+
+%define cmpi_provider_dir %{_libdir}/cmpi
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+
+Summary: SBLIM WBEM-SMT DHCP 
+Name: @PACKAGE_TARNAME@
+Version: @PACKAGE_VERSION@
+Release: CVS
+Group: Systems Management/Base
+URL: http://www.sblim.org
+License: CPL
+Requires: sblim-tools-libra
+Requires: dhcpd
+BuildRequires: sblim-tools-libra-devel
+
+Provides: sblim-cmpi-dhcp
+
+Source0: http://prdownloads.sourceforge.net/sblim/%{name}-%{version}.tar.bz2
+
+%Description
+The cmpi-dhcp package provides access to the DHCP configuration data 
+via CIMOM technology/infrastructure. 
+It contains the DHCP CIM Model, CMPI Provider with the DHCP task specific 
+Resource Access.
+A web based client application is available on SourceForge. Please refer to
+https://sourceforge.net/project/showfiles.php?group_id=128809&package_id=214076
+to get the WBEM-SMT Client Application.
+
+###############################################################################
+%Package devel
+Summary: SBLIM WBEM-SMT DHCP - Header Development Files
+Group: Systems Management/Base
+Requires: %{name} = %{version}-%{release}
+
+%Description devel
+SBLIM WBEM-SMT DHCP Development Package contains header files and
+link libraries for dependent provider packages
+
+###############################################################################
+%Package test
+Summary: SBLIM WBEM-SMT DHCP - Testcase Files
+Group: Systems Management/Base
+Requires: %{name} = %{version}-%{release}
+
+%Description test
+SBLIM WBEM-SMT DHCP Provider Testcase Files for the SBLIM Testsuite
+
+###############################################################################
+%prep
+
+%setup -n %{name}-%{version}
+export PATCH_GET=0
+#%patch0 -p0
+
+
+###############################################################################
+%build
+
+%configure \
+   TESTSUITEDIR=%{_datadir}/sblim-testsuite \
+   CIMSERVER=pegasus \
+   PROVIDERDIR=%{_libdir}/cmpi/ \
+make
+
+
+###############################################################################
+%clean
+if [ "x${RPM_BUILD_ROOT}" != "x" ] ; then
+   rm -rf ${RPM_BUILD_ROOT}
+fi
+
+
+###############################################################################
+%install
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+
+make DESTDIR=$RPM_BUILD_ROOT install
+
+# remove unused libtool files
+rm -f $RPM_BUILD_ROOT/%{_libdir}/*a
+rm -f $RPM_BUILD_ROOT/%{_libdir}/cmpi/*a
+
+
+###############################################################################
+%pre
+# Conditional definition of schema and registration files
+%define SCHEMA %{_datadir}/%{name}/Linux_DHCPEntity.mof %{_datadir}/%{name}/Linux_DHCPGlobal.mof %{_datadir}/%{name}/Linux_DHCPGlobalForService.mof %{_datadir}/%{name}/Linux_DHCPGroup.mof %{_datadir}/%{name}/Linux_DHCPGroupsForEntity.mof %{_datadir}/%{name}/Linux_DHCPHost.mof %{_datadir}/%{name}/Linux_DHCPHostsForEntity.mof %{_datadir}/%{name}/Linux_DHCPOptions.mof %{_datadir}/%{name}/Linux_DHCPOptionsForEntity.mof %{_datadir}/%{name}/Linux_DHCPParams.mof %{_datadir}/%{name}/Linux_DHCPParamsForEntity.mof %{_datadir}/%{name}/Linux_DHCPPool.mof %{_datadir}/%{name}/Linux_DHCPPoolsForEntity.mof %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.mof %{_datadir}/%{name}/Linux_DHCPService.mof %{_datadir}/%{name}/Linux_DHCPServiceConfiguration.mof %{_datadir}/%{name}/Linux_DHCPServiceConfigurationForService.mof %{_datadir}/%{name}/Linux_DHCPSharednet.mof %{_datadir}/%{name}/Linux_DHCPSharednetsForEntity.mof %{_datadir}/%{name}/Linux_DHCPSubnet.mof %{_datadir}/%{name}/Linux_DHCPSubnetsForEntity.mof
+%define REGISTRATION %{_datadir}/%{name}/Linux_DHCPGlobal.registration %{_datadir}/%{name}/Linux_DHCPGlobalForService.registration %{_datadir}/%{name}/Linux_DHCPGroup.registration %{_datadir}/%{name}/Linux_DHCPGroupsForEntity.registration %{_datadir}/%{name}/Linux_DHCPHost.registration %{_datadir}/%{name}/Linux_DHCPHostsForEntity.registration %{_datadir}/%{name}/Linux_DHCPOptions.registration %{_datadir}/%{name}/Linux_DHCPOptionsForEntity.registration %{_datadir}/%{name}/Linux_DHCPParams.registration %{_datadir}/%{name}/Linux_DHCPParamsForEntity.registration %{_datadir}/%{name}/Linux_DHCPPool.registration %{_datadir}/%{name}/Linux_DHCPPoolsForEntity.registration %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.registration %{_datadir}/%{name}/Linux_DHCPService.registration %{_datadir}/%{name}/Linux_DHCPServiceConfiguration.registration %{_datadir}/%{name}/Linux_DHCPServiceConfigurationForService.registration %{_datadir}/%{name}/Linux_DHCPSharednet.registration %{_datadir}/%{name}/Linux_DHCPSharednetsForEntity.registration %{_datadir}/%{name}/Linux_DHCPSubnet.registration %{_datadir}/%{name}/Linux_DHCPSubnetsForEntity.registration
+
+# If upgrading, deregister old version
+if [ $1 -gt 1 ]
+then
+  %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
+	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+fi
+
+
+###############################################################################
+%post
+# Register Schema and Provider - this is higly provider specific
+
+%{_datadir}/%{name}/provider-register.sh %{?tog_pegasus:-t pegasus} \
+	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+
+/sbin/ldconfig
+
+
+###############################################################################
+%preun
+# Deregister only if not upgrading 
+if [ $1 -eq 0 ]
+then
+  %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
+	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+fi
+
+
+###############################################################################
+%postun 
+# Run ldconfig only if not upgrading
+if [ $1 -eq 0 ]
+then
+  /sbin/ldconfig
+fi
+
+
+###############################################################################
+%files
+%defattr(-,root,root,0644) 
+%doc %{_datadir}/doc/%{name}-%{version}
+%exclude %{_datadir}/doc/%{name}-%{version}/*.test
+%doc %{_mandir}/man5/smt_dhcp_ra_support.conf.5.gz
+%config(noreplace) %{_sysconfdir}/smt_dhcp*.conf
+%defattr(-,root,root,0755)
+%{_datadir}/%{name}
+%{_datadir}/locale/en_US/LC_MESSAGES/sblim-cmpi-dhcp.*
+%{_libdir}/libRaToolsDhcp.so.*
+%{cmpi_provider_dir}/libcmpiLinux_DHCP*.so
+
+
+%files devel
+%defattr(-,root,root) 
+%{_libdir}/libRaToolsDhcp.so
+
+%files test
+%defattr(-,root,root,0755)
+%{_datadir}/sblim-testsuite/test-cmpi-dhcp.sh
+%doc %{_datadir}/doc/%{name}-%{version}/*.test
+%defattr(-,root,root,0644)
+%{_datadir}/sblim-testsuite/dhcpd.conf
+%{_datadir}/sblim-testsuite/cim/Linux_DHCP*
+%{_datadir}/sblim-testsuite/system/linux/Linux_DHCP*
+
+
+###############################################################################
+%changelog
+* Thu Nov 15 2007 Wolfgang Taphorn <taphorn@de.ibm.com> 0.5.2-CVS
+    o initial support

@@ -1,0 +1,9 @@
+[Description(" Entity to represent the Pool specified in the dhcp.conf file.")
+]
+
+class Linux_DHCPPool : Linux_DHCPEntity {
+
+	
+	};
+		
+	

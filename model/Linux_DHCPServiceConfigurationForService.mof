@@ -1,0 +1,16 @@
+[Description(" An Association between the Service and the Configuration data specified in the ServiceConfiguration class"),
+Association]
+
+class Linux_DHCPServiceConfigurationForService : CIM_ElementConfiguration {
+
+	[Key, Override("Element"),Max (1), 
+	Min (1)]
+	Linux_DHCPService REF Element;
+	
+	[Key, Override("Configuration"),Max (1), 
+	Min (1)]
+	Linux_DHCPServiceConfiguration REF Configuration;
+	
+	
+	};
+		

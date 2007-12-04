@@ -1,0 +1,28 @@
+********************************************************************************
+association : Linux_DHCPPoolsForEntity
+objectPath : Linux_DHCPPoolsForEntity.GroupComponent="root/cimv2:Linux_DHCPSubnet.InstanceID=\"WBEM-SMT:Linux_DHCPSubnet:Global=0:Subnet=37f575836b5f0\"",PartComponent="root/cimv2:Linux_DHCPPool.InstanceID=\"WBEM-SMT:Linux_DHCPPool:Global=0:Subnet=37f575836b5f0:Pool=ae3a5153108e9430\""
+sourceRole : GroupComponent 
+targetRole : PartComponent
+sourceClass : Linux_DHCPEntity
+targetClass : Linux_DHCPPool
+
+--------------------------------------------------------------------------------
+Instance                                                       enumInstanceNames
+
+--------------------------------------------------------------------------------
+Instance                                                           enumInstances
+
+--------------------------------------------------------------------------------
+Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Association                                                          associators
+
+--------------------------------------------------------------------------------
+Association                                                      associatorNames
+
+--------------------------------------------------------------------------------
+Association                                                           references
+
+--------------------------------------------------------------------------------
+Association                                                       referenceNames

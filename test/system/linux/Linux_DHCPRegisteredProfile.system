@@ -1,0 +1,19 @@
+********************************************************************************
+class : Linux_DHCPRegisteredProfile
+
+--------------------------------------------------------------------------------
+Linux_DHCPRegisteredProfile : -eq 1
+
+--------------------------------------------------------------------------------
+
+InstanceID : -eq IBM:DHCP Server Profile-0.1.1
+Caption : -empty
+Description : -empty
+ElementName : -empty
+RegisteredOrganization : -eq 1
+OtherRegisteredOrganization : -eq IBM
+RegisteredName : -eq DHCP Server Profile
+RegisteredVersion : -eq 0.1.1
+AdvertiseTypes : -eq 3
+AdvertiseTypeDescriptions : -empty
+

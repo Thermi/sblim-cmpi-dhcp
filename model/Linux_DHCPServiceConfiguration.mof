@@ -1,0 +1,12 @@
+[Description("Entity which represents a configuration file for the service.")
+]
+
+class Linux_DHCPServiceConfiguration : CIM_Configuration {
+
+	[Write ,
+	 Description("Name of the Configuration file with absolute path.")]
+	string configurationFile;
+	
+	
+	};
+		
