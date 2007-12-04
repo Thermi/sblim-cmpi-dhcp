@@ -16,7 +16,7 @@ Group: Systems Management/Base
 URL: http://www.sblim.org
 License: CPL
 Requires: sblim-tools-libra
-Requires: dhcpd
+Requires: dhcp
 BuildRequires: sblim-tools-libra-devel
 
 Provides: sblim-cmpi-dhcp
