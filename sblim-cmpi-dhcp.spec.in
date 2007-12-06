@@ -12,7 +12,7 @@ Summary: SBLIM WBEM-SMT DHCP
 Name: @PACKAGE_TARNAME@
 Version: @PACKAGE_VERSION@
 Release: CVS
-Group: Systems Management/Base
+Group: Systems Management/Instrumentation
 URL: http://www.sblim.org
 License: CPL
 Requires: sblim-tools-libra
@@ -35,7 +35,7 @@ to get the WBEM-SMT Client Application.
 ###############################################################################
 %Package devel
 Summary: SBLIM WBEM-SMT DHCP - Header Development Files
-Group: Systems Management/Base
+Group: Systems Management/Instrumentation
 Requires: %{name} = %{version}-%{release}
 
 %Description devel
@@ -45,7 +45,7 @@ link libraries for dependent provider packages
 ###############################################################################
 %Package test
 Summary: SBLIM WBEM-SMT DHCP - Testcase Files
-Group: Systems Management/Base
+Group: Systems Management/Instrumentation/Test
 Requires: %{name} = %{version}-%{release}
 
 %Description test
