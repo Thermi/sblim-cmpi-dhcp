@@ -11,7 +11,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Summary: SBLIM WBEM-SMT DHCP 
 Name: @PACKAGE_TARNAME@
 Version: @PACKAGE_VERSION@
-Release: CVS
+Release: 1
 Group: Systems Management/Instrumentation
 URL: http://www.sblim.org
 License: CPL
@@ -160,5 +160,5 @@ fi
 
 ###############################################################################
 %changelog
-* Thu Nov 15 2007 Wolfgang Taphorn <taphorn@de.ibm.com> 0.5.2-CVS
+* Tue Dec 11 2007 Sam Kannan <skanan{@}us.ibm.com 0.5.3-1
     o initial support
