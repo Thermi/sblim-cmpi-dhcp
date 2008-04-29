@@ -1,0 +1,26 @@
+//
+// Linux_DHCPElementConformsToProfile.mof
+//
+// © Copyright IBM Corp. 2007
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+// 
+// You can obtain a current copy of the Common Public License from
+// http://www.opensource.org/licenses/cpl1.0.php
+// 
+// Author:  Sam Kannan <samkannan (at) us.ibm.com
+// 
+// 
+
+[Description("Association between the DHCP Registered Profile and the DHCP Service"), Association]
+
+class Linux_DHCPElementConformsToProfile : CIM_ElementConformsToProfile {
+    
+  	[Override ("ConformantStandard")]  	
+  	Linux_DHCPRegisteredProfile REF ConformantStandard;
+
+    [Override("ManagedElement")]
+ 	Linux_DHCPService REF ManagedElement;
+};
