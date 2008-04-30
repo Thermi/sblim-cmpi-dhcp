@@ -1,21 +1,20 @@
-/*
- * ra-support.c
- *
- * © Copyright IBM Corp. 2007
- *
- * THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
- * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
- * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
- *
- * You can obtain a current copy of the Common Public License from
- * http://www.opensource.org/licenses/cpl1.0.php
- *
- * Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
- *           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
- *
- *
- */
-
+///===================================================================
+/// ra-support.c
+///
+/// © Copyright IBM Corp. 2007
+///
+/// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+/// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+/// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+///
+/// You can obtain a current copy of the Common Public License from
+/// http://www.opensource.org/licenses/cpl1.0.php
+///
+/// Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
+///           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
+///
+///===================================================================
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -27,37 +26,37 @@
 #include <ctype.h>
 #include "ra-support.h"
 
-NODE *dhcp_conf_tree = NULL;
-NODE *current_parent = NULL;
-NODE *current_node = NULL;
-NODE *error_node = NULL;
-NODE *service_node = NULL;
-NODE *serconf_node = NULL;
+NODE *dhcp_conf_tree = NULL;  /** dhcp_conf_tree - the head node pointer for the conf tree structure */
+pthread_mutex_t dsLock;       /** mutex lock for the conf tree structure */
+pthread_mutex_t fileLock;     /** mutex lock for the conf file */
 
-
+/** Method used to create a new node for the dhcp conf tree */
 NODE *ra_createNode()
 {
     NODE *temp;
 
     temp = (NODE *) malloc(sizeof(NODE));
     if (temp == NULL) {
-	//Dynamic Memory Allocation Failed
+	///Dynamic Memory Allocation Failed
 	return NULL;
     }
 
-    memset(temp, 0, sizeof(NODE));
-
+    memset(temp, '\0', sizeof(NODE));
     return temp;
 }
 
+/** Method used to delete the specified node from the dhcp conf tree */
+/** same method takes care of deleting all the children recursively */
 void ra_deleteNode(NODE * node)
 {
     if (node == NULL)
 	return;
 
-    free(node->obName);
+    if(node->obName)
+	free(node->obName);
     node->obName = NULL;
-    free(node->obValue);
+    if(node->obValue)
+	free(node->obValue);
     node->obValue = NULL;
 
     node->parent = NULL;
@@ -74,6 +73,7 @@ void ra_deleteNode(NODE * node)
     node = NULL;
 }
 
+/** Add the node in the same hierarchy  */
 NODE *ra_addRight(NODE * current, NODE * new)
 {
     NODE *nptr;
@@ -88,6 +88,7 @@ NODE *ra_addRight(NODE * current, NODE * new)
     return current;
 }
 
+/** Add the new node as the child of the current node and the current as the parent of the new node */
 NODE *ra_addDown(NODE * current, NODE * new)
 {
     NODE *temp = NULL;
@@ -104,6 +105,7 @@ NODE *ra_addDown(NODE * current, NODE * new)
     return new;
 }
 
+/** append the node to the end of the list of nodes */
 NODE *ra_appendNode(NODE * begin, NODE * end)
 {
     NODE *temp;
@@ -116,6 +118,7 @@ NODE *ra_appendNode(NODE * begin, NODE * end)
     return begin;
 }
 
+/** Add the 'child' node as the child of the 'parent' node */
 NODE *ra_dropChild(NODE * parent, NODE * child)
 {
     if (parent == NULL || child == NULL)
@@ -131,6 +134,7 @@ NODE *ra_dropChild(NODE * parent, NODE * child)
     return parent;
 }
 
+/** Add the new node in the same level of hierarchy and as the child of the parent of the current node */
 NODE *ra_insertDescend(NODE * current, NODE * new)
 {
     NODE *temp;
@@ -167,8 +171,10 @@ NODE *ra_insertDescend(NODE * current, NODE * new)
     return current;
 }
 
+/** Method used to poputate the values for the perticular node of the dhcp conf tree */
+/** The flags indicate the type of node, i.e value represented by the node - subnet, pool etc */
 NODE *ra_populateNode(NODE * obj, char *name, void *value, int flags,
-		      int id)
+		      unsigned long long id)
 {
     obj->obName = name;
     obj->obFlags = flags;
@@ -178,22 +184,25 @@ NODE *ra_populateNode(NODE * obj, char *name, void *value, int flags,
     return obj;
 }
 
-
+/** Method used to generate the list to hold the values associated with a parameter */
 LIST *ra_genListNode(char *content)
 {
     LIST *temp;
 
     temp = (LIST *) malloc(sizeof(LIST));
     if (temp == NULL) {
-	//Dynamic Memory Allocation Failed
+	///Dynamic Memory Allocation Failed
 	return NULL;
     }
+    memset(temp, '\0', sizeof(LIST));
     temp->next = NULL;
     temp->content = (char *) content;
 
     return temp;
 }
 
+/** Method used to append values to the list related to a parameter.  Invoked when the parameter has more than one
+    value associated to it */
 LIST *ra_appendToList(LIST * list, char *content)
 {
     LIST *temp;
@@ -206,6 +215,7 @@ LIST *ra_appendToList(LIST * list, char *content)
     return list;
 }
 
+/** Method used to remove a list gracefully */
 void ra_deleteList(LIST * list)
 {
     if (list == NULL)
@@ -220,27 +230,31 @@ void ra_deleteList(LIST * list)
     list = NULL;
 }
 
+/** Method to pring the ID to the specified file */
 void ra_printID(FILE * fd, int offset, NODE * node)
 {
-    //int i = 75-offset;
-    //fprintf(fd,"%*s%llx\n",i>0?i:14 , "\t", node->obID);
     fprintf(fd, "\n");
 }
+
+/** main method invoked to write the content of the dhcpconf tree to the new conf file */
+/** The file is locked to prevent simultaneous access */
 int ra_writeConf(NODE * tree, char *file)
 {
     FILE *fd = NULL;
 
+    pthread_mutex_lock(&fileLock);
     fd = fopen(file, "w");
-    /*if(fd == NULL) {
-       //file could not be opened
-       //condition handled at the beginning of invoking the provider
-       } */
     ra_writeTree(tree, fd, 0);
     fclose(fd);
+    pthread_mutex_unlock(&fileLock);
 
     return 0;
 }
 
+/** Method used to represent the contents of the dhcp conf tree structure as a config file */
+/** uses the flag in every node to determine the type of node and represent it accordingly 
+    in the generated file.  The indentation depending on the hierarchy of the occurance of the
+    value is also taken care of */
 int ra_writeTree(NODE * node, FILE * fd, int level)
 {
     NODE *temp;
@@ -270,42 +284,42 @@ int ra_writeTree(NODE * node, FILE * fd, int level)
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case SHAREDNETF:
 	    ra_writeSharednet(temp, fd, level);
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case HOSTF:
 	    ra_writeHost(temp, fd, level);
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case GROUPF:
 	    ra_writeGroup(temp, fd, level);
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case CLASSF:
 	    ra_writeClass(temp, fd, level);
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case POOLF:
 	    ra_writePool(temp, fd, level);
 	    ra_writeTree(temp->descend, fd, level + 1);
 	    if (level)
 		fprintf(fd, "%*s", 8 * level, "");
-	    fprintf(fd, "%c\n\n", '}');
+	    fprintf(fd, "%c\n", '}');
 	    break;
 	case GLOBALF:
 	    ra_writeTree(temp->descend, fd, level);
@@ -316,15 +330,16 @@ int ra_writeTree(NODE * node, FILE * fd, int level)
 }
 
 
+/** constants assigned to represent different values in the conf file  */
+/** These values are used to represent the entities in the IDs */
+#define SUBT 0  /** Indicates subnet */
+#define SHRT 1  /** Indicates sharednet */
+#define POOT 2  /** Indicates pool */
+#define HOST 3  /** Indicates host */
+#define GRPT 4  /** Indicates group */
+#define UNUSDT 7 /** unused - for future enhancements if necessary */
 
-#define SUBT 0
-#define SHRT 1
-#define POOT 2
-#define HOST 3
-#define GRPT 4
-#define UNUSDT 7
-
-
+/** Method used to generate the InstanceID for every entity of the conf file */
 int ra_generateID(NODE * node, unsigned long long key)
 {
     int count = 0;
@@ -346,6 +361,8 @@ int ra_generateID(NODE * node, unsigned long long key)
     return 0;
 }
 
+/** Method used to set the instance ID value stored in every node.  This value depends on
+    the hierarchial level of the entity in the conf file and its nature */
 int ra_setInstForNode(NODE * parent, NODE * child, int level)
 {
     int count = 0, type = child->obFlags;
@@ -386,7 +403,8 @@ int ra_setInstForNode(NODE * parent, NODE * child, int level)
     return count;
 }
 
-
+/** Method used to set the instance ID value stored in every node.  This value depends on
+      the hierarchial level of the entity in the conf file and its nature */
 int ra_setInstaceID(NODE * node, long long key, int level)
 {
     unsigned int inst = 0;
@@ -438,13 +456,14 @@ int ra_setInstaceID(NODE * node, long long key, int level)
 }
 
 
-
+/** A comment in the orignal conf file stored as a node in the tree structure is written back as a comment to the conf file */
 int ra_writeComment(NODE * node, FILE * fd)
 {
-    fprintf(fd, "%s\n", node->obName);
+    fprintf(fd, "%s", node->obName);
     return 0;
 }
 
+/** A subnet in the orignal conf file stored as a node in the tree structure is written back as a subnet to the conf file */
 int ra_writeSubnet(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
@@ -457,6 +476,7 @@ int ra_writeSubnet(NODE * node, FILE * fd, int level)
     return 0;
 }
 
+/** A sharednet in the orignal conf file stored as a node in the tree structure is written back as a sharednet to the conf file */
 int ra_writeSharednet(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
@@ -467,6 +487,7 @@ int ra_writeSharednet(NODE * node, FILE * fd, int level)
     return 0;
 }
 
+/** A group in the orignal conf file stored as a node in the tree structure is written back as a group to the conf file */
 int ra_writeGroup(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
@@ -477,6 +498,7 @@ int ra_writeGroup(NODE * node, FILE * fd, int level)
     return 0;
 }
 
+/** A pool in the orignal conf file stored as a node in the tree structure is written back as a pool to the conf file */
 int ra_writePool(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
@@ -487,16 +509,17 @@ int ra_writePool(NODE * node, FILE * fd, int level)
     return 0;
 }
 
+/** A class in the orignal conf file stored as a node in the tree structure is written back as a class to the conf file */
 int ra_writeClass(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
     if (level)
 	offset += fprintf(fd, "%*s", 8 * level, "");
     offset += fprintf(fd, "%s %s {\n", node->obName, node->obValue);
-    /*  printID(fd, offset, node); */
     return 0;
 }
 
+/** A host in the orignal conf file stored as a node in the tree structure is written back as a host to the conf file */
 int ra_writeHost(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
@@ -507,18 +530,25 @@ int ra_writeHost(NODE * node, FILE * fd, int level)
     ra_printID(fd, offset, node);
     return 0;
 }
+
+/** A conditional statement in the orignal conf file stored as a node in the tree structure is written back as a conditional statement to the conf file */
 int ra_writeIfCond(NODE * node, FILE * fd, int level)
 {
     if (level)
 	fprintf(fd, "%*s", 8 * level, "");
 
-    fprintf(fd, "%s %s\n", node->obName, node->obValue);
+    fprintf(fd, "%s %s", node->obName, node->obValue);
     return 0;
 }
 
+/** A parameter/options in the orignal conf file stored as a node in the tree structure is written back as a parameter/option to the conf file */
 int ra_writeParams(NODE * node, FILE * fd, int level)
 {
     int offset = 0;
+    if(node->obFlags & BLANKLINF) {
+	fprintf(fd, "\n");
+	return 0;
+    }
 
     if (node->obFlags & IRLVNTF) {
 	fprintf(fd, "%s", node->obFlags & MATCHF ? "match" : "");
@@ -549,6 +579,7 @@ int ra_writeParams(NODE * node, FILE * fd, int level)
 
 }
 
+/** if the parameter has more than one value associated with it, all the values are stored in a list structure */
 char *ra_multiValuedString(LIST * valueList, int coma)
 {
     int count = 0, offset = 0;
@@ -579,7 +610,6 @@ char *ra_multiValuedString(LIST * valueList, int coma)
     return ret;
 }
 
-
 unsigned long long ra_convertToID(char *str)
 {
     unsigned long long val = 0;
@@ -594,10 +624,7 @@ unsigned long long ra_convertToID(char *str)
     return val;
 }
 
-time_t updateTime = 0;
-struct stat fileStat;
-FILE *inFile = NULL, *outFile = NULL;
-
+/** Method used to update the conf file */
 void ra_updateDhcpdFile()
 {
     struct conf* dhcp_conf = read_conf( PROVIDER_CONFFILE, PROVIDER_CONFFILE);
@@ -607,48 +634,93 @@ void ra_updateDhcpdFile()
 	conffile = strdup(DEFAULT_DHCPCONF);
  
     ra_writeConf(dhcp_conf_tree, conffile);
-    // give time for file statistics updation
+    /// give time for file statistics updation
     sleep(1);
    
 }
 
+/** Method used to insert the key  */
+unsigned long long ra_getInsertKey(){
+	int line;
+	unsigned long long newId = 0;
+	struct conf * dhcp_conf = read_conf( PROVIDER_CONFFILE, PROVIDER_CONFFILE);
+	char * conffile = get_conf(dhcp_conf, DHCPDCONF);
 
+	line = addedEntity(conffile);
+	getUniqueKey(conffile, line, &newId);
+	return newId;		
+}
+
+void ra_deletedEntity(){
+	struct conf * dhcp_conf = read_conf( PROVIDER_CONFFILE, PROVIDER_CONFFILE);
+	char * conffile = get_conf(dhcp_conf, DHCPDCONF);
+	deletedEntity(conffile);
+}
+
+void ra_modifiedEntity(){
+	struct conf * dhcp_conf = read_conf( PROVIDER_CONFFILE, PROVIDER_CONFFILE);
+	char * conffile = get_conf(dhcp_conf, DHCPDCONF);
+	modifiedEntity(conffile);
+}
+
+static int _ra_usageCount=0;
+static time_t updateTime = 0;
+static pthread_mutex_t updateLock;
+
+/** Method used to update the data structure on identifying some changes */
 void ra_updateDataStructure(_RA_STATUS * ra_status)
 {
     struct conf* dhcp_conf = read_conf( PROVIDER_CONFFILE, PROVIDER_CONFFILE);
     char* conffile = get_conf(dhcp_conf, DHCPDCONF);
+    struct stat fileStat;
 
     if(!conffile)
 	conffile = strdup(DEFAULT_DHCPCONF);
 
-    stat(conffile, &fileStat);
+    pthread_mutex_lock(&updateLock);
 
-    if (fileStat.st_mtime > updateTime) {
-	inFile = fopen(conffile, "r");
-	if (inFile == NULL) {
-	    //File not found
+    if((stat(conffile, &fileStat)) == -1) {
+	if(errno == ENOENT) {
 	    setRaStatus(ra_status, RA_RC_FAILED, DHCP_CONF_FILE_NOT_FOUND,
 			_("dhcpd.conf not found"));
 	    return;
 	}
+    }
 
+
+    if (fileStat.st_mtime > updateTime) {
+	
+	pthread_mutex_lock(&dsLock);
 	ra_deleteNode(dhcp_conf_tree);
-	parseConfigFile(inFile, outFile);
-	ra_setInstaceID(dhcp_conf_tree, 0, 0);
-	fclose(inFile);
+	pthread_mutex_unlock(&dsLock);
+
+	parseConfigFile(conffile, NULL);
     }
 
     updateTime = fileStat.st_mtime;
+    pthread_mutex_unlock(&updateLock);
 }
 
+/** Method used as a wrapper to the method for initializing and updating the data structure */
 void ra_Initialize(_RA_STATUS * ra_status)
 {
-    ra_updateDataStructure(ra_status);
+    if( _ra_usageCount == 0)
+	ra_updateDataStructure(ra_status);
+    _ra_usageCount++;
+
     return;
 }
 
+/** Method used to completely clean up the dhcpconf tree */
 void ra_CleanUp()
 {
-    ra_deleteNode(dhcp_conf_tree);
+    --_ra_usageCount;
+    if( _ra_usageCount == 0){
+
+	pthread_mutex_lock(&dsLock);
+	ra_deleteNode(dhcp_conf_tree);
+	pthread_mutex_unlock(&dsLock);
+    }
+
     return;
 }

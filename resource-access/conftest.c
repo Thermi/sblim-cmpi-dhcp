@@ -20,9 +20,9 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/timeb.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include <errno.h>
 #include <pthread.h>
 
 /* Includes */
@@ -40,7 +40,8 @@ const char * config_file = "./dhcpd.conf";
 
 
 /* Externs */
-extern NODE * parseConfigFile (FILE *, FILE *);
+extern NODE * parseConfigFile (char *, char *);
+extern int ra_writeConf(NODE * , char *);
 
 //extern static char *init_script();
 extern int start_service();
@@ -52,5 +53,11 @@ extern char *my_script_path(char *);
 
 
 int main(){
+    NODE * dhcpTree = NULL;
+    
+    dhcpTree = parseConfigFile("/etc/dhcpd.conf", "./out1.conf");
+    ra_writeConf(dhcpTree, "/etc/dhcpd.conf");
+    ra_deleteNode(dhcpTree);
+
    return 0;
 }

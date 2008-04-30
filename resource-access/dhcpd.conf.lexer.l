@@ -583,7 +583,7 @@ fixed-address {
           }
 
 
-"#"(.*)	  {
+"#"(.*)(\n)? {
 	    LOG;
 	    conflval.string = strdup(conftext);
 	    return(COMMENT);
@@ -618,8 +618,10 @@ fixed-address {
             return(GENERIC_NAME); 
           }
 
-<*>{newline}* {
+<*>{newline} {
 		LOG;
+		conflval.string = strdup(conftext); 
+		return (NEWLINE);
 	      }
 <*>{emptyline}* {
 		LOG;
@@ -630,9 +632,9 @@ fixed-address {
 	    return(COLON_STRING);
 	 }
 
-<*><<EOF>> { return YY_NULL; }
-
 <*>.	{ return conftext[0]; }
+<*><<EOF>> { return 0; }
+
 
 %%
 

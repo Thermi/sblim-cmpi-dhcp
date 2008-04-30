@@ -1,20 +1,20 @@
-/*
- * smt_dhcp_ra_service.c
- *
- * © Copyright IBM Corp. 2007
- *
- * THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
- * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
- * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
- *
- * You can obtain a current copy of the Common Public License from
- * http://www.opensource.org/licenses/cpl1.0.php
- *
- * Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
- *           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
- *
- *
- */
+///===================================================================
+/// smt_dhcp_ra_service.c
+///
+/// © Copyright IBM Corp. 2007
+///
+/// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+/// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+/// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+///
+/// You can obtain a current copy of the Common Public License from
+/// http://www.opensource.org/licenses/cpl1.0.php
+///
+/// Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
+///           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
+///
+///====================================================================
+
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -34,6 +34,7 @@
 
 static bool get_provider_conf(struct conf** provider_conf);
 
+/** Method invoked to start the service */
 int start_service() {
 	struct conf* provider_conf = NULL;
 
@@ -49,6 +50,7 @@ int start_service() {
 	return execScript1(daemon,"start");
 }
 
+/** Method to stop the service */
 int stop_service() {
 	struct conf* provider_conf = NULL;
 
@@ -64,6 +66,7 @@ int stop_service() {
 	return execScript1(daemon,"stop");
 }
 
+/** Mehthod to get the status of the service */
 int status_service() {
 	struct conf* provider_conf = NULL;
 	char* filename = "smt_dhcp_ra_status.sh";
@@ -94,19 +97,19 @@ int status_service() {
 	return execScript(script);
 }
 
-/**
- * Function to get the provider configuration file
- * 
- * @param a structure which includes the data from the provider configuration file
- * 
- * @return <code>true</code> if the function completed successful, otherwise 
- * <code>false</code>. 
- */
+///
+/// Function to get the provider configuration file
+/// 
+/// @param a structure which includes the data from the provider configuration file
+/// 
+/// @return <code>true</code> if the function completed successful, otherwise 
+/// <code>false</code>. 
+///
 static bool get_provider_conf(struct conf** provider_conf) {
 	if ( !(*provider_conf) ) {
-		// No alternative given here, the PROVIDER_CONFFILE is the 
-		// smt_dhcp_ra_support.conf file which we installed. Its location 
-		// is fixed
+		/// No alternative given here, the PROVIDER_CONFFILE is the 
+		/// smt_dhcp_ra_support.conf file which we installed. Its location 
+		/// is fixed
 		*provider_conf = read_conf(PROVIDER_CONFFILE, PROVIDER_CONFFILE);
 	}
 	

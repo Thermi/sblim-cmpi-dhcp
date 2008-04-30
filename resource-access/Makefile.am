@@ -92,13 +92,17 @@ libRaToolsDhcp_la_CPPFLAGS = \
     -fPIC \
     -DPROVIDER_CONFFILE=\"$(sysconfdir)/smt_dhcp_ra_support.conf\" \
     -D_GNU_SOURCE \
-    -I${srcdir}/../include/
+    -I${srcdir}/../include/ \
+    -I${srcdir}/../hashing/
 
 libRaToolsDhcp_la_CFLAGS = \
     -DTRACE -g -DDEBUG -Wall
 
+libRaToolsDhcp_la_LIBADD = \
+    ${top_builddir}/hashing/libuniquekey.la
+
 libRaToolsDhcp_la_LDFLAGS = \
-    -fPIC -lpthread
+    -fPIC -lpthread 
 
 # Installable Header Files
 noinst_HEADERS += \
@@ -108,22 +112,23 @@ noinst_HEADERS += \
     ra-support.h
 
 # Parser binaries for testing
-#noinst_PROGRAMS += confTest #confParseTest zoneParseTest confLexTest zoneLexTest #apiTest
+noinst_PROGRAMS += confTest #confParseTest zoneParseTest confLexTest zoneLexTest #apiTest
 
-#confTest_SOURCES = \
-#        conftest.c 
+confTest_SOURCES = \
+        conftest.c 
 
-#confTest_CPPFLAGS = \
-#        -D_GNU_SOURCE \
-#        -DDEBUG_YACC \
-#        -I${srcdir}/../include/
-        
+confTest_CPPFLAGS = \
+        -D_GNU_SOURCE \
+        -DDEBUG_YACC \
+        -I${srcdir}/../include/ \
+	-I${srcdir}/../hashing/
+       
 
-#confTest_CFLAGS = \
-#        -DTRACE -g -DDEBUG -DDEBUG_YACCC -Wall
+confTest_CFLAGS = \
+        -DTRACE -g -DDEBUG -DDEBUG_YACCC -Wall
 
-#confTest_LDADD  = \
-#        libRaToolsDhcp.la
+confTest_LDADD  = \
+        libRaToolsDhcp.la
 
 
 # We must explicitly add the list of scripts to the 

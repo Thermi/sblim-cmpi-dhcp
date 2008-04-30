@@ -1,177 +1,201 @@
-/*
- * provider-support.c
- *
- * © Copyright IBM Corp. 2007
- *
- * THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
- * ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
- * CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
- *
- * You can obtain a current copy of the Common Public License from
- * http://www.opensource.org/licenses/cpl1.0.php
- *
- * Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
- *           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
- *
- *
- */
+///====================================================================
+/// provider-support.c
+///
+/// © Copyright IBM Corp. 2007
+///
+/// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+/// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+/// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+///
+/// You can obtain a current copy of the Common Public License from
+/// http://www.opensource.org/licenses/cpl1.0.php
+///
+/// Authors : Ashoka Rao.S <ashoka.rao (at) in.ibm.com>
+///           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
+///
+///====================================================================
 
-
+/** Include the headers to suppor the function definitions */
 #include "provider-support.h"
 
+/** Method to create and populate a Node to support the ServiceConfiguration Data pertaining to DHCP */
 NODE *ra_createSerConf(int id)
 {
     int flag = 0;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
-
+    /** set the flag vaule to indicate the nature of the Node */
     flag = SUPPORTF | SERCONFF;
 
     return ra_populateNode(temp, NULL, NULL, flag, id);
 }
 
+/** Method to create and populate a Node to support the Service pertaining to DHCP */
 NODE *ra_createService(int id)
 {
     int flag = 0;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
+    /** set the flag vaule to indicate the nature of the Node */
     flag = SUPPORTF | SERVICEF;
 
     return ra_populateNode(temp, NULL, NULL, flag, id);
 }
 
-NODE *ra_createSubnet(char *name, char *value, int id)
+/** Method to create and populate a Node to support the Subnet pertaining to DHCP */
+NODE *ra_createSubnet(char *name, char *value, unsigned long long id)
 {
     int flag = 0;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
+    /** set the flag vaule to indicate the nature of the Node */
     flag = SUPPORTF | SUBNETF;
 
     return ra_populateNode(temp, name, value, flag, id);
 }
 
-NODE *ra_createSharedNet(char *name, char *value, int id)
+/** Method to create and populate a Node to support a Sharednet pertaining to DHCP */
+NODE *ra_createSharedNet(char *name, char *value, unsigned long long id)
 {
     int flag = 0;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
+    /** set the flag vaule to indicate the nature of the Node */
     flag = SUPPORTF | SHAREDNETF;
 
     return ra_populateNode(temp, name, value, flag, id);
 }
 
-NODE *ra_createGroup(char *name, int id)
+/** Method to create and populate a Node to support a Group pertaining to DHCP */
+NODE *ra_createGroup(char *name, unsigned long long id)
 {
     int flag = 0;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
+    /** set the flag vaule to indicate the nature of the Node */
     flag = SUPPORTF | GROUPF;
 
     return ra_populateNode(temp, name, NULL, flag, id);
 }
 
-NODE *ra_createPool(char *name, int id)
+/** Method to create and populate a Node to support a Pool pertaining to DHCP */
+NODE *ra_createPool(char *name, unsigned long long id)
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = SUPPORTF | POOLF;
     NODE *temp = ra_createNode();
 
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
     return ra_populateNode(temp, name, NULL, flag, id);
 }
 
-NODE *ra_createClass(char *name, char *value, int id)
+/** Method to create and populate a Node to support a Class pertaining to DHCP */
+NODE *ra_createClass(char *name, char *value, unsigned long long id)
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = UNSUPPORTF | CLASSF;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, name, value, flag, id);
 }
 
-NODE *ra_createHost(char *name, char *value, int id)
+/** Method to create and populate a Node to support a Class pertaining to DHCP */
+NODE *ra_createHost(char *name, char *value, unsigned long long id)
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = SUPPORTF | HOSTF;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, name, value, flag, id);
 }
 
-NODE *ra_createParam(char *name, char *value, int flag, int id)
+/** Method to create and populate a Node to support a Parameter pertaining to DHCP */
+NODE *ra_createParam(char *name, char *value, int flag, unsigned long long id)
 {
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, name, value, flag, id);
 }
 
+/** Method to create and populate a Node to support a Comment pertaining to DHCP */
 NODE *ra_createComment(char *comment)
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = COMMENTF | NULLVALF;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, comment, NULL, flag, 0);
 }
 
+/** Method to create and populate a Node to support Irrelevant Data Peratining to DHCP */
 NODE *ra_createIrlvnt(char *comment)
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = UNSUPPORTF | PARAMSF | NULLVALF | IRLVNTF;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, comment, NULL, flag, 0);
 }
 
+/** Method to create and populate a Dummy Node in DHCP */
 NODE *ra_createDummy()
 {
+    /** set the flag vaule to indicate the nature of the Node */
     int flag = DUMMYF | NULLVALF;
     NODE *temp = ra_createNode();
     if (temp == NULL) {
-	//Memory allocation failed
+	///Memory allocation failed
 	return NULL;
     }
 
     return ra_populateNode(temp, NULL, NULL, flag, 0);
 }
 
+
+/** Method to determine how to match a node, returns if the match is to be carried out by Type only,
+    if the matching is to be carried using the ID and Type, or match using ID only  */
 int ra_matchNode(unsigned long long id, int type, int criteria,
 		 NODE * node)
 {
@@ -192,29 +216,32 @@ int ra_matchNode(unsigned long long id, int type, int criteria,
     return 0;
 }
 
+/** Method to add the Node to the list of nodes in the tree*/
 void ra_addToList(LIST * list, NODE * node)
 {
     LIST *lptr = (LIST *) ((QUEUE *) list->content)->current;
     lptr->next = (LIST *) malloc(sizeof(LIST));
+    memset(lptr->next, '\0', sizeof(LIST));
     lptr->next->content = (NODE *) node;
     lptr->next->next = NULL;
     ((QUEUE *) list->content)->current = lptr->next;
     ((QUEUE *) list->content)->count++;
 }
 
+/** Method ot traverse the tree in the data structure to arrive at the node of interest*/
 int ra_traverseTree(unsigned long long id, int type, int flag, NODE * node,
 		    LIST * list, int recurse, _RA_STATUS * ra_status)
 {
     int ret = 0;
     NODE *nptr = node ? node : dhcp_conf_tree;
-
+    /** check if the configuration tree is NULL */
     if (dhcp_conf_tree == NULL) {
 	setRaStatus(ra_status, RA_RC_FAILED, DHCP_CONF_FILE_NOT_FOUND,
 		    _
 		    ("dhcp_conf_tree = NULL OR dhcpd.conf file not found"));
 	return -1;
     }
-
+    /** check if the entity of interest is present in the tree, else return the status of entity not present */
     if (nptr == NULL) {
 	setRaStatus(ra_status, RA_RC_FAILED, DHCP_CONF_FILE_NOT_FOUND,
 		    _
@@ -222,6 +249,7 @@ int ra_traverseTree(unsigned long long id, int type, int flag, NODE * node,
 	return -2;
     }
 
+    /** Traverse the tree using the child and continue traversing till all the branches and leaf nodes are verified */
     for (; nptr; nptr = nptr->nextdown) {
 	if (ra_matchNode(id, type, flag, nptr)) {
 	    ra_addToList(list, nptr);
@@ -239,6 +267,8 @@ int ra_traverseTree(unsigned long long id, int type, int flag, NODE * node,
     return 0;
 }
 
+
+/** convert the List of Nodes to arry of Node pointers */
 NODE **ra_convertToArray(LIST * list)
 {
     int count = ((QUEUE *) list->content)->count;
@@ -257,6 +287,7 @@ NODE **ra_convertToArray(LIST * list)
     return ret;
 }
 
+/** Method to get the entity i.e Node of interest from the configuration tree structure */
 NODE *ra_getEntity(unsigned long long id, NODE * node,
 		   _RA_STATUS * ra_status)
 {
@@ -282,6 +313,7 @@ NODE *ra_getEntity(unsigned long long id, NODE * node,
     return ret;
 }
 
+/** Method to get all the entities of a specific type from the configuration tree */
 NODE **ra_getAllEntity(int type, NODE * node, _RA_STATUS * ra_status)
 {
     int flag = TYPEONLY | TYPE_OR;
@@ -299,7 +331,6 @@ NODE **ra_getAllEntity(int type, NODE * node, _RA_STATUS * ra_status)
     ra_updateDataStructure();
     result = ra_traverseTree(0, type, flag, NULL, &list, 1, ra_status);
     if (result == -1 || result == -2) {
-	//setRaStatus( ra_status, RA_RC_FAILED, FAILED_TO_GET_SYSTEM_RESOURCE, "Failed to get Entity");
 	return NULL;
     }
 
@@ -308,6 +339,7 @@ NODE **ra_getAllEntity(int type, NODE * node, _RA_STATUS * ra_status)
     return ret;
 }
 
+/** Method to from the string of interest to create the Object Path of the entity*/
 char *formString(int length, char *tag, unsigned long long value,
 		 char *suffix)
 {
@@ -322,6 +354,7 @@ char *formString(int length, char *tag, unsigned long long value,
     return array;
 }
 
+/** Method to from the InstanceID of the perticular entity using the Type information */
 char *ra_formInstID(NODE * this, char *suffix, char *class)
 {
     int length = 0;
@@ -343,7 +376,6 @@ char *ra_formInstID(NODE * this, char *suffix, char *class)
 	length = 40 + strlen(class) + strlen(suffix);
 	global = (char *) calloc((36 + strlen(class)), sizeof(char));
 	sprintf(global, "WBEM-SMT:%s:ServiceConfiguration=dhcp", class);
-//          ret = formString(length, global, this->obID, suffix);
 	free(suffix);
 	return global;
 	break;
@@ -413,17 +445,19 @@ char *ra_instanceId(NODE * node, char *class)
     return ra_formInstID(node, NULL, class);
 }
 
+/** Method to derive the key value of an entity */
 unsigned long long ra_getKeyFromInstance(char *inst)
 {
-    char *c;
-    unsigned long long ret;
+    char *c = NULL;
+    unsigned long long ret = 0;
 
     for (c = inst; *c; c++);
-    for (; *c != '='; c--);
+    for (; c != inst && *c != '='; c--);
     ret = ra_convertToID(++c);
     return ret;
 }
 
+/** Method to determine the level of hierarchy occupied by the interested entity in the configuration file */
 int ra_findLevel(const char *inst)
 {
     int level = 0;
@@ -435,29 +469,34 @@ int ra_findLevel(const char *inst)
     return level - 2;
 }
 
-char *ra_tokenize(char *inst)
+/** Method to tokenize the object path, enables to determine the location for the entity in the config file by
+    indicating the hierarchy of parent-child relationships  */
+char *ra_tokenize(char *inst, int placement)
 {
-    static char *c = NULL, *start = NULL, *end = NULL, *ret = NULL;
-    int count;
-    if (inst) {
-	start = end = ret = NULL;
-	for (c = inst; *c; c++);
+    char *c = NULL, *ret = NULL;
+    int count, colon;
+
+    for (c = inst; *c; c++);
+    for(count = 1, colon = 0; c != inst ; c--, count++) {
+	if ( *c == ':') {
+	    ++colon;
+
+	    if( placement == colon) {
+		ret = (char *)calloc(count + 2, sizeof(char));
+		strncpy(ret, (char *)(c + 1), count - 1);
+		ret[count] = '\0';
+		return ret;
+	    }
+	    else {
+		count = 0;
+	    }
+	}
     }
 
-    end = c + 1;
-    for (count = 1; *c != ':'; c--, count++);
-    ret = (char *) calloc(count + 1, sizeof(char));
-    start = c--;
-
-    for (count = 0; start != end; start++, count++)
-	ret[count] = *start;
-
-    ret[count] = '\0';
-
-    return ret;
+    return NULL;
 }
 
-
+/** Method used to arrive at the name of the entity */
 char *ra_get_hostname()
 {
     char *name = NULL, *host_name = NULL;
@@ -465,7 +504,6 @@ char *ra_get_hostname()
     size_t name_length = 100;
     int result = -1;
 
-    name = (char *) malloc(sizeof(char *));
     result = gethostname(namearry, name_length);
     name = strdup(namearry);
     host_name = strdup(name);
@@ -474,6 +512,7 @@ char *ra_get_hostname()
     return host_name;
 }
 
+/** Method to remove the quotes from the string of interest */
 char *ra_removeQuotes(char *string)
 {
     char *ptr = NULL;

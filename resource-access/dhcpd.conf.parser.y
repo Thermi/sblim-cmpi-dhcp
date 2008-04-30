@@ -24,11 +24,16 @@
 
 #include "ra-support.h"
 #include "provider-support.h"
+#include "libuniquekey.h"
 
 #ifdef DEBUG1
-#define LOG(s)  printf("PARSER[%d]:%s .\n", conflineno, s);
+#define LOG1(s)  printf("[%d]\t\t:%s .\n", conflineno-1, s);
+#define LOG2(s,t)  printf("[%d]\t\t:%s %s.\n", conflineno-1, s,t);
+#define LOG3(s,t,u)  printf("[%d]\t\t:%s %s %s.\n", conflineno-1, s,t,u);    
 #else
-#define LOG(s)
+#define LOG1(s)
+#define LOG2(s,t)
+#define LOG3(s,t,u)
 #endif
 
 extern FILE *confin;
@@ -40,9 +45,12 @@ extern void confrestart(FILE *);
 extern int confwrap(void ); 
 extern int cleanup_lex(void);
 
+NODE *error_node = NULL;
 extern int conflineno; 
 
 char * comment_string = NULL;
+char * conffile = NULL;
+unsigned long long * hashIDArray = NULL;
 int current_state = 0;
 int ipListBegin = 0;
 int elseBegin = 0;
@@ -67,7 +75,7 @@ int elseBegin = 0;
 %token <string> OPTION OPTION_TYPE DDNS_UPDATE_STYLE SERVER_IDENTIFIER DEFAULT_LEASE_TIME MAX_LEASE_TIME GROUP_IDENTIFIER
 %token <string> GET_LEASE_HOSTNAMES DYNAMIC_BOOTP_LEASE_LENGTH BOOT_UNKNOWN_CLIENTS RANGE USE_HOST_DECL_NAMES  
 %token <string> FILENAME SERVERNAME NEXTSERVER HARDWARE FIXEDADDRESS
-%token <string> LBRACE RBRACE SEMICOLON COMMA LPARANTHESIS RPARANTHESIS EQUALS 
+%token <string> LBRACE RBRACE SEMICOLON COMMA LPARANTHESIS RPARANTHESIS EQUALS NEWLINE
 %token <string> SUBSTRING SUFFIX CONFIG_OPTION PACKET CONCAT REVERSE LEASED_ADDRESS BINARY_TO_ASCII ENCODE_INT 
 %token <string> PICK_FIRST_VALUE HOST_DECL_NAME EXISTS STATIC EXTRACT_INT LEASE_TIME LIMIT LEASE
 %token <string> DATE UNRECOGNISED UNSUPPORTED COMMENT 
@@ -86,203 +94,214 @@ int elseBegin = 0;
 
 dhcp_config_file:   dhcp_config_file declaration
 		{
-		    LOG("dhcp conf decl");
+		    LOG1("dhcp conf decl");
 		    $$ = ra_dropChild($1, $2);
 		}
 		| dhcp_config_file parameter 
 		{ 
-		    LOG("dhcp conf parameter");
+		    LOG1("dhcp conf parameter");
 		    $$ = ra_dropChild($1,$2); 
 		}
 		| dhcp_config_file comment 
 		{ 
-		    LOG("dhcp conf comment");
+		    LOG1("dhcp conf comment");
 		    $$ = ra_dropChild($1,$2); 
 		}
 		| /* empty */ 
 		{
-		    LOG("dhcp conf empty");
+		    LOG1("dhcp conf empty");
 		    $$ = dhcp_conf_tree;
 		}
                 ;
 
 entities :	  entities declaration
 		{
-		    LOG("entities.. decl");
+		   // LOG1("entities.. decl");
 		    $$ = ra_appendNode($1, $2);
 		}
 		| entities parameter
 		{
-		    LOG("entities.. decl");
+		    LOG1("entities.. params");
 		    $$ = ra_appendNode($1, $2);
 		}
 		| entities comment
 		{
-		    LOG("entities.. decl");
+		    LOG1("entities.. comments");
 		    $$ = ra_appendNode($1, $2);
 		}
 		| /* empty */
 		{
-		    LOG("entities ... empty");
+		    LOG1("entities ... empty");
 		    $$ = ra_createDummy(); 
 		}
 		;
 
 parameters: parameters parameter 
 		{ 
-		    LOG("params param");
+		    LOG1("recursive params");
 		    $$ = ra_appendNode($1, $2); 
 		}
 		| /* empty */ 
 		{
-		    LOG("params empty ");
+		    LOG1("params empty ");
 		    $$ = ra_createDummy();
 		}
           ; 
 
 declaration:  subnet
 		{ 
-		    LOG("decl subnet");
+		    LOG1("decl:subnet");
 		    $$ = $1; 
 		}
 	    |  sharednet
 		{ 
-		    LOG("decl sharednet");
+		    LOG1("decl:sharednet");
 		    $$ = $1; 
 		}
 	    |  group
 		{ 
-		    LOG("decl group");
+		    LOG1("decl:group");
 		    $$ = $1; 
 		}
 	    |  class
 		{ 
-		    LOG("decl class");
+		    LOG1("decl:class");
 		    $$ = $1; 
 		}
 	    |  host
 		{ 
-		    LOG("decl host");
+		    LOG1("decl:host");
 		    $$ = $1; 
 		}
 	    | pool
 		{ 
-		    LOG("decl pool");
+		    LOG1("decl:pool");
 		    $$ = $1; 
 		}
-	    | error LBRACE
+	    | error LBRACE NEWLINE
 		{
-		    LOG("_______________decl { error ____________");
+		    LOG1("LBRACE Error");
 		    $$ = error_node;
+		    free($3);
 		    yyerrok;
 		}
-	    | error RBRACE 
+	    | error RBRACE NEWLINE
 		{  
-		    LOG("_______________decl } error__________________");
+		    LOG1("RBRACE Error");
 		    $$ = error_node;
+		    free($3);
 		    yyerrok;
 		} 
            ; 
 
-subnet: SUBNET IPADDR NETMASK IPADDR LBRACE entities RBRACE
+subnet: SUBNET IPADDR NETMASK IPADDR LBRACE NEWLINE entities RBRACE NEWLINE
         {
 	    NODE * current = NULL;
-	    LOG("subnet entered...........................");
+	    LOG3($1, $2, $4);
 
-	    current = ra_createSubnet($2, $4, 0);
-	    ra_addRight(current, $6);
+	    current = ra_createSubnet($2, $4, hashIDArray[conflineno - 2]);
+	    ra_addRight(current, $7);
+	    free($1);free($3);free($6);free($9);
 	    $$ = current;
 
         }; 
 
-sharednet: SHARED_NETWORK GENERIC_NAME LBRACE entities RBRACE
+sharednet: SHARED_NETWORK GENERIC_NAME LBRACE NEWLINE entities RBRACE NEWLINE
          {
 	     NODE * current = NULL;
-	     LOG("sharednet entered.............");
+	     LOG2($1, $2);
 
-	     current = ra_createSharedNet($1, $2, 0);
-	     ra_addRight(current, $4);
+	     current = ra_createSharedNet($1, $2, hashIDArray[conflineno - 2]);
+	     ra_addRight(current, $5);
+	     free($4);free($7);
 	     $$ = current;
 	 };
 
-group: GROUP LBRACE entities RBRACE 
+group: GROUP LBRACE NEWLINE entities RBRACE NEWLINE
 	{
 	     NODE * current = NULL;
-	     LOG("group entered ..................");
+	     LOG1($1);
 
-	     current = ra_createGroup($1, 0);
-	     ra_addRight(current, $3);
+	     current = ra_createGroup($1, hashIDArray[conflineno - 2]);
+	     ra_addRight(current, $4);
+	     free($3);free($6);
 	     $$ = current;
 	
 	};
 
 comment: COMMENT
 	{
-	    LOG("comment entered...........");
+	    LOG1($1);
 	    $$ = ra_createComment($1);
 	};
 
-pool: POOL LBRACE entities RBRACE 
+pool: POOL LBRACE NEWLINE entities RBRACE NEWLINE
 	{
 	     NODE * current = NULL;
-	     LOG("pool entered.........................");
+	     LOG1($1);
 
-	     current = ra_createPool($1, 0);
-	     ra_addRight(current, $3);
-	     $$ = current;
-	};
-
-class: CLASS STRING LBRACE parameters RBRACE
-	{
-	     NODE * current = NULL;
-	     LOG("class entered....................");
-
-	     current = ra_createClass($1, $2, 0);
+	     current = ra_createPool($1, hashIDArray[conflineno - 2]);
 	     ra_addRight(current, $4);
+	     free($3);free($6);
 	     $$ = current;
 	};
 
-
-host: HOST GENERIC_NAME LBRACE entities RBRACE
+class: CLASS STRING LBRACE NEWLINE parameters RBRACE NEWLINE
 	{
 	     NODE * current = NULL;
-	     LOG("host entered ...........");
+	     LOG1($1);
 
-	     current = ra_createHost($1, $2, 0);
-	     ra_addRight(current, $4);
+	     current = ra_createClass($1, $2, hashIDArray[conflineno - 2]);
+	     ra_addRight(current, $5);
+	     free($4);free($7);
 	     $$ = current;
 	};
 
-parameter: OPTION OPTION_TYPE NUMBER SEMICOLON  
+
+host: HOST GENERIC_NAME LBRACE NEWLINE entities RBRACE NEWLINE
+	{
+	     NODE * current = NULL;
+	     LOG2($1, $2);
+
+	     current = ra_createHost($1, $2, hashIDArray[conflineno - 2]);
+	     ra_addRight(current, $5);
+	     free($4);free($7);
+	     $$ = current;
+	};
+
+parameter: OPTION OPTION_TYPE NUMBER SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param OPTION TYPE NUM");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
-		     $$ = ra_createParam($2, $3, flag, 0);
+		     free($1);free($5);
+		     $$ = ra_createParam($2, $3, flag, hashIDArray[conflineno - 2]);
               }
-	  | OPTION OPTION_TYPE IPADDR SEMICOLON  
+	  | OPTION OPTION_TYPE IPADDR SEMICOLON NEWLINE  
               {
 		     int flag;
-		     LOG("param OPTION TYPE IPADDR ");
+		     LOG3($1, $2, $3);
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
-		     $$ = ra_createParam($2, $3, flag, 0);
+		     free($1);free($5);
+		     $$ = ra_createParam($2, $3, flag, hashIDArray[conflineno - 2]);
               }
-          | OPTION OPTION_TYPE BOOLEAN SEMICOLON 
+          | OPTION OPTION_TYPE BOOLEAN SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param OPTION TYPE BOOL");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
-		     $$ = ra_createParam($2, $3, flag, 0);
+		     free($1);free($5);
+		     $$ = ra_createParam($2, $3, flag, hashIDArray[conflineno - 2]);
               }
-          | OPTION OPTION_TYPE IPADDR ipaddr_lists SEMICOLON  
+          | OPTION OPTION_TYPE IPADDR ipaddr_lists SEMICOLON NEWLINE
               {
         	     int flag;
 		     char * value;
-		     LIST * list;
-		     LOG("param OPTION TYPE IPADDR list");
+		     LIST * list, *lptr;
+		     LOG3($1, $2, $3); 
 		     
 		     list = ra_genListNode($3);
 		     list->next = $4;
@@ -290,15 +309,22 @@ parameter: OPTION OPTION_TYPE NUMBER SEMICOLON
 		     flag |= ipListBegin? COMMAF:0;
 		     ipListBegin = 0;
 		     value = ra_multiValuedString(list, 1);
-		     $$ = ra_createParam($2, value, flag, 0);
+		     for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		     }
+		     free($1);free($6);
+		     $$ = ra_createParam($2, value, flag, hashIDArray[conflineno - 2]);
               }
 
-          | OPTION UNRECOGNISED IPADDR ipaddr_lists SEMICOLON  
+          | OPTION UNRECOGNISED IPADDR ipaddr_lists SEMICOLON NEWLINE
 	      {
                	     int flag;
 		     char * value;
-		     LIST * list;
-		     LOG("param OPTION UNRECOGNISED IPADDR list");
+		     LIST * list, *lptr;
+		     LOG3($1, $2, $3);
 		     
 		     list = ra_genListNode($3);
 		     list->next = $4;
@@ -306,491 +332,571 @@ parameter: OPTION OPTION_TYPE NUMBER SEMICOLON
 		     flag |= ipListBegin? COMMAF: 0;
 		     ipListBegin = 0;
 		     value = ra_multiValuedString(list, 1);
+		     for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		     }
+		     free($1);free($6);
 		     $$ = ra_createParam($2, value, flag, 0);
               }
-          | OPTION OPTION_TYPE IPADDR IPADDR SEMICOLON  
+          | OPTION OPTION_TYPE IPADDR IPADDR SEMICOLON NEWLINE
               {
                	     int flag;
 		     char * value;
-		     LIST * list;
-		     LOG("param OPTION TYPE IPADDR IPADDR");
+		     LIST * list, *lptr;
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
 		     list = ra_genListNode($3);
 		     list = ra_appendToList(list, $4);
 		     value = ra_multiValuedString(list, 0);
-		     $$ = ra_createParam($2, value, flag, 0);
+		     for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		     }
+		     free($1);free($6);
+		     $$ = ra_createParam($2, value, flag, hashIDArray[conflineno - 2]);
               }
-          | OPTION OPTION_TYPE STRING SEMICOLON  
+          | OPTION OPTION_TYPE STRING SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param OPTION TYPE STRING ");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
-		     $$ = ra_createParam($2, $3, flag, 0);
+		     free($1);free($5);
+		     $$ = ra_createParam($2, $3, flag, hashIDArray[conflineno - 2]);
               }
-          | OPTION OPTION_TYPE HOST_NAME SEMICOLON 
+          | OPTION OPTION_TYPE HOST_NAME SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param OPTION TYPE HOST_NAME ");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | OPTIONF;
-		     $$ = ra_createParam($2, $3, flag, 0);
+		     free($1);free($5);
+		     $$ = ra_createParam($2, $3, flag, hashIDArray[conflineno - 2]);
               } 
-          | DDNS_UPDATE_STYLE DDNS_UPDATE_STYLE_TYPE SEMICOLON 
+          | DDNS_UPDATE_STYLE DDNS_UPDATE_STYLE_TYPE SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param DDNS_UPDATE_STYLE_TYPE ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | SERVER_IDENTIFIER HOST_NAME SEMICOLON 
+          | SERVER_IDENTIFIER HOST_NAME SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param SERVER_IDENTIFIER");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | DEFAULT_LEASE_TIME NUMBER SEMICOLON 
+          | DEFAULT_LEASE_TIME NUMBER SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param DEFAULT_LEASE_TIME");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | MAX_LEASE_TIME NUMBER SEMICOLON 
+          | MAX_LEASE_TIME NUMBER SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param MAX_LEASE_TIME");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | GET_LEASE_HOSTNAMES BOOLEAN SEMICOLON 
+          | GET_LEASE_HOSTNAMES BOOLEAN SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param GET_LEASE_HOSTNAMES");
+		     LOG2($1 , $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | DYNAMIC_BOOTP_LEASE_LENGTH NUMBER SEMICOLON 
+          | DYNAMIC_BOOTP_LEASE_LENGTH NUMBER SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param DYNAMIC_BOOTP_LEASE_LENGTH");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | UNSUPPORTED BOOLEAN SEMICOLON 
+          | UNSUPPORTED BOOLEAN SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED BOOL");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | UNSUPPORTED SEMICOLON 
+          | UNSUPPORTED SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED");
+		     LOG1($1);
 		     
 		     flag = UNSUPPORTF | PARAMSF | NULLVALF;
+		     free($3);
 		     $$ = ra_createParam($1, NULL, flag, 0);
               }
-          | UNSUPPORTED PATH_NAME SEMICOLON 
+          | UNSUPPORTED PATH_NAME SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED PATH_NAME");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | UNSUPPORTED NUMBER SEMICOLON 
+          | UNSUPPORTED NUMBER SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED NUM");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | UNSUPPORTED IPADDR SEMICOLON 
+          | UNSUPPORTED IPADDR SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED IPADDR");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | UNSUPPORTED DATE SEMICOLON 
+          | UNSUPPORTED DATE SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED DATE");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | UNSUPPORTED STRING SEMICOLON 
+          | UNSUPPORTED STRING SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param UNSUPPORTED STRING");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | BOOT_UNKNOWN_CLIENTS BOOLEAN SEMICOLON 
+          | BOOT_UNKNOWN_CLIENTS BOOLEAN SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param BOOT_UNKNOWN_CLIENTS");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | USE_HOST_DECL_NAMES BOOLEAN SEMICOLON 
+          | USE_HOST_DECL_NAMES BOOLEAN SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param USE_HOST_DECL_NAMES");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | FILENAME FILE_NAME SEMICOLON 
+          | FILENAME FILE_NAME SEMICOLON NEWLINE
               {
 		     int flag;
-		     LOG("param FILENAME");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | SERVERNAME STRING SEMICOLON  
+          | SERVERNAME STRING SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param SERVERNAME");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | NEXTSERVER HOST_NAME SEMICOLON  
+          | NEXTSERVER HOST_NAME SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param NEXTSERVER");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               }
-          | ALLOW UNKNOWN_CLIENTS SEMICOLON 
+          | ALLOW UNKNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param ALLOW UNKNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | ALLOW KNOWN_CLIENTS SEMICOLON 
+          | ALLOW KNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param ALLOW KNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | ALLOW ALL CLIENTS SEMICOLON 
+          | ALLOW ALL CLIENTS SEMICOLON NEWLINE
               { 
 		     int  flag;
 		     char * s;
-		     LOG("param ALLOW CLIENTS ");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		     free($2);free($3);free($5);
 		     s = strdup("all clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     $$ = ra_createParam($1, s, flag, hashIDArray[conflineno - 2]);
               } 
-          | ALLOW DUPLICATES SEMICOLON 
+          | ALLOW DUPLICATES SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param ALLOW DUPLICATES ");
+		     LOG2($1, $2);
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | ALLOW MEMBERS OF STRING SEMICOLON  
+          | ALLOW MEMBERS OF STRING SEMICOLON NEWLINE 
               { 
 		     int flag;
 		     char * s;
-		     LOG("param ALLOW MEMBERS OF STRING ");
+		     LOG3($1, $2, $4); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
 		     s = strdup("allow members of");
-		     $$ = ra_createParam(s, $4, flag, 0);
+		     free($1);free($6);
+		     $$ = ra_createParam(s, $4, flag, hashIDArray[conflineno - 2]);
               } 
-          | ALLOW UNSUPPORTED SEMICOLON  
+          | ALLOW UNSUPPORTED SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param ALLOW UNSUPPORTED ");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF | NOOPTIONF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               } 
-          | DENY UNKNOWN_CLIENTS SEMICOLON 
+          | DENY UNKNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param DENY UNKNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | DENY KNOWN_CLIENTS SEMICOLON 
+          | DENY KNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param DENY KNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | DENY ALL CLIENTS SEMICOLON  
+          | DENY ALL CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
 		     char * s;
-		     LOG("param DENY ALL CLIENTS ");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		     free($2);free($3);free($5);
 		     s = strdup("all clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     $$ = ra_createParam($1, s, flag, hashIDArray[conflineno - 2]);
               } 
-          | DENY DUPLICATES SEMICOLON 
+          | DENY DUPLICATES SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param DENY DUPLICATES ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | DENY UNSUPPORTED SEMICOLON 
+          | DENY UNSUPPORTED SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param DENY UNSUPPORTED ");
+		     LOG2($1, $2); 
 		     
 		     flag = UNSUPPORTF | PARAMSF | NOOPTIONF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               } 
-          | DENY MEMBERS OF STRING SEMICOLON  
+          | DENY MEMBERS OF STRING SEMICOLON NEWLINE
               { 
 		     int flag;
 		     char * s;
-		     LOG("param DENY MEMBERS OF STRING ");
+		     LOG3($1, $2, $4); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		     free($1);free($6);
 		     s = strdup("deny members of");
-		     $$ = ra_createParam(s, $4, flag, 0);
+		     $$ = ra_createParam(s, $4, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE UNKNOWN_CLIENTS SEMICOLON 
+          | IGNORE UNKNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param IGNORE UNKNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE KNOWN_CLIENTS SEMICOLON 
+          | IGNORE KNOWN_CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param IGNORE KNOWN_CLIENTS ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE ALL CLIENTS SEMICOLON 
+          | IGNORE ALL CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
 		     char * s;
-		     LOG("param IGNORE ALL CLIENTS ");
+		     LOG3($1, $2, $3); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		     free($2);free($3);free($5);
 		     s = strdup("all clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     $$ = ra_createParam($1, s, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE DUPLICATES SEMICOLON 
+          | IGNORE DUPLICATES SEMICOLON NEWLINE
               { 
 		     int flag;
-		     LOG("param IGNORE DUPLICATES ");
+		     LOG2($1, $2); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		     $$ = ra_createParam($1, $2, flag, 0);
+		     free($4);
+		     $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE MEMBERS OF STRING SEMICOLON  
+          | IGNORE MEMBERS OF STRING SEMICOLON NEWLINE 
               { 
 		     int flag;
 		     char * s;
-		     LOG("param IGNORE MEMBERS OF STRING ");
+		     LOG3($1, $2, $4); 
 		     
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		     free($1);free($6);
 		     s = strdup("ignore members of");
-		     $$ = ra_createParam(s, $4, flag, 0);
+		     $$ = ra_createParam(s, $4, flag, hashIDArray[conflineno - 2]);
               } 
-          | IGNORE UNSUPPORTED SEMICOLON  
+          | IGNORE UNSUPPORTED SEMICOLON NEWLINE
               { 
 		     int  flag;
-		     LOG("param IGNORE UNSUPPORTED ");
+		     LOG2($1, $2);
 		     
 		     flag = UNSUPPORTF | PARAMSF;
+		     free($4);
 		     $$ = ra_createParam($1, $2, flag, 0);
               }
-          | ALLOW UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON  
+          | ALLOW UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     char * s;
-		     LOG("param ALLOW UNSUPPORTED UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2, $3); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
-		     s = strdup("dynamic bootp clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s %s",$2, $3, $4);
+		     free($2);free($3);free($4);free($6);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-          | ALLOW UNSUPPORTED CLIENTS SEMICOLON  
+          | ALLOW UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     char * s;
-		     LOG("param ALLOW UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2 , $3); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
-		     if(!strcmp("authenticated", $2))
-			 s = strdup("authenticated clients");
-		     else
-			 s = strdup("unauthenticated clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s",$2,$3);
+		     free($2);free($3);free($5);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-          | DENY UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON  
+          | DENY UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     char * s;
-		     LOG("param DENY UNSUPPORTED UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2, $3); 
 		     flag = UNSUPPORTF | PARAMSF;
-		     s = strdup("dynamic bootp clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s %s",$2, $3, $4);
+		     free($2);free($3);free($4);free($6);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-          | DENY UNSUPPORTED CLIENTS SEMICOLON  
+          | DENY UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               { 
 		     int flag;
-		     char * s;
-		     LOG("param DENY UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2, $3); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
-		     if(!strcmp("authenticated", $2))
-			 s = strdup("authenticated clients");
-		     else
-			 s = strdup("unauthenticated clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s", $2, $3);
+		     free($2);free($3);free($5);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-          | IGNORE UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON  
+          | IGNORE UNSUPPORTED UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               {
 		     int flag;
-		     char * s;
-		     LOG("param IGNORE UNSUPPORTED UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2, $3); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
-		     s = strdup("dynamic bootp clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s %s", $2, $3, $4);
+		     free($2);free($3);free($4);free($6);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-          | IGNORE UNSUPPORTED CLIENTS SEMICOLON  
+          | IGNORE UNSUPPORTED CLIENTS SEMICOLON NEWLINE
               {
 		     int flag;
-		     char * s;
-		     LOG("param IGNORE UNSUPPORTED CLIENTS ");
+		     char s[100];
+		     LOG3($1, $2, $3); 
 		     
 		     flag = UNSUPPORTF | PARAMSF;
-		     if(!strcmp("authenticated", $2))
-			 s = strdup("authenticated clients");
-		     else
-			 s = strdup("unauthenticated clients");
-		     $$ = ra_createParam($1, s, flag, 0);
+		     sprintf(s,"%s %s",$2, $3);
+		     free($2);free($3);free($5);
+		     $$ = ra_createParam($1, strdup(s), flag, 0);
               }
-	  | HARDWARE HARDWARE_TYPE MACADDR SEMICOLON 
+	  | HARDWARE HARDWARE_TYPE MACADDR SEMICOLON NEWLINE
 	     {
 		 int flag;
 		 char * value;
-		 LIST * list;
-		 LOG("param HARDWARE_TYPE MACADDR ");
+		 LIST * list, *lptr;
+		 LOG3($1, $2, $3); 
 
 		 flag = SUPPORTF | PARAMSF | NOOPTIONF;
+		 free($5);
 		 list = ra_genListNode($2);
 		 list = ra_appendToList(list, $3);
 		 value = ra_multiValuedString(list, 0);
-		 $$ = ra_createParam($1, value, flag, 0);
+		 for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+		     if(list->content)
+			 free(list->content);
+		     free(list);
+		     list = lptr;
+		 }
+		 $$ = ra_createParam($1, value, flag, hashIDArray[conflineno - 2]);
 	     }
-	  | FIXEDADDRESS IPADDR SEMICOLON 
+	  | FIXEDADDRESS IPADDR SEMICOLON NEWLINE
 	     {
 		 int flag;
-		 LOG("param FIXEDADDRESS");
+		 LOG2($1, $2);
 		 
 		 flag = SUPPORTF | PARAMSF | NOOPTIONF;
-		 $$ = ra_createParam($1, $2, flag, 0);
+		 free($4);
+		 $$ = ra_createParam($1, $2, flag, hashIDArray[conflineno - 2]);
 	     }
 	  | if_statement 
 	     {
 		 $$ =  $1;
 	     } 
-	  |  RANGE IPADDR IPADDR SEMICOLON 
+	  |  RANGE IPADDR IPADDR SEMICOLON NEWLINE
                  {
 		     int flag;
 		     char * value;
-		     LIST * list;
-		     LOG("param RANGE IPADDR");
+		     LIST * list, *lptr;
+		     LOG3($1, $2, $3); 
 
 		     flag = SUPPORTF | PARAMSF | NOOPTIONF;
 		     list = ra_genListNode($2);
 		     list = ra_appendToList(list, $3);
 		     value = ra_multiValuedString(list, 0);
-		     $$ = ra_createParam($1, value, flag, 0);
+		     for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		     }
+		     free($5);
+		     $$ = ra_createParam($1, value, flag, hashIDArray[conflineno - 2]);
                  }
-	  | MATCH SEMICOLON 
+	  | MATCH SEMICOLON NEWLINE
                  { 
 		     int flag;
-		     LOG("param MATCH");
+		     LOG1($1);
 
 		     flag = UNSUPPORTF | MATCHF | PARAMSF | NULLVALF;
+		     free($3);
 		     $$ = ra_createParam($1, NULL, flag, 0);
                  } 
-	  | SPAWN SEMICOLON 
+	  | SPAWN SEMICOLON NEWLINE
                  { 
 		     int flag;
-		     LOG("param SPAWN");
+		     LOG1($1);
 
 		     flag = UNSUPPORTF | SPAWNF | PARAMSF | NULLVALF;
+		     free($3);
 		     $$ = ra_createParam($1, NULL, flag, 0);
                  } 
-          | LEASE LIMIT NUMBER SEMICOLON 
+          | LEASE LIMIT NUMBER SEMICOLON NEWLINE
                  { 
 		     int flag;
 		     char * value;
-		     LIST * list;
-		     LOG("params LEASE");
+		     LIST * list, *lptr;
+		     LOG3($1, $2, $3); 
 
 		     flag = UNSUPPORTF | PARAMSF;
 		     list = ra_genListNode($2);
 		     list = ra_appendToList(list, $3);
 		     value = ra_multiValuedString(list, 0);
+		     for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		     }
+		     free($5);
 		     $$ = ra_createParam($1, value, flag, 0);
                  }
-	  | error SEMICOLON 
+	  | error SEMICOLON NEWLINE
 	      {
-		     LOG("____________________param error__________________");
+		     LOG1("SEMICOLON Error");
 		 
-		      $$ = error_node;
-		      yyerrok; 
-	      } 
+		     $$ = error_node;
+		     free($3);
+		     yyerrok; 
+	      }
+	  | NEWLINE
+	    {
+		//int flag = UNSUPPORTF | PARAMSF | BLANKLINF;
+		//$$ = ra_createParam(NULL, NULL, flag, 0);
+		$$ = ra_createComment($1);
+	    }
 	  ;
 
 ipaddr_lists : ipaddr_lists COMMA IPADDR   
                 {
-		    LOG("ipaddr COMA");
+		    LOG1("ipaddr COMA");
 		    ipListBegin = 1;
 		    $$ = ra_appendToList($1, $3);
                 }
 	    | /* empty */
 		{
-		    LOG("ipaddr empty");
-		    $$ = ra_genListNode("dummy"); 
+		    LOG1("ipaddr empty");
+		    $$ = ra_genListNode(strdup("dummy")); 
 		}
 	    ;
 
@@ -800,21 +906,27 @@ if_statement: IF { elseBegin = 1; } elsifs ELSE
 
 		    int flag;
 		    char *value, * s = strdup("if");
-		    LIST * list;
-		    LOG("IF ELSE");
+		    LIST * list, *lptr;
+		    LOG1("IF ELSE");
 		    
 		    list = ra_genListNode($1);
 		    list->next =  $3;
 		    list = ra_appendToList(list, $4);
 		    flag = UNSUPPORTF | PARAMSF | IF_CONF;
 		    value = ra_multiValuedString(list, 0);
+		    for(lptr = list->next; lptr != NULL; lptr = lptr->next){
+			 if(list->content)
+			     free(list->content);
+			 free(list);
+			 list = lptr;
+		    }
 		    $$ = ra_createParam(s, value, flag, 0);
 		}
 	    | IF
 		{
 		     int flag;
 		     char * s = strdup("if");
-		     LOG("IF");
+		     LOG1("IF");
 		     
 		     flag = UNSUPPORTF | PARAMSF;
 		     $$ = ra_createParam(s , $1, flag, 0);
@@ -823,7 +935,10 @@ if_statement: IF { elseBegin = 1; } elsifs ELSE
 
 elsifs	    :	elsifs elsif
 		{
-		    $$ = $2;
+		    LIST *temp;
+		    for (temp = $1; temp->next != NULL; temp = temp->next);
+		    temp->next = $2;
+		    $$ = $1;
 		}
 	    | elsif
         	    {
@@ -851,14 +966,9 @@ int conferror(char *errmsg)
     char c, *s, *ptr;
     int i, counter;
     FILE * file;
-    char* conffile;
 
-    struct conf* dhcp_conf = read_conf(PROVIDER_CONFFILE, PROVIDER_CONFFILE);
-    LOG("Now in Error Recovery");
+    LOG1("Now in Error Recovery");
     ptr = (char *)calloc(250,1);
-    conffile = get_conf(dhcp_conf, DHCPDCONF);
-    if (!conffile)
-	conffile = strdup(DEFAULT_DHCPCONF);
 
     file = fopen(conffile,"r");
     counter = conflineno;
@@ -877,6 +987,7 @@ int conferror(char *errmsg)
 	c = fgetc(file);
     }
     ptr[i++] = c;
+    fclose(file);
 
     s = strdup(ptr);
     free(ptr);
@@ -886,7 +997,8 @@ int conferror(char *errmsg)
 
 
 void init_parser() 
-{ 
+{
+    NODE * temp_node = NULL;
    struct conf* dhcp_conf = read_conf(PROVIDER_CONFFILE, PROVIDER_CONFFILE);
    init_lex();
    
@@ -896,39 +1008,62 @@ void init_parser()
    dhcp_conf_tree->obID = 0;
    dhcp_conf_tree->parent = dhcp_conf_tree;
 
-   service_node = ra_createNode();
-   service_node->obName = strdup("Dhcp");
-   service_node->obFlags = SERVICEF;
-   service_node->obID = 1; 
-   service_node->obValue = strdup(ra_get_hostname());
+   temp_node = ra_createNode();
+   temp_node->obName = strdup("Dhcp");
+   temp_node->obFlags = SERVICEF;
+   temp_node->obID = 1; 
+   temp_node->obValue = ra_get_hostname();
 
-   ra_appendNode(dhcp_conf_tree, service_node);   
+   ra_appendNode(dhcp_conf_tree, temp_node);   
 
-   serconf_node = ra_createNode();
-   serconf_node->obName = strdup(get_conf(dhcp_conf, DHCPDCONF));
-   serconf_node->obFlags = SERCONFF;
-   serconf_node->obID = 2;
+   temp_node = ra_createNode();
+   temp_node->obName = get_conf(dhcp_conf, DHCPDCONF);
+   temp_node->obFlags = SERCONFF;
+   temp_node->obID = 2;
    
-   ra_appendNode(dhcp_conf_tree, serconf_node);
+   ra_appendNode(dhcp_conf_tree, temp_node);
+   temp_node = NULL;
 
-   current_parent = current_node = dhcp_conf_tree;
-   current_state = GLOBALF;
+   //current_parent = current_node = dhcp_conf_tree;
+   //current_state = GLOBALF;
+   free(dhcp_conf);
 }
 
-NODE * parseConfigFile(FILE * inFile, FILE *outFile) 
+NODE * parseConfigFile(char * inFile, char *outFile) 
 { 
-   int i = 0; 
-   confin = inFile; 
-   confout = outFile;
+    int i = 0; 
+    struct conf* dhcp_conf = read_conf(PROVIDER_CONFFILE, PROVIDER_CONFFILE);
+    FILE * inF = NULL;
 
-   init_parser(); 
-   i = confparse();
-   if (i == 1 || i == 2) {
-	//parser failed
-	return NULL;
-   }
-   cleanup_lex();
-   return dhcp_conf_tree; 
+    conffile = get_conf(dhcp_conf, DHCPDCONF);
+    if (!conffile)
+	conffile = strdup(DEFAULT_DHCPCONF);
+
+    pthread_mutex_lock(&fileLock);
+    hashIDArray = getAllUniqueKey(conffile);
+    pthread_mutex_unlock(&fileLock);
+
+    confout = NULL;
+    pthread_mutex_lock(&fileLock);
+    inF = fopen(inFile, "r");
+    confin = inF; 
+    pthread_mutex_lock(&dsLock);
+    init_parser(); 
+    i = confparse();
+    pthread_mutex_unlock(&dsLock);
+    fclose(inF);
+    pthread_mutex_unlock(&fileLock);
+
+    //cleanup_lex();
+    if(hashIDArray){
+	free(hashIDArray);
+	hashIDArray = NULL;
+    }
+    if(dhcp_conf) {
+	free(dhcp_conf);
+	dhcp_conf = NULL;
+    }
+    return dhcp_conf_tree; 
 }
 
 #ifdef DEBUG_YACCC
