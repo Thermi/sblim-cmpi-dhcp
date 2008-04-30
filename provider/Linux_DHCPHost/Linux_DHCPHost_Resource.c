@@ -1,16 +1,16 @@
-// ============================================================================
-// Copyright © 2007, International Business Machines
-//
-// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
-// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
-// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
-//
-// You can obtain a current copy of the Common Public License from
-// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
-//
-// Authors:             Ashoka Rao S <ashoka.rao (at) in.ibm.com>
-//                      Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
-// ============================================================================
+/// ============================================================================
+/// Copyright © 2007, International Business Machines
+///
+/// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+/// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+/// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+///
+/// You can obtain a current copy of the Common Public License from
+/// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
+///
+/// Authors:             Ashoka Rao S <ashoka.rao (at) in.ibm.com>
+///                      Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
+/// ============================================================================
 
 #include "Linux_DHCPHost_Resource.h"
 #include "sblim-dhcp.h"
@@ -18,29 +18,30 @@
 #include <string.h>
 #include <stdlib.h>
 
-/* Include the required CMPI data types, function headers, and macros. */
+/** Include the required CMPI data types, function headers, and macros. */
 #include <cmpidt.h>
 #include <cmpift.h>
 #include <cmpimacs.h>
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Set supported methods accordingly */
-bool isEnumerateInstanceNamesSupported() { return true; };
-bool isEnumerateInstancesSupported()     { return true; };
-bool isGetSupported()                    { return true; };
-bool isCreateSupported()                 { return true; };
-bool isModifySupported()                 { return true; };
-bool isDeleteSupported()                 { return true; };
+/** Set supported methods accordingly */
+bool Host_isEnumerateInstanceNamesSupported() { return true; };
+bool Host_isEnumerateInstancesSupported()     { return true; };
+bool Host_isGetSupported()                    { return true; };
+bool Host_isCreateSupported()                 { return true; };
+bool Host_isModifySupported()                 { return true; };
+bool Host_isDeleteSupported()                 { return true; };
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Get a handle to the list of all system resources for this class. */
+/** Get a handle to the list of all system resources for this class. */
 _RA_STATUS Linux_DHCPHost_getResources( _RESOURCES** resources  ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
 
      (*resources) = (_RESOURCES *)malloc(sizeof(_RESOURCES));
-    //ERROR CONDITION , If malloc fails
+     memset((*resources), '\0', sizeof(_RESOURCES));
+    ///ERROR CONDITION , If malloc fails
     if( (*resources) == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
         return ra_status;
@@ -48,7 +49,6 @@ _RA_STATUS Linux_DHCPHost_getResources( _RESOURCES** resources  ) {
 
     (*resources)->Array = ra_getAllEntity(HOSTF, NULL, &ra_status);
     if( (*resources)->Array == NULL) {
-        //setRaStatus( &ra_status, RA_RC_FAILED, ENTITY_NOT_FOUND, _("Entity Not Found") );
         return ra_status;
     }
 
@@ -56,9 +56,9 @@ _RA_STATUS Linux_DHCPHost_getResources( _RESOURCES** resources  ) {
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Iterator to get the next resource from the resources list. */
+/** Iterator to get the next resource from the resources list. */
 _RA_STATUS Linux_DHCPHost_getNextResource( _RESOURCES* resources, _RESOURCE** resource ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     _RESOURCE * temp;
@@ -66,7 +66,8 @@ _RA_STATUS Linux_DHCPHost_getNextResource( _RESOURCES* resources, _RESOURCE** re
     if(resources->Array[resources->current] != NULL)
     {
         temp = (_RESOURCE *)malloc(sizeof(_RESOURCE));
-        //ERROR CONDITION
+	memset(temp, '\0', sizeof(_RESOURCE));
+        ///ERROR CONDITION if Dyanmic memory allocation fails
         if( temp == NULL) {
                 setRaStatus( &ra_status, RA_RC_FAILED,  DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
                 return ra_status;
@@ -78,16 +79,16 @@ _RA_STATUS Linux_DHCPHost_getNextResource( _RESOURCES* resources, _RESOURCE** re
         (*resource) = temp;
     }else{
         (*resource) = NULL;
-//        setRaStatus( &ra_status, RA_RC_FAILED,  DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Failed to get list of system resources") );
-//	return ra_status;
+///        setRaStatus( &ra_status, RA_RC_FAILED,  DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Failed to get list of system resources") );
+///	return ra_status;
     }
     return ra_status;
  
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Get the specific resource that matches the CMPI object path. */
+/** Get the specific resource that matches the CMPI object path. */
 _RA_STATUS Linux_DHCPHost_getResourceForObjectPath( _RESOURCES* resources, _RESOURCE** resource, const CMPIObjectPath* objectpath ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     CMPIStatus cmpi_status = {CMPI_RC_OK, NULL};
@@ -121,7 +122,8 @@ _RA_STATUS Linux_DHCPHost_getResourceForObjectPath( _RESOURCES* resources, _RESO
     for(itr = resources->Array, index = 0; *itr != NULL; index++, itr++){
         if(key == (*itr)->obID){
             (*resource) = (_RESOURCE *)malloc(sizeof(_RESOURCE));
-                //ERROR CONDITION
+	    memset((*resource), '\0', sizeof(_RESOURCE));
+                ///ERROR CONDITION if Dynamic memory allocation fails
                 if( (*resource) == NULL) {
                         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
                         return ra_status;
@@ -134,9 +136,9 @@ _RA_STATUS Linux_DHCPHost_getResourceForObjectPath( _RESOURCES* resources, _RESO
 
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Free/deallocate/cleanup the resource after use. */
+/** Free/deallocate/cleanup the resource after use. */
 _RA_STATUS Linux_DHCPHost_freeResource( _RESOURCE* resource ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     if(resource) {
@@ -150,9 +152,9 @@ _RA_STATUS Linux_DHCPHost_freeResource( _RESOURCE* resource ) {
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Free/deallocate/cleanup the resources list after use. */
+/** Free/deallocate/cleanup the resources list after use. */
 _RA_STATUS Linux_DHCPHost_freeResources( _RESOURCES* resources ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     if(resources) {
@@ -166,9 +168,9 @@ _RA_STATUS Linux_DHCPHost_freeResources( _RESOURCES* resources ) {
     return ra_status;
 }
 
-// ---------------------------------------------------------------------------- 
+/// ---------------------------------------------------------------------------- 
 
-/* Set the property values of a CMPI instance from a specific resource. */
+/** Set the property values of a CMPI instance from a specific resource. */
 _RA_STATUS Linux_DHCPHost_setInstanceFromResource( _RESOURCE* resource, const CMPIInstance* instance, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     char * parentID;
@@ -183,22 +185,23 @@ _RA_STATUS Linux_DHCPHost_setInstanceFromResource( _RESOURCE* resource, const CM
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Delete the specified resource from the system. */
+/** Delete the specified resource from the system. */
 _RA_STATUS Linux_DHCPHost_deleteResource( _RESOURCES* resources, _RESOURCE* resource, const CMPIBroker* broker ) {
 
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     if(resource){
 	ra_deleteNode(resource->Entity);
 	ra_updateDhcpdFile();
+	ra_deletedEntity();
     }
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Modify the specified resource using the property values of a CMPI instance. */
+/** Modify the specified resource using the property values of a CMPI instance. */
 _RA_STATUS Linux_DHCPHost_setResourceFromInstance( _RESOURCE** resource, const CMPIInstance* instance, const char** properties, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     CMPIStatus cmpi_status = {CMPI_RC_OK, NULL};
@@ -224,7 +227,7 @@ _RA_STATUS Linux_DHCPHost_setResourceFromInstance( _RESOURCE** resource, const C
     cmpi_name = CMGetCharsPtr(cmpi_info.value.string, NULL);
     pid = ra_getKeyFromInstance((char*)cmpi_name);
     pnode = ra_getEntity(pid, NULL, &ra_status);
-    //ERROR CONDITION
+    ///ERROR CONDITION - Dynamic memory allocation fails
     if(pnode == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, ENTITY_NOT_FOUND , _("Entity Not Found") );
         return ra_status;
@@ -255,12 +258,13 @@ _RA_STATUS Linux_DHCPHost_setResourceFromInstance( _RESOURCE** resource, const C
     }
 
     ra_updateDhcpdFile();
+    ra_modifiedEntity();
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Create a new resource using the property values of a CMPI instance. */
+/** Create a new resource using the property values of a CMPI instance. */
 _RA_STATUS Linux_DHCPHost_createResourceFromInstance( _RESOURCES* resources, _RESOURCE** resource, const CMPIInstance* instance, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     CMPIStatus cmpi_status = {CMPI_RC_OK, NULL};
@@ -286,7 +290,7 @@ _RA_STATUS Linux_DHCPHost_createResourceFromInstance( _RESOURCES* resources, _RE
     level = ra_findLevel(cmpi_name);
     pid = ra_getKeyFromInstance((char*)cmpi_name);
     pnode = ra_getEntity(pid, NULL, &ra_status);
-    //ERROR CONDITION
+    ///ERROR CONDITION - if Dynamic Memory allocation Fails
     if (pnode == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, ENTITY_NOT_FOUND , _("Entity Not Found") );
         return ra_status;
@@ -316,8 +320,10 @@ _RA_STATUS Linux_DHCPHost_createResourceFromInstance( _RESOURCES* resources, _RE
     ra_setInstForNode(pnode,newnode, level);
     ra_dropChild(pnode, newnode);
     ra_updateDhcpdFile();
+    newnode->obID = ra_getInsertKey();
 
     (*resource) = (_RESOURCE *)malloc(sizeof(_RESOURCE));
+    memset((*resource), '\0', sizeof(_RESOURCE));
      if( (*resource) == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED , _("Dynamic Memory Allocation Failed") );
         return ra_status;
@@ -340,7 +346,7 @@ _RA_STATUS Linux_DHCPHost_InstanceProviderCleanUp(bool term){
     return ra_status;
 }
 
-//----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
 _RA_STATUS Linux_DHCPHost_BuildObjectPath(CMPIObjectPath* objectpath, CMPIInstance* newinstance , char* namespace, _RESOURCE* resource) {
     _RA_STATUS ra_status ={RA_RC_OK, 0, NULL};
 

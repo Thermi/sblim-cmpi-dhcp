@@ -1,44 +1,45 @@
-// ============================================================================
-// Copyright © 2007, International Business Machines
-//
-// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
-// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
-// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
-//
-// You can obtain a current copy of the Common Public License from
-// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
-//
-// Authors:             Ashoka Rao S <ashoka.rao (at) in.ibm.com>
-//                      Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
-// ============================================================================
+/// ============================================================================
+/// Copyright © 2007, International Business Machines
+///
+/// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+/// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+/// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+///
+/// You can obtain a current copy of the Common Public License from
+/// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
+///
+/// Authors:             Ashoka Rao S <ashoka.rao (at) in.ibm.com>
+///                      Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
+/// ============================================================================
 
 #include "Linux_DHCPService_Resource.h"
 
 #include <string.h>
 #include <stdlib.h>
 
-/* Include the required CMPI data types, function headers, and macros. */
+/** Include the required CMPI data types, function headers, and macros. */
 #include <cmpidt.h>
 #include <cmpift.h>
 #include <cmpimacs.h>
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Set supported methods accordingly */
-bool isEnumerateInstanceNamesSupported() { return true; };
-bool isEnumerateInstancesSupported()     { return true; };
-bool isGetSupported()                    { return true; };
-bool isCreateSupported()                 { return false; };
-bool isModifySupported()                 { return false; };
-bool isDeleteSupported()                 { return false; };
+/** Set supported methods accordingly */
+bool Service_isEnumerateInstanceNamesSupported() { return true; };
+bool Service_isEnumerateInstancesSupported()     { return true; };
+bool Service_isGetSupported()                    { return true; };
+bool Service_isCreateSupported()                 { return false; };
+bool Service_isModifySupported()                 { return false; };
+bool Service_isDeleteSupported()                 { return false; };
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Get a handle to the list of all system resources for this class. */
+/** Get a handle to the list of all system resources for this class. */
 _RA_STATUS Linux_DHCPService_getResources( _RESOURCES** resources  ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     
     (*resources) = (_RESOURCES *)malloc(sizeof(_RESOURCES));
+    memset( (*resources), '\0', sizeof(_RESOURCES));
 
     if( (*resources) == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
@@ -57,9 +58,9 @@ _RA_STATUS Linux_DHCPService_getResources( _RESOURCES** resources  ) {
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Iterator to get the next resource from the resources list. */
+/** Iterator to get the next resource from the resources list. */
 _RA_STATUS Linux_DHCPService_getNextResource( _RESOURCES* resources, _RESOURCE** resource ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     
@@ -68,6 +69,7 @@ _RA_STATUS Linux_DHCPService_getNextResource( _RESOURCES* resources, _RESOURCE**
     if(resources->Array[resources->current] != NULL) 
     {
 	temp = (_RESOURCE*)malloc(sizeof(_RESOURCE));
+	memset( temp, '\0', sizeof(_RESOURCE));
 
         if( temp == NULL) {
                 setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
@@ -81,17 +83,14 @@ _RA_STATUS Linux_DHCPService_getNextResource( _RESOURCES* resources, _RESOURCE**
      } else {
     
         (*resource) = NULL;
-	//setRaStatus( &ra_status, RA_RC_FAILED,  DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Failed to get list of system resources") );
-        //return ra_status;
-
     }
 
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Get the specific resource that matches the CMPI object path. */
+/** Get the specific resource that matches the CMPI object path. */
 _RA_STATUS Linux_DHCPService_getResourceForObjectPath( _RESOURCES* resources, _RESOURCE** resource, const CMPIObjectPath* objectpath ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     CMPIStatus cmpi_status = {CMPI_RC_OK, NULL};
@@ -101,7 +100,7 @@ _RA_STATUS Linux_DHCPService_getResourceForObjectPath( _RESOURCES* resources, _R
     int index = 0;
 
 
-    if(CMIsNullObject(objectpath))  //Verify if the ObjectPath received is NULL
+    if(CMIsNullObject(objectpath))  ///Verify if the ObjectPath received is NULL
     {
 	setRaStatus( &ra_status, RA_RC_FAILED, OBJECT_PATH_IS_NULL, _("Object Path is NULL") );
  	return ra_status;
@@ -115,7 +114,7 @@ _RA_STATUS Linux_DHCPService_getResourceForObjectPath( _RESOURCES* resources, _R
 
     cmpi_name =  CMGetCharsPtr(cmpi_info.value.string, NULL);
 
-    if(cmpi_name == NULL){  //No key value found
+    if(cmpi_name == NULL){  ///No key value found
         setRaStatus( &ra_status, RA_RC_FAILED,  CMPI_INSTANCE_NAME_IS_NULL, _("Cmpi instance name is NULL") ); 
 	return ra_status;
     }
@@ -124,6 +123,7 @@ _RA_STATUS Linux_DHCPService_getResourceForObjectPath( _RESOURCES* resources, _R
 
 	if( !strcmp((char*) cmpi_name, (*itr)->obValue)) {
                 (*resource) = (_RESOURCE *)malloc(sizeof(_RESOURCE));
+		memset((*resource), '\0', sizeof(_RESOURCE));
 
 		 if( (*resource) == NULL) {
 	                 setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
@@ -131,42 +131,25 @@ _RA_STATUS Linux_DHCPService_getResourceForObjectPath( _RESOURCES* resources, _R
             	}
 
 		(*resource)->Entity = resources->Array[index];
-                //(*resource)->InstanceID = ra_instanceId(resources->Array[index], _CLASSNAME);
          }
     }
 
     return ra_status;
 }
 
-// ---------------------------------------------------------------------------- 
+/// ---------------------------------------------------------------------------- 
 
-/* Get an object path from a plain CMPI instance. This has to include to create the key attributes properly.*/
+/** Get an object path from a plain CMPI instance. This has to include to create the key attributes properly.*/
 _RA_STATUS Linux_DHCPService_getObjectPathForInstance( CMPIObjectPath **objectpath, const CMPIInstance *instance ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Getting object path from instance\n",__FUNCTION__);
-#endif //DEBUG
-
-    /*if (!instance || CMIsNullObject(instance)) {
-        setRaStatus(&ra_status, RA_RC_FAILED, MSGID_INVALID_CMPI_INSTANCE, _("The submitted CMPI instance was not initialized properly."));
-#ifdef DEBUG
-        fprintf(stderr,"\t -%s -- Setting instance from resource - completed with error\n",__FUNCTION__);
-#endif //DEBUG
-        return ra_status;
-    }*/
-
-    //TODO - Include logic code here (if not required, remove this tag)
     
-#ifdef DEBUG
-        fprintf(stderr,"\t -%s -- Getting object path from instance - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }
 
-// ---------------------------------------------------------------------------- 
+/// ---------------------------------------------------------------------------- 
 
-/* Set the property values of a CMPI instance from a specific resource. */
+/** Set the property values of a CMPI instance from a specific resource. */
 _RA_STATUS Linux_DHCPService_setInstanceFromResource( _RESOURCE* resource, const CMPIInstance* instance, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     char* parentID;
@@ -183,9 +166,9 @@ _RA_STATUS Linux_DHCPService_setInstanceFromResource( _RESOURCE* resource, const
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Free/deallocate/cleanup the resource after use. */
+/** Free/deallocate/cleanup the resource after use. */
 _RA_STATUS Linux_DHCPService_freeResource( _RESOURCE* resource ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     if(resource) {
@@ -199,9 +182,9 @@ _RA_STATUS Linux_DHCPService_freeResource( _RESOURCE* resource ) {
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Free/deallocate/cleanup the resources list after use. */
+/** Free/deallocate/cleanup the resources list after use. */
 _RA_STATUS Linux_DHCPService_freeResources( _RESOURCES* resources ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
    if(resources) {
@@ -215,9 +198,9 @@ _RA_STATUS Linux_DHCPService_freeResources( _RESOURCES* resources ) {
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Delete the specified resource from the system. */
+/** Delete the specified resource from the system. */
 _RA_STATUS Linux_DHCPService_deleteResource( _RESOURCES* resources, _RESOURCE* resource, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
 
@@ -226,27 +209,19 @@ _RA_STATUS Linux_DHCPService_deleteResource( _RESOURCES* resources, _RESOURCE* r
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Modify the specified resource using the property values of a CMPI instance. */
+/** Modify the specified resource using the property values of a CMPI instance. */
 _RA_STATUS Linux_DHCPService_setResourceFromInstance( _RESOURCE** resource, const CMPIInstance* instance, const char** properties, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Setting resource from CMPI instance\n",__FUNCTION__);
-#endif //DEBUG
 
-    //TODO - Include logic code here (if not required, remove this tag)
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Setting resource from CMPI instance - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Create a new resource using the property values of a CMPI instance. */
-/* Not supported for this. */
+/** Create a new resource using the property values of a CMPI instance. */
+/** Not supported for this. */
 _RA_STATUS Linux_DHCPService_createResourceFromInstance( _RESOURCES* resources, _RESOURCE** resource, const CMPIInstance* instance, const CMPIBroker* broker ) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     CMPIStatus cmpi_status = {CMPI_RC_OK, NULL};
@@ -254,10 +229,6 @@ _RA_STATUS Linux_DHCPService_createResourceFromInstance( _RESOURCES* resources, 
     NODE * pnode, *newnode;
     const char* cmpi_name;
     int pid;
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Creating resource from CMPI instance\n",__FUNCTION__);
-#endif //DEBUG
 
     if(CMIsNullObject(instance)) {
 
@@ -274,128 +245,73 @@ _RA_STATUS Linux_DHCPService_createResourceFromInstance( _RESOURCES* resources, 
     
     newnode = ra_createService( 1);
     ra_dropChild(pnode, newnode);
-    //printf("Parent = %x, Child = %x\n", pnode->obID, newnode->obID);
 
     (*resource) = (_RESOURCE *)malloc(sizeof(_RESOURCE));
+    memset( (*resource), '\0', sizeof(_RESOURCE));
     (*resource)->Entity = newnode;
     (*resource)->InstanceID = ra_instanceId(newnode, _CLASSNAME);
 
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Creating resource from CMPI instance - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Initialization method for Instance Provider */
+/** Initialization method for Instance Provider */
 _RA_STATUS Linux_DHCPService_InstanceProviderInitialize() {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Initialization of instance provider\n",__FUNCTION__);
-#endif //DEBUG
 
-    //TODO - Include logic code here (if not required, remove this tag)
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Initialization of instance provider - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* CleanUp method for Instance Provider */
+/** CleanUp method for Instance Provider */
 _RA_STATUS Linux_DHCPService_InstanceProviderCleanUp(bool terminate) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Cleanup of instance provider\n",__FUNCTION__);
-#endif //DEBUG
 
-    //TODO - Include logic code here (if not required, remove this tag)
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Cleanup of instance provider - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
-// Method Provider
+/// ----------------------------------------------------------------------------
+/// Method Provider
 
-/* Extrinsic Method - StartService */
+/** Extrinsic Method - StartService */
 _RA_STATUS Linux_DHCPService_Method_StartService( unsigned int* methodResult, _RESOURCE* resource) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     *methodResult = 0;
 
-
-//#ifdef DEBUG
-//    fprintf(stderr,"\t -%s -- Processing extrinsic method for start service\n",__FUNCTION__);
-//#endif //DEBUG
-
   start_service();    
-  //TODO - Include logic code here (if not required, remove this tag)
-    
-//#ifdef DEBUG
-//    fprintf(stderr,"\t -%s -- Processing extrinsic method for start service - completed\n",__FUNCTION__);
-//#endif //DEBUG
     
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Extrinsic Method - StopService */
+/** Extrinsic Method - StopService */
 _RA_STATUS Linux_DHCPService_Method_StopService( unsigned int* methodResult, _RESOURCE* resource) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
     *methodResult = 0;
     
-//#ifdef DEBUG
-//    fprintf(stderr,"\t -%s -- Processing extrinsic method for stop service\n",__FUNCTION__);
-//#endif //DEBUG
-
     stop_service();
-    //TODO - Include logic code here (if not required, remove this tag)
-    
-//#ifdef DEBUG
-//    fprintf(stderr,"\t -%s -- Processing extrinsic method for stop service - completed\n",__FUNCTION__);
-//#endif //DEBUG
 
     return ra_status;
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* Initialization method for Method Provider */
+/** Initialization method for Method Provider */
 _RA_STATUS Linux_DHCPService_MethodProviderInitialize(_RA_STATUS *ra_status) {
     ra_Initialize( ra_status );
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Initialization of method provider\n",__FUNCTION__);
-#endif //DEBUG
     
-    //TODO - Include logic code here (if not required, remove this tag)
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Initialization of method provider - completed\n",__FUNCTION__);
-#endif //DEBUG
     return (*ra_status);
 }
 
-// ----------------------------------------------------------------------------
+/// ----------------------------------------------------------------------------
 
-/* CleanUp method for Method Provider */
+/** CleanUp method for Method Provider */
 _RA_STATUS Linux_DHCPService_MethodProviderCleanUp(bool terminate) {
     _RA_STATUS ra_status = {RA_RC_OK, 0, NULL};
 	ra_CleanUp();
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Cleanup of method provider\n",__FUNCTION__);
-#endif //DEBUG
 
-    //TODO - Include logic code here (if not required, remove this tag)
-
-#ifdef DEBUG
-    fprintf(stderr,"\t -%s -- Cleanup of method provider - completed\n",__FUNCTION__);
-#endif //DEBUG
     return ra_status;
 }

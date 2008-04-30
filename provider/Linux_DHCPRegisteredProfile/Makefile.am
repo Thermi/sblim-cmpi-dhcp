@@ -20,8 +20,8 @@ providerdir = @PROVIDERDIR@
 
 ###############################################################################
 AM_CFLAGS = \
-    -Wall \
-    -Werror
+    -Wall 
+#    -Werror
 
 AM_CPPFLAGS = \
     -D_GNU_SOURCE \
@@ -29,7 +29,8 @@ AM_CPPFLAGS = \
     -DSBLIM_DEBUG\
     -D_COMPILE_UNIX \
     -I${top_srcdir}/include/ \
-    -I${top_srcdir}/resource-access/
+    -I${top_srcdir}/resource-access/ \
+    -I${top_srcdir}/hashing/
 
 
 ################################################################################
