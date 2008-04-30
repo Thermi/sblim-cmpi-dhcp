@@ -1,6 +1,9 @@
 ********************************************************************************
 association : Linux_DHCPGroupsForEntity
-objectPath : Linux_DHCPGroupsForEntity.GroupComponent="root/cimv2:Linux_DHCPSubnet.InstanceID=\"WBEM-SMT:Linux_DHCPSubnet:Global=0:Subnet=37f575882d340\"",PartComponent="root/cimv2:Linux_DHCPGroup.InstanceID=\"WBEM-SMT:Linux_DHCPGroup:Global=0:Subnet=37f575882d340:Group=f795a64115822ec0\""
+objectPath : QueryCimObjectPath(Linux_DHCPGroupsForEntity[3]) 
+modifyInst : groupcomponent=nothing 
+createInst : GroupComponent="linux_dhcpglobal",PartComponent="linux_dhcpgroup"
+classKey : GroupComponent,PartComponent
 sourceRole : GroupComponent 
 targetRole : PartComponent
 sourceClass : Linux_DHCPSubnet
@@ -14,6 +17,18 @@ Instance                                                           enumInstances
 
 --------------------------------------------------------------------------------
 Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                     set
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED
 
 --------------------------------------------------------------------------------
 Association                                                          associators

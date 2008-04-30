@@ -2,6 +2,8 @@
 class : Linux_DHCPRegisteredProfile
 objectPath : Linux_DHCPRegisteredProfile.InstanceID="IBM:DHCP Server Profile-0.1.1"
 modifyInst : InstanceID="IBM-1:DHCP Server Profile-0.1.1"
+createInst : InstanceID=""
+classKey : InstanceID
 
 --------------------------------------------------------------------------------
 Instance                                                       enumInstanceNames

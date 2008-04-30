@@ -5,8 +5,6 @@ class : Linux_DHCPOptions
 Linux_DHCPOptions : -eq 59
 
 --------------------------------------------------------------------------------
-InstanceID : -eq WBEM-SMT:Linux_DHCPOptions:Global=0:Subnet=37f57591b0de0:Option=ebfa26607d238b40 
-
 Caption : -empty
 Description : -empty
 ElementName : -eq Options 

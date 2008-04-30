@@ -1,6 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPPool
-objectPath : Linux_DHCPPool.InstanceID="WBEM-SMT:Linux_DHCPPool:Global=0:Subnet=37f575836b5f0:Pool=ae3a5153108e9430"
+objectPath : QueryCimObjectPath(Linux_DHCPPool[3]) 
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPSubnet[11].InstanceID) 
+modifyInst : Name="dummy"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

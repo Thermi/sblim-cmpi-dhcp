@@ -3,7 +3,7 @@ association : Linux_DHCPHostsForEntity
 
 --------------------------------------------------------------------------------
 Linux_DHCPHost : -target Linux_DHCPGlobal -eq 1
-Linux_DHCPGlobal : -target Linux_DHCPHost -eq 4
+Linux_DHCPGlobal : -target Linux_DHCPHost -eq 3
 
 --------------------------------------------------------------------------------
 

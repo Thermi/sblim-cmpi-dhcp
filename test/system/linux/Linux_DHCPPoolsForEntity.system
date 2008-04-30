@@ -1,12 +1,7 @@
 ********************************************************************************
-class : Linux_DHCPGroup
+association : Linux_DHCPPoolsForEntity
 
 --------------------------------------------------------------------------------
-Linux_DHCPGroup : -eq 6
-
+Linux_DHCPPool : -target Linux_DHCPSubnet -lt 2
+Linux_DHCPSubnet : -target Linux_DHCPPool -lt 4
 --------------------------------------------------------------------------------
-Name : -empty
-Caption : -empty
-Description : -empty
-ElementName : -eq Group
-

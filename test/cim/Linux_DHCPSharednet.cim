@@ -1,7 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPSharednet
-objectPath : Linux_DHCPSharednet.InstanceID="WBEM-SMT:Linux_DHCPSharednet:Global=0:Sharednet=e2f61a98aba74ef2"
-modifyInst : Name = "SHR-NET-IN-GRP" 
+objectPath : QueryCimObjectPath(Linux_DHCPSharednet[3]) 
+modifyInst : Name="SHR-NET-IN-GRP123445" 
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPGroup[1].InstanceID),Name="NewShrnetName1234"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

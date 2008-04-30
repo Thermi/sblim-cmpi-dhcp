@@ -15,7 +15,7 @@
 
 
 #*****************************************************************************#
-export DHCPCONFFILE=/etc/dhcp.conf 
+export DHCPCONFFILE=/etc/dhcpd.conf 
 
 #*****************************************************************************#
 PWD1=`pwd`
@@ -27,6 +27,10 @@ init() {
      if [[ -a $DHCPCONFFILE ]]; then 
     echo " copy the $DHCPCONFFILE file to $DHCPCONFFILE.original "
     cp -p $DHCPCONFFILE $DHCPCONFFILE.original
+    cp -p ./dhcpd.conf /etc/
+    else
+    echo " copying the ./dhcpd.conf to /etc "
+    cp -p ./dhcpd.conf /etc/
     fi
 }
 
@@ -38,6 +42,7 @@ cleanup() {
     echo " Copy back the $DHCPCONFFILE file "
     cp -p $DHCPCONFFILE.original $DHCPCONFFILE
     fi
+
 }
 
 #*****************************************************************************#
@@ -57,19 +62,27 @@ CLASSNAMES=(
 [8]=Linux_DHCPSharednet
 [9]=Linux_DHCPGroup
 [10]=Linux_DHCPPool
-[11]=Linux_DHCPServiceConfigurationForService
-[12]=Linux_DHCPGlobalForService
+[11]=Linux_DHCPGroupsForEntity
+[12]=Linux_DHCPHostsForEntity
+[13]=Linux_DHCPOptionsForEntity
+[14]=Linux_DHCPParamsForEntity
+[15]=Linux_DHCPPoolsForEntity
+[16]=Linux_DHCPServiceConfigurationForService
+[17]=Linux_DHCPSubnetsForEntity
+[18]=Linux_DHCPGlobalForService
+[19]=Linux_DHCPSharednetsForEntity
 )
 
 #*****************************************************************************#
 
 init
 
-declare -i max=12;
+declare -i max=19;
 declare -i i=1;
 
 
- . ./run.sh Linux_DHCPRegisteredProfile -n /root/PG_InterOp || exit 1;
+. ./run.sh Linux_DHCPRegisteredProfile -n /root/PG_InterOp || exit 1;
+. ./run.sh Linux_DHCPElementConformsToProfile -n /root/PG_InterOp || exit 1;
 
 while(($i<=$max))
 do

@@ -1,6 +1,9 @@
 ********************************************************************************
 association : Linux_DHCPServiceConfigurationForService
-objectPath : Linux_DHCPServiceConfigurationForService.Configuration="root/cimv2:Linux_DHCPServiceConfiguration.Name=\"dhcp\"",Element="root/cimv2:Linux_DHCPService.CreationClassName=\"Linux_DHCPService\",Name=\"Dhcp\",SystemCreationClassName=\"Linux_DHCPService\",SystemName=\"rhino1\"" 
+objectPath : QueryCimObjectPath(Linux_DHCPServiceConfigurationForService[1])
+modifyInst : element=nothing
+createInst : Configuration=linux_dhcpservice,Element=linux_dhcpserviceconfiguration
+classKey : Configuration,Element
 sourceRole : Configuration
 targetRole : Element
 sourceClass : Linux_DHCPService
@@ -14,6 +17,18 @@ Instance                                                           enumInstances
 
 --------------------------------------------------------------------------------
 Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                     set
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED
 
 --------------------------------------------------------------------------------
 Association                                                          associators

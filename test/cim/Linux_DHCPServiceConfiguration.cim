@@ -1,6 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPServiceConfiguration
 objectPath : Linux_DHCPServiceConfiguration.Name="/etc/dhcpd.conf"
+createInst : Name="new"
+modifyInst : Name="test"
+classKey : Name
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

@@ -1,13 +1,13 @@
 ********************************************************************************
-association : Linux_DHCPSharednetsForEntity
-objectPath : QueryCimObjectPath(Linux_DHCPSharednetsForEntity[3])
-modifyInst : groupcomponent=nothing
-createInst : GroupComponent=linux_dhcpglobal,PartComponent=linux_dhcpsharednet
-classKey : GroupComponent,PartComponent
-sourceRole : GroupComponent 
-targetRole : PartComponent
-sourceClass : Linux_DHCPGlobal
-targetClass : Linux_DHCPSharednet
+association : Linux_DHCPElementConformsToProfile
+objectPath : QueryCimObjectPath(Linux_DHCPElementConformsToProfile[1])
+modifyInst : managedelement=nothing
+createInst : ConformantStandard=linux_dhcpregisteredprofile,ManagedElement=linux_dhcpservice
+classKey : ConformantStandard,ManagedElement
+sourceRole : ConformantStandard
+targetRole : ManagedElement
+sourceClass : Linux_DHCPRegisteredProfile
+targetClass : Linux_DHCPService
 
 --------------------------------------------------------------------------------
 Instance                                                       enumInstanceNames
@@ -41,3 +41,4 @@ Association                                                           references
 
 --------------------------------------------------------------------------------
 Association                                                       referenceNames
+

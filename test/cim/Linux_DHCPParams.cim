@@ -1,7 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPParams
-objectPath : Linux_DHCPParams.InstanceID="WBEM-SMT:Linux_DHCPParams:Global=0:Group=8301597f9b17084c:Param=47ae125bba4e315c"
-modifyInst : values = "4444"
+objectPath : QueryCimObjectPath(Linux_DHCPParams[3])
+modifyInst : values="4444"
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPHost[4].InstanceID),Name="max-lease-time",values="5678"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames
@@ -19,5 +21,5 @@ Instance                                                                 			 cre
 Instance                                                                    			    set
 
 -------------------------------------------------------------------------------------------------------
-Instance                                                                		         delete
+Instance                                                                    			 delete
 

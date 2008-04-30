@@ -2,7 +2,6 @@
 association : Linux_DHCPOptionsForEntity
 
 --------------------------------------------------------------------------------
-Linux_DHCPOptions : -target Linux_DHCPGlobal -eq 1
+Linux_DHCPOptions : -target Linux_DHCPGlobal -lt 2
 Linux_DHCPGlobal : -target Linux_DHCPOptions -eq 13
 --------------------------------------------------------------------------------
-

@@ -1,7 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPHost
-objectPath : Linux_DHCPHost.InstanceID="WBEM-SMT:Linux_DHCPHost:Global=0:Host=5cc37d1c9d7629f"
-modifyInst : Name = "laser-printer-lex1" 
+objectPath : QueryCimObjectPath(Linux_DHCPHost[3])
+modifyInst : Name = "laser1-printer1-lex1" 
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPSubnet[2].InstanceID),Name="NewHostName1234"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

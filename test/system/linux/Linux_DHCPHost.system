@@ -2,11 +2,10 @@
 class : Linux_DHCPHost
 
 --------------------------------------------------------------------------------
-Linux_DHCPHost : -eq 14
+Linux_DHCPHost : -eq 13
 
 --------------------------------------------------------------------------------
-InstanceID : -eq WBEM-SMT:Linux_DHCPHost:Global=0:Host=5cc37d1c9d7629f 
-
+Name : -empty
 Caption : -empty
 Description : -empty
 ElementName : -eq Host

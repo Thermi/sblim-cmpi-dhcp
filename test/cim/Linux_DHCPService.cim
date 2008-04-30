@@ -1,6 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPService
-objectPath : Linux_DHCPService.CreationClassName="Linux_DHCPService",Name="Dhcp",SystemCreationClassName="Linux_DHCPService",SystemName="rhino1"
+objectPath : QueryCimObjectPath(Linux_DHCPService[1]) 
+createInst : CreationClassName="",Name="",SystemCreationClassName="",SystemName=""
+modifyInst : Name=""
+classKey : CreationClassName,Name,SystemCreationClassName,SystemName
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

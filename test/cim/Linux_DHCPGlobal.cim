@@ -1,6 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPGlobal
-objectPath : Linux_DHCPGlobal.InstanceID="WBEM-SMT:Linux_DHCPGlobal:Global=0"
+objectPath : QueryCimObjectPath(Linux_DHCPGlobal[1])
+modifyInst : InstanceID="None"
+createInst : InstanceID=""
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

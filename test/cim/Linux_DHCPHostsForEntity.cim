@@ -1,9 +1,12 @@
 ********************************************************************************
 association : Linux_DHCPHostsForEntity
-objectPath : Linux_DHCPHostsForEntity.GroupComponent="root/cimv2:Linux_DHCPGlobal.InstanceID=\"WBEM-SMT:Linux_DHCPGlobal:Global=0\"",PartComponent="root/cimv2:Linux_DHCPHost.InstanceID=\"WBEM-SMT:Linux_DHCPHost:Global=0:Host=5cc37d1c9d7629f\""
+objectPath : QueryCimObjectPath(Linux_DHCPHostsForEntity[3])
+modifyInst : groupcomponent=nothing
+createInst : GroupComponent=linux_dhcpglobal,PartComponent=linux_dhcphost
+classKey : GroupComponent,PartComponent
 sourceRole : GroupComponent 
 targetRole : PartComponent
-sourceClass : Linux_DHCPEntity 
+sourceClass : Linux_DHCPGlobal 
 targetClass : Linux_DHCPHost
 
 --------------------------------------------------------------------------------
@@ -14,6 +17,18 @@ Instance                                                           enumInstances
 
 --------------------------------------------------------------------------------
 Instance                                                                     get
+
+--------------------------------------------------------------------------------
+Instance                                                                  create
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                     set
+Expected Exception : NOT_SUPPORTED
+
+--------------------------------------------------------------------------------
+Instance                                                                  delete
+Expected Exception : NOT_SUPPORTED
 
 --------------------------------------------------------------------------------
 Association                                                          associators

@@ -1,6 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPGroup
-objectPath : Linux_DHCPGroup.InstanceID="WBEM-SMT:Linux_DHCPGroup:Global=0:Group=8301597f4b5267c4"
+objectPath : QueryCimObjectPath(Linux_DHCPGroup[3])
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPSubnet[1].InstanceID)
+modifyInst : InstanceID="Dummy"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

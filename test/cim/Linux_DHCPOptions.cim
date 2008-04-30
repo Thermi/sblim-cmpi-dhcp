@@ -1,7 +1,9 @@
 *******************************************************************************************************
 class : Linux_DHCPOptions
-objectPath : Linux_DHCPOptions.InstanceID="WBEM-SMT:Linux_DHCPOptions:Global=0:Subnet=37f57591b0de0:Option=ebfa26607d238b40"
-modifyInst : values = "30.30.0.1"
+objectPath : QueryCimObjectPath(Linux_DHCPOptions[3])  
+modifyInst : values="255.255.0.0"
+createInst : InstanceID="",ParentID=QueryCimClassAttribute(Linux_DHCPGroup[4].InstanceID),Name="subnet-mask",values="255.255.255.0"
+classKey : InstanceID
 
 -------------------------------------------------------------------------------------------------------
 Instance									      enumInstanceNames

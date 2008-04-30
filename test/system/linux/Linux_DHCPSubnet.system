@@ -2,12 +2,9 @@
 class : Linux_DHCPSubnet
 
 --------------------------------------------------------------------------------
-Linux_DHCPSubnet : -eq 20
+Linux_DHCPSubnet : -eq 19
 
 --------------------------------------------------------------------------------
-InstanceID : -eq WBEM-SMT:Linux_DHCPSubnet:Global=0:Subnet=37f575836b5f0 
-
-Name : -eq 30.30.0.0
 Caption : -empty
 Description : -empty
 ElementName : -eq Subnet

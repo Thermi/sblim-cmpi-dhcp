@@ -5,8 +5,6 @@ class : Linux_DHCPSharednet
 Linux_DHCPSharednet : -eq 8
 
 --------------------------------------------------------------------------------
-InstanceID : -eq WBEM-SMT:Linux_DHCPSharednet:Global=0:Sharednet=e2f61a98aba74ef2 
-
 Caption : -empty
 Description : -empty
 ElementName : -eq Sharednet
