@@ -14,7 +14,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.59)
-AC_INIT(SBLIM CMPI Provider for WBEM-SMT DHCP task, 0.5.3, sblim-devel@lists.sourceforge.net, sblim-cmpi-dhcp)
+AC_INIT(SBLIM CMPI Provider for WBEM-SMT DHCP task, 0.5.2, sblim-devel@lists.sourceforge.net, sblim-cmpi-dhcp)
 AC_CONFIG_SRCDIR([.])
 AC_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE([tar-pax])
@@ -86,6 +86,7 @@ AC_CONFIG_FILES(Makefile sblim-cmpi-dhcp.spec)
 AC_CONFIG_FILES(po/Makefile.in)
 AC_CONFIG_FILES(man/Makefile man/smt_dhcp_ra_support.conf.5.pre)
 AC_CONFIG_FILES(include/sblim-dhcp.h.pre)
+AC_CONFIG_FILES(hashing/Makefile)    
 AC_CONFIG_FILES(resource-access/Makefile resource-access/smt_dhcp_ra_support.conf.pre)
 AC_CONFIG_FILES(provider/Makefile)
 AC_CONFIG_FILES(provider/Linux_DHCPRegisteredProfile/Makefile)
@@ -108,6 +109,7 @@ AC_CONFIG_FILES(provider/Linux_DHCPParamsForEntity/Makefile)
 AC_CONFIG_FILES(provider/Linux_DHCPGlobalForService/Makefile)
 AC_CONFIG_FILES(provider/Linux_DHCPServiceConfiguration/Makefile)
 AC_CONFIG_FILES(provider/Linux_DHCPServiceConfigurationForService/Makefile)
+AC_CONFIG_FILES(provider/Linux_DHCPElementConformsToProfile/Makefile)
 AC_CONFIG_FILES(test/Makefile)
 AC_OUTPUT
 echo

@@ -11,8 +11,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 Summary: SBLIM WBEM-SMT DHCP 
 Name: @PACKAGE_TARNAME@
 Version: @PACKAGE_VERSION@
-Release: 1
-Group: Systems Management/Instrumentation
+Release: CVS
+Group: Systems Management/Base
 URL: http://www.sblim.org
 License: CPL
 Requires: sblim-tools-libra
@@ -35,7 +35,7 @@ to get the WBEM-SMT Client Application.
 ###############################################################################
 %Package devel
 Summary: SBLIM WBEM-SMT DHCP - Header Development Files
-Group: Systems Management/Instrumentation
+Group: Systems Management/Base
 Requires: %{name} = %{version}-%{release}
 
 %Description devel
@@ -45,7 +45,7 @@ link libraries for dependent provider packages
 ###############################################################################
 %Package test
 Summary: SBLIM WBEM-SMT DHCP - Testcase Files
-Group: Systems Management/Instrumentation/Test
+Group: Systems Management/Base
 Requires: %{name} = %{version}-%{release}
 
 %Description test
@@ -90,26 +90,32 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/cmpi/*a
 ###############################################################################
 %pre
 # Conditional definition of schema and registration files
-%define SCHEMA %{_datadir}/%{name}/Linux_DHCPEntity.mof %{_datadir}/%{name}/Linux_DHCPGlobal.mof %{_datadir}/%{name}/Linux_DHCPGlobalForService.mof %{_datadir}/%{name}/Linux_DHCPGroup.mof %{_datadir}/%{name}/Linux_DHCPGroupsForEntity.mof %{_datadir}/%{name}/Linux_DHCPHost.mof %{_datadir}/%{name}/Linux_DHCPHostsForEntity.mof %{_datadir}/%{name}/Linux_DHCPOptions.mof %{_datadir}/%{name}/Linux_DHCPOptionsForEntity.mof %{_datadir}/%{name}/Linux_DHCPParams.mof %{_datadir}/%{name}/Linux_DHCPParamsForEntity.mof %{_datadir}/%{name}/Linux_DHCPPool.mof %{_datadir}/%{name}/Linux_DHCPPoolsForEntity.mof %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.mof %{_datadir}/%{name}/Linux_DHCPService.mof %{_datadir}/%{name}/Linux_DHCPServiceConfiguration.mof %{_datadir}/%{name}/Linux_DHCPServiceConfigurationForService.mof %{_datadir}/%{name}/Linux_DHCPSharednet.mof %{_datadir}/%{name}/Linux_DHCPSharednetsForEntity.mof %{_datadir}/%{name}/Linux_DHCPSubnet.mof %{_datadir}/%{name}/Linux_DHCPSubnetsForEntity.mof
+%define SCHEMA %{_datadir}/%{name}/Linux_DHCPEntity.mof %{_datadir}/%{name}/Linux_DHCPService.mof %{_datadir}/%{name}/Linux_DHCPGlobal.mof %{_datadir}/%{name}/Linux_DHCPGlobalForService.mof %{_datadir}/%{name}/Linux_DHCPGroup.mof %{_datadir}/%{name}/Linux_DHCPGroupsForEntity.mof %{_datadir}/%{name}/Linux_DHCPHost.mof %{_datadir}/%{name}/Linux_DHCPHostsForEntity.mof %{_datadir}/%{name}/Linux_DHCPOptions.mof %{_datadir}/%{name}/Linux_DHCPOptionsForEntity.mof %{_datadir}/%{name}/Linux_DHCPParams.mof %{_datadir}/%{name}/Linux_DHCPParamsForEntity.mof %{_datadir}/%{name}/Linux_DHCPPool.mof %{_datadir}/%{name}/Linux_DHCPPoolsForEntity.mof %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.mof %{_datadir}/%{name}/Linux_DHCPServiceConfiguration.mof %{_datadir}/%{name}/Linux_DHCPServiceConfigurationForService.mof %{_datadir}/%{name}/Linux_DHCPSharednet.mof %{_datadir}/%{name}/Linux_DHCPSharednetsForEntity.mof %{_datadir}/%{name}/Linux_DHCPSubnet.mof %{_datadir}/%{name}/Linux_DHCPSubnetsForEntity.mof %{_datadir}/%{name}/Linux_DHCPElementConformsToProfile.mof
 %define REGISTRATION %{_datadir}/%{name}/Linux_DHCPGlobal.registration %{_datadir}/%{name}/Linux_DHCPGlobalForService.registration %{_datadir}/%{name}/Linux_DHCPGroup.registration %{_datadir}/%{name}/Linux_DHCPGroupsForEntity.registration %{_datadir}/%{name}/Linux_DHCPHost.registration %{_datadir}/%{name}/Linux_DHCPHostsForEntity.registration %{_datadir}/%{name}/Linux_DHCPOptions.registration %{_datadir}/%{name}/Linux_DHCPOptionsForEntity.registration %{_datadir}/%{name}/Linux_DHCPParams.registration %{_datadir}/%{name}/Linux_DHCPParamsForEntity.registration %{_datadir}/%{name}/Linux_DHCPPool.registration %{_datadir}/%{name}/Linux_DHCPPoolsForEntity.registration %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.registration %{_datadir}/%{name}/Linux_DHCPService.registration %{_datadir}/%{name}/Linux_DHCPServiceConfiguration.registration %{_datadir}/%{name}/Linux_DHCPServiceConfigurationForService.registration %{_datadir}/%{name}/Linux_DHCPSharednet.registration %{_datadir}/%{name}/Linux_DHCPSharednetsForEntity.registration %{_datadir}/%{name}/Linux_DHCPSubnet.registration %{_datadir}/%{name}/Linux_DHCPSubnetsForEntity.registration
+
+%define INTEROP_SCHEMAS %{_datadir}/%{name}/Linux_DHCPService.mof %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.mof %{_datadir}/%{name}/Linux_DHCPElementConformsToProfile.mof 
+%define INTEROP_REGISTRATIONS %{_datadir}/%{name}/Linux_DHCPRegisteredProfile.registration %{_datadir}/%{name}/Linux_DHCPElementConformsToProfile.registration
 
 # If upgrading, deregister old version
 if [ $1 -gt 1 ]
 then
   %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
 	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+	
+  %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
+	-n "root/PG_InterOp" -r %{INTEROP_REGISTRATIONS} -m %{INTEROP_SCHEMAS} > /dev/null
+	
 fi
-
 
 ###############################################################################
 %post
-# Register Schema and Provider - this is higly provider specific
-
+# Register Schema and Provider - this is highly provider specific
 %{_datadir}/%{name}/provider-register.sh %{?tog_pegasus:-t pegasus} \
-	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
-
+	-v -r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+	
+%{_datadir}/%{name}/provider-register.sh %{?tog_pegasus:-t pegasus} \
+	 -v -n "root/PG_InterOp" -r %{INTEROP_REGISTRATIONS} -m %{INTEROP_SCHEMAS} > /dev/null
 /sbin/ldconfig
-
 
 ###############################################################################
 %preun
@@ -118,8 +124,10 @@ if [ $1 -eq 0 ]
 then
   %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
 	-r %{REGISTRATION} -m %{SCHEMA} > /dev/null
+  
+  %{_datadir}/%{name}/provider-register.sh -d %{?tog_pegasus:-t pegasus} \
+	-n "root/PG_InterOp" -r %{INTEROP_REGISTRATIONS} -m %{INTEROP_SCHEMAS} > /dev/null
 fi
-
 
 ###############################################################################
 %postun 
@@ -128,7 +136,6 @@ if [ $1 -eq 0 ]
 then
   /sbin/ldconfig
 fi
-
 
 ###############################################################################
 %files
@@ -140,9 +147,9 @@ fi
 %defattr(-,root,root,0755)
 %{_datadir}/%{name}
 %{_datadir}/locale/en_US/LC_MESSAGES/sblim-cmpi-dhcp.*
+%{_libdir}/libuniquekey.so
 %{_libdir}/libRaToolsDhcp.so.*
 %{cmpi_provider_dir}/libcmpiLinux_DHCP*.so
-
 
 %files devel
 %defattr(-,root,root) 
@@ -157,8 +164,7 @@ fi
 %{_datadir}/sblim-testsuite/cim/Linux_DHCP*
 %{_datadir}/sblim-testsuite/system/linux/Linux_DHCP*
 
-
 ###############################################################################
 %changelog
-* Tue Dec 11 2007 Sam Kannan <skanan{@}us.ibm.com 0.5.3-1
+* Thu Nov 15 2007 Wolfgang Taphorn <taphorn@de.ibm.com> 0.5.2-CVS
     o initial support

@@ -34,4 +34,5 @@ SUBDIRS = . \
     Linux_DHCPOptionsForEntity \
     Linux_DHCPParamsForEntity \
     Linux_DHCPGlobalForService \
+    Linux_DHCPElementConformsToProfile \
     Linux_DHCPServiceConfigurationForService

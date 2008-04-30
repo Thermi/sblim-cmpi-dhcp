@@ -53,7 +53,7 @@ BUILT_SOURCES = include/sblim-dhcp.h
 if TESTSUITE_SUPPORT
   TESTCASE_DIR = test
 endif
-SUBDIRS = $(TESTCASE_DIR) po man resource-access provider 
+SUBDIRS = $(TESTCASE_DIR) po man hashing resource-access provider 
 
 
 ######################################################################################
@@ -69,6 +69,7 @@ doc_DATA = README AUTHORS COPYING
 # correctly
 include/sblim-dhcp.h: include/sblim-dhcp.h.pre
 	sed -e 's,[@]SCRIPTDIR[@],$(pkgdatadir),g' -e s?$$\{prefix\}?$(prefix)?g -e s?$$\{exec_prefix\}?$(prefix)?g $< > $@
+#	test -d "/etc/ld.so.conf.d" && cp include/wbem-smt.conf /etc/ld.so.conf.d/
 
 noinst_HEADERS += include/sblim-dhcp.h
 
@@ -101,6 +102,8 @@ SCHEMAS = \
     model/Linux_DHCPOptionsForEntity.mof \
     model/Linux_DHCPParamsForEntity.mof \
     model/Linux_DHCPGlobalForService.mof \
+    model/Linux_DHCPRegisteredProfile.mof \
+    model/Linux_DHCPElementConformsToProfile.mof \
     model/Linux_DHCPServiceConfigurationForService.mof
 
 ######################################################################################
@@ -128,21 +131,23 @@ REGISTRATIONS = \
 
 ######################################################################################
 INTEROP_SCHEMAS = \
-    model/Linux_DHCPRegisteredProfile.mof
+	model/Linux_DHCPService.mof \
+    model/Linux_DHCPRegisteredProfile.mof \
+    model/Linux_DHCPElementConformsToProfile.mof
 
 ######################################################################################
 INTEROP_REGISTRATIONS = \
-    model/registration/Linux_DHCPRegisteredProfile.registration
+    model/registration/Linux_DHCPRegisteredProfile.registration \
+    model/registration/Linux_DHCPElementConformsToProfile.registration
 
 ######################################################################################
 
 # We must explicity add all the schema files to the distribution package
-pkgdata_DATA = $(SCHEMAS) $(REGISTRATIONS)
+pkgdata_DATA = $(SCHEMAS) $(REGISTRATIONS) $(INTEROP_SCHEMAS) $(INTEROP_REGISTRATIONS)
 
 pkgdata_SCRIPTS += $(srcdir)/provider-register.sh
 
-EXTRA_DIST += $(pkgdata_SCRIPTS) $(SCHEMAS) $(REGISTRATIONS)
-
+EXTRA_DIST += $(pkgdata_SCRIPTS) $(pkgdata_DATA)
 
 # Register the provider(s) and class definition(s) to the current CIM server/CIMOM
 postinstall:

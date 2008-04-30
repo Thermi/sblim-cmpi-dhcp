@@ -1,0 +1,8 @@
+********************************************************************************
+association : Linux_DHCPElementConformsToProfile
+
+--------------------------------------------------------------------------------
+Linux_DHCPRegisteredProfile : -target Linux_DHCPService -lt 2
+Linux_DHCPService : -target Linux_DHCPRegisteredProfile -eq 1
+
+--------------------------------------------------------------------------------
