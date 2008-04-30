@@ -16,4 +16,9 @@ class Linux_DHCPParams : CIM_SettingData {
 	string Name;	
 	
 	};
-		
+[Description("Entity to represent a filter to indicate a change in the Params entity in the dhcpd.conf file.")
+]
+
+class Linux_DHCPParams_Ind : CIM_Indication {
+
+};	

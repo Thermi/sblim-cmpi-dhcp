@@ -5,4 +5,9 @@ class Linux_DHCPGroup : Linux_DHCPEntity {
 
 	
 	};
-		
+[Description("Entity to represent a filter to indicate a change in the Group entity in the dhcpd.conf file.")
+]
+
+class Linux_DHCPGroup_Ind : CIM_Indication {
+
+};

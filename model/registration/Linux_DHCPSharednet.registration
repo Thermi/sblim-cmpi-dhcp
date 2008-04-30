@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPSharednet root/cimv2 Linux_DHCPSharednetProvider cmpiLinux_DHCPSharednet instance method
+Linux_DHCPSharednet root/cimv2 Linux_DHCPSharednetProvider cmpiLinux_DHCPSharednet instance indication
+Linux_DHCPSharednet_Ind root/cimv2 Linux_DHCPSharednetProvider cmpiLinux_DHCPSharednet instance indication

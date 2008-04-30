@@ -4,14 +4,11 @@
 
 class Linux_DHCPHost : Linux_DHCPEntity {
 
-	[Write ,
-	 Description(" The static IP Address that is to be assigneds to a specific host. The unique host is identifeid 	by 	the MAC address of that network device.")]
-	string IPAddr;
-	
-	[Write ,
-	 Description(" The MAC Address is the Hardware address of the Network Device Controller.")]
-	string MACAddr;
-	
-	
 	};
-		
+
+[Description("Entity to represent a filter to indicate a change in the Host entity in the dhcpd.conf file.")
+]
+
+class Linux_DHCPHost_Ind : CIM_Indication {
+
+};		

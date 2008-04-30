@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPGroup root/cimv2 Linux_DHCPGroupProvider cmpiLinux_DHCPGroup instance method
+Linux_DHCPGroup root/cimv2 Linux_DHCPGroupProvider cmpiLinux_DHCPGroup instance indication
+Linux_DHCPGroup_Ind root/cimv2 Linux_DHCPGroupProvider cmpiLinux_DHCPGroup instance indication

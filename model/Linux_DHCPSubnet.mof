@@ -9,4 +9,10 @@ class Linux_DHCPSubnet : Linux_DHCPEntity {
 	
 	
 	};
-		
+	
+[Description("Entity to represent a filter to indicate a change in the Subnet entity in the dhcpd.conf file.")
+]
+
+class Linux_DHCPSubnet_Ind : CIM_Indication {
+
+};	

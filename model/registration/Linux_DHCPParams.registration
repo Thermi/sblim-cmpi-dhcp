@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPParams root/cimv2 Linux_DHCPParamsProvider cmpiLinux_DHCPParams instance method
+Linux_DHCPParams root/cimv2 Linux_DHCPParamsProvider cmpiLinux_DHCPParams instance indication
+Linux_DHCPParams_Ind root/cimv2 Linux_DHCPParamsProvider cmpiLinux_DHCPParams instance indication

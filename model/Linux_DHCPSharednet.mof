@@ -5,4 +5,10 @@ class Linux_DHCPSharednet : Linux_DHCPEntity {
 
 	
 	};
-		
+	
+[Description("Entity to represent a filter to indicate a change in the Sharednet entity in the dhcpd.conf file.")
+]
+
+class Linux_DHCPSharednet_Ind : CIM_Indication {
+
+};	

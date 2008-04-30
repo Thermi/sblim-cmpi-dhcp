@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPSubnet root/cimv2 Linux_DHCPSubnetProvider cmpiLinux_DHCPSubnet instance method
+Linux_DHCPSubnet root/cimv2 Linux_DHCPSubnetProvider cmpiLinux_DHCPSubnet instance indication
+Linux_DHCPSubnet_Ind root/cimv2 Linux_DHCPSubnetProvider cmpiLinux_DHCPSubnet instance indication

@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPHost root/cimv2 Linux_DHCPHostProvider cmpiLinux_DHCPHost instance method
+Linux_DHCPHost root/cimv2 Linux_DHCPHostProvider cmpiLinux_DHCPHost instance indication
+Linux_DHCPHost_Ind root/cimv2 Linux_DHCPHostProvider cmpiLinux_DHCPHost instance indication

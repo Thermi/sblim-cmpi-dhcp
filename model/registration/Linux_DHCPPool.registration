@@ -14,4 +14,5 @@
 # 
 # 
 # Classname - Namespace - Providername - Libraryname - Capabilities ...
-Linux_DHCPPool root/cimv2 Linux_DHCPPoolProvider cmpiLinux_DHCPPool instance method
+Linux_DHCPPool root/cimv2 Linux_DHCPPoolProvider cmpiLinux_DHCPPool instance indication
+Linux_DHCPPool_Ind root/cimv2 Linux_DHCPPoolProvider cmpiLinux_DHCPPool instance indication
