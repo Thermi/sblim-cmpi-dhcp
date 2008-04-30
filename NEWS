@@ -1,3 +1,10 @@
+Changes in 0.5.4-1
+==============================================================================
+- cmpi-dhcp: 
+	Registered Profile support
+	Indication support
+	Lots of bug fixes 
+	 
 Initial Version 0.5.3-1
 ==============================================================================
 - This is the initial upload for the dhcp task
