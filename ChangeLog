@@ -1,3 +1,174 @@
+2008-04-30 16:21  skanan
+
+	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
+
+2008-04-29 21:07  skanan
+
+	* include/wbem-smt.conf: Hashkey Implementation
+
+2008-04-29 21:01  skanan
+
+	* po/en_US.po: Hashkey Implementation
+
+2008-04-29 20:35  skanan
+
+	* provider/: Linux_DHCPGlobal/Linux_DHCPGlobal.c,
+	  Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.c,
+	  Linux_DHCPGlobal/Linux_DHCPGlobal_Resource.h,
+	  Linux_DHCPGlobal/Makefile.am,
+	  Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c,
+	  Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.c,
+	  Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity_Resource.h,
+	  Linux_DHCPGroupsForEntity/Makefile.am,
+	  Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c,
+	  Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity_Resource.c,
+	  Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity_Resource.h,
+	  Linux_DHCPHostsForEntity/Makefile.am,
+	  Linux_DHCPRegisteredProfile/Linux_DHCPRegisteredProfile.c,
+	  Linux_DHCPRegisteredProfile/Makefile.am,
+	  Linux_DHCPService/Linux_DHCPService.c,
+	  Linux_DHCPService/Linux_DHCPService_Resource.c,
+	  Linux_DHCPService/Linux_DHCPService_Resource.h,
+	  Linux_DHCPService/Makefile.am,
+	  Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c,
+	  Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.c,
+	  Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService_Resource.h,
+	  Linux_DHCPServiceConfigurationForService/Makefile.am,
+	  Linux_DHCPSubnet/Linux_DHCPSubnet.c,
+	  Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c,
+	  Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.h,
+	  Linux_DHCPSubnet/Makefile.am,
+	  Linux_DHCPParams/Linux_DHCPParams.c,
+	  Linux_DHCPParams/Linux_DHCPParams_Resource.c,
+	  Linux_DHCPParams/Linux_DHCPParams_Resource.h,
+	  Linux_DHCPParams/Makefile.am, Linux_DHCPPool/Linux_DHCPPool.c,
+	  Linux_DHCPPool/Linux_DHCPPool_Resource.c,
+	  Linux_DHCPPool/Linux_DHCPPool_Resource.h,
+	  Linux_DHCPPool/Makefile.am,
+	  Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c,
+	  Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.c,
+	  Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity_Resource.h,
+	  Linux_DHCPPoolsForEntity/Makefile.am,
+	  Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c,
+	  Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.c,
+	  Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration_Resource.h,
+	  Linux_DHCPServiceConfiguration/Makefile.am,
+	  Linux_DHCPSharednet/Linux_DHCPSharednet.c,
+	  Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c,
+	  Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.h,
+	  Linux_DHCPSharednet/Makefile.am,
+	  Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c,
+	  Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.c,
+	  Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity_Resource.h,
+	  Linux_DHCPSharednetsForEntity/Makefile.am,
+	  Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c,
+	  Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.c,
+	  Linux_DHCPGlobalForService/Linux_DHCPGlobalForService_Resource.h,
+	  Linux_DHCPGlobalForService/Makefile.am,
+	  Linux_DHCPGroup/Linux_DHCPGroup.c,
+	  Linux_DHCPGroup/Linux_DHCPGroup_Resource.c,
+	  Linux_DHCPGroup/Linux_DHCPGroup_Resource.h,
+	  Linux_DHCPGroup/Makefile.am, Linux_DHCPHost/Linux_DHCPHost.c,
+	  Linux_DHCPHost/Linux_DHCPHost_Resource.c,
+	  Linux_DHCPHost/Linux_DHCPHost_Resource.h,
+	  Linux_DHCPHost/Makefile.am,
+	  Linux_DHCPOptions/Linux_DHCPOptions.c,
+	  Linux_DHCPOptions/Linux_DHCPOptions_Resource.c,
+	  Linux_DHCPOptions/Linux_DHCPOptions_Resource.h,
+	  Linux_DHCPOptions/Makefile.am,
+	  Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c,
+	  Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.c,
+	  Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity_Resource.h,
+	  Linux_DHCPOptionsForEntity/Makefile.am,
+	  Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c,
+	  Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.c,
+	  Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity_Resource.h,
+	  Linux_DHCPParamsForEntity/Makefile.am,
+	  Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c,
+	  Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.c,
+	  Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity_Resource.h,
+	  Linux_DHCPSubnetsForEntity/Makefile.am: Updates from Hashkey
+	  Implementation, indication support
+
+2008-04-29 20:28  skanan
+
+	* resource-access/: Makefile.am, conftest.c, dhcpd.conf.lexer.l,
+	  dhcpd.conf.parser.y, provider-support.c, provider-support.h,
+	  ra-support.c, ra-support.h, smt_dhcp_ra_scripts.h,
+	  smt_dhcp_ra_service.c, smt_dhcp_ra_service.h: Hashkey
+	  Implementation
+
+2008-04-29 20:25  skanan
+
+	* model/registration/: Linux_DHCPGroup.registration,
+	  Linux_DHCPHost.registration, Linux_DHCPOptions.registration,
+	  Linux_DHCPParams.registration, Linux_DHCPPool.registration,
+	  Linux_DHCPSharednet.registration, Linux_DHCPSubnet.registration:
+	  Mof changes with indication support
+
+2008-04-29 20:21  skanan
+
+	* model/: Linux_DHCPGroup.mof, Linux_DHCPHost.mof,
+	  Linux_DHCPOptions.mof, Linux_DHCPParams.mof, Linux_DHCPPool.mof,
+	  Linux_DHCPSharednet.mof, Linux_DHCPSubnet.mof: Mof changes with
+	  indication support
+
+2008-04-29 20:15  skanan
+
+	* test/: cim/Linux_DHCPElementConformsToProfile.cim,
+	  cim/Linux_DHCPGlobal.cim, cim/Linux_DHCPGlobalForService.cim,
+	  cim/Linux_DHCPGroup.cim, cim/Linux_DHCPGroupsForEntity.cim,
+	  cim/Linux_DHCPHost.cim, cim/Linux_DHCPHostsForEntity.cim,
+	  cim/Linux_DHCPOptions.cim, cim/Linux_DHCPOptionsForEntity.cim,
+	  cim/Linux_DHCPParams.cim, cim/Linux_DHCPParamsForEntity.cim,
+	  cim/Linux_DHCPPool.cim, cim/Linux_DHCPPoolsForEntity.cim,
+	  cim/Linux_DHCPRegisteredProfile.cim, cim/Linux_DHCPService.cim,
+	  cim/Linux_DHCPServiceConfiguration.cim,
+	  cim/Linux_DHCPServiceConfigurationForService.cim,
+	  cim/Linux_DHCPSharednet.cim,
+	  cim/Linux_DHCPSharednetsForEntity.cim, cim/Linux_DHCPSubnet.cim,
+	  cim/Linux_DHCPSubnetsForEntity.cim, Makefile.am, dhcpd.conf,
+	  test-cmpi-dhcp.sh: Updated testcases
+
+2008-04-29 20:11  skanan
+
+	* test/system/linux/: Linux_DHCPGlobal.system,
+	  Linux_DHCPGroup.system, Linux_DHCPHost.system,
+	  Linux_DHCPHostsForEntity.system, Linux_DHCPOptions.system,
+	  Linux_DHCPOptionsForEntity.system, Linux_DHCPParams.system,
+	  Linux_DHCPParamsForEntity.system, Linux_DHCPPool.system,
+	  Linux_DHCPPoolsForEntity.system, Linux_DHCPSharednet.system,
+	  Linux_DHCPSharednetsForEntity.system, Linux_DHCPSubnet.system:
+	  Updated testcases
+
+2008-04-29 20:06  skanan
+
+	* Makefile.am, sblim-cmpi-dhcp.spec.in,
+	  test/system/linux/Linux_DHCPElementConformsToProfile.system:
+	  Registered Profile implementation
+
+2008-04-29 20:02  skanan
+
+	* provider/Makefile.am,
+	  provider/Linux_DHCPElementConformsToProfile/.cvsignore,
+	  provider/Linux_DHCPElementConformsToProfile/Linux_DHCPElementConformsToProfile.c,
+	  provider/Linux_DHCPElementConformsToProfile/Linux_ElementConformsToProfile_Resource.c,
+	  provider/Linux_DHCPElementConformsToProfile/Linux_ElementConformsToProfile_Resource.h,
+	  provider/Linux_DHCPElementConformsToProfile/Makefile.am,
+	  configure.ac: Registered Profile implementation
+
+2008-04-29 19:58  skanan
+
+	* model/: Linux_DHCPElementConformsToProfile.mof,
+	  registration/Linux_DHCPElementConformsToProfile.registration:
+	  Registered Profile implementation
+
+2008-04-29 19:54  skanan
+
+	* hashing/.cvsignore, hashing/Makefile.am, hashing/libuniquekey.c,
+	  hashing/libuniquekey.h, .settings/org.eclipse.cdt.core.prefs:
+	  Hashkey Implementation
+
 2007-12-11 10:35  skanan
 
 	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Maintenance release
