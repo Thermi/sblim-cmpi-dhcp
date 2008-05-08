@@ -127,4 +127,3 @@ is done during the "make postinstall".
 Start the cimbrowser (/usr/sniacimom/bin). Load the schema file Linux_DHCP.mof with 
 "File" -> "Reload Mof" into the namespace root/cimv2. Before at least IBMQualifiers, 
 CIM Core and CIM System schemata have to be loaded into the repository.
-
