@@ -442,6 +442,9 @@ unsigned long long _UQ_getKeyFromData(char * file, int lineno)
 	unsigned long long val = 0;
 	LOG("getKeyFromData", "Entered");
 
+	if(lineno <= 0)
+		return 0;
+
 	fd = fopen(file, "r");
 	if(fd == NULL)
 		return 0;
@@ -465,7 +468,11 @@ int getUniqueKey(char * filepath, int lineno, unsigned long long * uniqueKey)
 	char * filename, wbemname[100], keyname[100], tmpfile[100];
 	int status, i, ret = 0;
 	pid_t pId;
+
 	LOG("getUniqueKey", "Entered");
+
+	if(lineno <= 0)
+	    return 0;
 
 	/** if the said directory does not exist, create one - access() checks the users permissions for the specified file */
         if(access("/usr/local/etc/UniqueKey",F_OK))

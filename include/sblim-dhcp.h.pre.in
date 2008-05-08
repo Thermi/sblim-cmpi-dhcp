@@ -103,13 +103,13 @@ typedef struct {
 #define CANNOT_SET_PROPERTY_FILTER		17
 #define ENTITY_ALREADY_EXISTS			18
 
-inline static void setRaStatus(_RA_STATUS* status, int rc, int msgID, char* msgTxt ) {
+static void setRaStatus(_RA_STATUS* status, int rc, int msgID, char* msgTxt ) {
     if(status == NULL)
 	return;
 
     status->rc = rc;
     status->messageID = msgID;
-    status->messageTxt = msgTxt;
+    status->messageTxt = strdup(msgTxt);
 }
 
 /*char* raErr[] = {      "Failed to get the system resource",
@@ -120,15 +120,23 @@ inline static void setRaStatus(_RA_STATUS* status, int rc, int msgID, char* msgT
 //-------------
 
 
-inline static void free_ra_status(_RA_STATUS ra_status) {
+static void free_ra_status(_RA_STATUS ra_status) {
     if (ra_status.messageTxt) {
         free(ra_status.messageTxt);
     }
 }
 
 
-inline static void build_cmpi_error_msg(const CMPIBroker* broker, CMPIStatus* status, int return_code, char* cmpi_message) {
-    char* message = (char*) malloc( strlen(RA_MESSAGE_PREFIX) + strlen(RA_MESSAGE_GENERICID) + strlen(cmpi_message) + 6 );
+static void build_cmpi_error_msg(const CMPIBroker* broker, CMPIStatus* status, int return_code, char* cmpi_message) {
+    int count = strlen(RA_MESSAGE_PREFIX) + strlen(RA_MESSAGE_GENERICID);
+    char* message = NULL; 
+  
+    if(cmpi_message)
+	count += strlen(cmpi_message);
+
+    message = (char *)malloc(count + 6);
+    if(message == NULL)
+	return;
 
     sprintf( message, "%s%s: %s", RA_MESSAGE_PREFIX, RA_MESSAGE_GENERICID, cmpi_message );
 
@@ -138,13 +146,22 @@ inline static void build_cmpi_error_msg(const CMPIBroker* broker, CMPIStatus* st
 }
 
 
-inline static void build_ra_error_msg(const CMPIBroker* broker, CMPIStatus* status, int return_code, char* provider_message, _RA_STATUS ra_status) {
-    char* message = (char*) malloc( strlen(provider_message) + strlen(RA_MESSAGE_PREFIX) + strlen(ra_status.messageTxt) + 15 );
+static void build_ra_error_msg(const CMPIBroker* broker, CMPIStatus* status, int return_code, char* provider_message, _RA_STATUS ra_status) {
+    char* message = NULL;
+    int count = strlen(RA_MESSAGE_PREFIX);
+
+    if(provider_message)
+	count += strlen(provider_message);
+
+    if(ra_status.messageTxt)
+	count += strlen(ra_status.messageTxt);
+
+    message = (char *)malloc(count + 15);
+    if(message == NULL)
+	return;
 
     sprintf( message, "%s%d: %s - %s", RA_MESSAGE_PREFIX, ra_status.messageID, provider_message, ra_status.messageTxt );
-
     CMSetStatusWithChars( broker, status, return_code, message );
-
     free( message );
 }
 

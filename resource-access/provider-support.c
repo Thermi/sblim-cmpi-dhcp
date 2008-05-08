@@ -299,7 +299,7 @@ NODE *ra_getEntity(unsigned long long id, NODE * node,
 
     list.content = (QUEUE *) & data;
 
-    ra_updateDataStructure();
+    ra_updateDataStructure(ra_status);
     result = ra_traverseTree(id, 0, flag, node, &list, 1, ra_status);
     if (result == -1 || result == -2) {
 	setRaStatus(ra_status, RA_RC_FAILED, FAILED_TO_GET_SYSTEM_RESOURCE,
@@ -307,7 +307,7 @@ NODE *ra_getEntity(unsigned long long id, NODE * node,
 	return NULL;
     }
 
-    ret = (NODE *) list.next->content;
+    ret = (NODE *)(list.next?list.next->content:NULL);
     free(list.next);
 
     return ret;
@@ -328,7 +328,7 @@ NODE **ra_getAllEntity(int type, NODE * node, _RA_STATUS * ra_status)
 	type |= SUPPORTF;
     }
 
-    ra_updateDataStructure();
+    ra_updateDataStructure(ra_status);
     result = ra_traverseTree(0, type, flag, NULL, &list, 1, ra_status);
     if (result == -1 || result == -2) {
 	return NULL;
