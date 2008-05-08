@@ -82,7 +82,8 @@ CMPIStatus Linux_DHCPGlobal_EnumInstanceNames(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
-        goto exit;
+        free_ra_status(ra_status);
+	goto exit;
     }
 
     /** Enumerate thru the list of system resources and return a CMPIInstance for each. */
@@ -150,9 +151,9 @@ CMPIStatus Linux_DHCPGlobal_EnumInstanceNames(
 clean_on_error:
 
     /** if error was encountered midway, free all the Dynamically Allocated Memory elements and exit */
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
-
 exit:
 
     return status;
@@ -190,7 +191,8 @@ CMPIStatus Linux_DHCPGlobal_EnumInstances(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
-        goto exit;
+        free_ra_status(ra_status);
+	goto exit;
     }
 
     /** Enumerate thru the list of system resources and return a CMPIInstance for each. */
@@ -256,9 +258,9 @@ CMPIStatus Linux_DHCPGlobal_EnumInstances(
 clean_on_error:
 
     /** if error was encountered midway, free all the Dynamically Allocated Memory elements and exit */
+    free_ra_status(ra_status);   
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
-
 exit:
 
     return status;
@@ -292,7 +294,8 @@ CMPIStatus Linux_DHCPGlobal_GetInstance(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
-        goto exit;
+        free_ra_status(ra_status); 
+	goto exit;
     }
 
     /** Get the target resource. */
@@ -333,7 +336,7 @@ CMPIStatus Linux_DHCPGlobal_GetInstance(
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to set property values from resource data"), ra_status );
         goto clean_on_error;
     }
-
+ 
     /** Free the resource data. */
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     if ( ra_status.rc != RA_RC_OK ) {
@@ -355,7 +358,7 @@ CMPIStatus Linux_DHCPGlobal_GetInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
 
@@ -390,6 +393,7 @@ CMPIStatus Linux_DHCPGlobal_ModifyInstance(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status); 
         goto exit;
     }
 
@@ -403,21 +407,21 @@ CMPIStatus Linux_DHCPGlobal_ModifyInstance(
         build_cmpi_error_msg ( _BROKER, &status, CMPI_RC_ERR_NOT_FOUND, _("Target instance not found") );
         goto clean_on_error;
     }
-
+ 
     /** Update the target resource data with the new instance property values. */
     ra_status = Linux_DHCPGlobal_setResourceFromInstance( &resource, newinstance, properties, _BROKER );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to modify resource data"), ra_status );
         goto clean_on_error; 
     }
-
+ 
     /** Free the resource data. */
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to free resource data"), ra_status );
         goto clean_on_error; 
     }
-    
+     
     /** Free list of system resources */
     ra_status = Linux_DHCPGlobal_freeResources( resources );
     if ( ra_status.rc != RA_RC_OK ) {
@@ -427,7 +431,7 @@ CMPIStatus Linux_DHCPGlobal_ModifyInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
 
@@ -465,6 +469,7 @@ CMPIStatus Linux_DHCPGlobal_CreateInstance(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -511,6 +516,7 @@ CMPIStatus Linux_DHCPGlobal_CreateInstance(
 
 clean_on_error:
 
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
 
@@ -542,6 +548,7 @@ CMPIStatus Linux_DHCPGlobal_DeleteInstance(
     ra_status = Linux_DHCPGlobal_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -581,6 +588,7 @@ CMPIStatus Linux_DHCPGlobal_DeleteInstance(
 
 clean_on_error:
 
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobal_freeResource( resource );
     ra_status = Linux_DHCPGlobal_freeResources( resources );
 
@@ -629,6 +637,7 @@ CMPIStatus Linux_DHCPGlobal_Initialize(
     ra_status = Linux_DHCPGlobal_InstanceProviderInitialize(&ra_status);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to initialize instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 
@@ -656,6 +665,7 @@ static CMPIStatus Linux_DHCPGlobal_Cleanup(
     ra_status = Linux_DHCPGlobal_InstanceProviderCleanUp(lTerminating);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to cleanup instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 
