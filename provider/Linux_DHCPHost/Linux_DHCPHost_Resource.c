@@ -46,7 +46,8 @@ _RA_STATUS Linux_DHCPHost_getResources( _RESOURCES** resources  ) {
         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
         return ra_status;
     }
-
+    
+    ra_lockRaData();
     (*resources)->Array = ra_getAllEntity(HOSTF, NULL, &ra_status);
     if( (*resources)->Array == NULL) {
         return ra_status;
@@ -165,6 +166,8 @@ _RA_STATUS Linux_DHCPHost_freeResources( _RESOURCES* resources ) {
 	free( resources);
         resources = NULL;
     }
+    
+    ra_unlockRaData();
     return ra_status;
 }
 

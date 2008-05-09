@@ -72,6 +72,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_EnumInstanceNames(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -136,6 +137,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -166,6 +168,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_EnumInstances(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -231,6 +234,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_EnumInstances(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -261,6 +265,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_GetInstance(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -321,6 +326,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_GetInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -375,6 +381,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_CreateInstance(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -418,6 +425,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -447,6 +455,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_DeleteInstance(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -477,6 +486,7 @@ CMPIStatus Linux_DHCPPoolsForEntity_DeleteInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -621,6 +631,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_AssociatorNames(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -674,6 +685,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -739,6 +751,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_Associators(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -804,6 +817,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_Associators(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -844,6 +858,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_ReferenceNames(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+         free_ra_status(ra_status);
         goto exit;
     }
 
@@ -902,6 +917,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_ReferenceNames(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 
@@ -943,6 +959,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_References(
     ra_status = Linux_DHCPPoolsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -1000,6 +1017,7 @@ static CMPIStatus Linux_DHCPPoolsForEntity_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPPoolsForEntity_freeResource( resource );
     ra_status = Linux_DHCPPoolsForEntity_freeResources( resources );
 

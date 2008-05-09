@@ -73,6 +73,7 @@ CMPIStatus Linux_DHCPGlobalForService_EnumInstanceNames(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -137,6 +138,7 @@ CMPIStatus Linux_DHCPGlobalForService_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -167,6 +169,7 @@ CMPIStatus Linux_DHCPGlobalForService_EnumInstances(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -232,6 +235,7 @@ CMPIStatus Linux_DHCPGlobalForService_EnumInstances(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -265,6 +269,7 @@ CMPIStatus Linux_DHCPGlobalForService_GetInstance(
 
      if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     } 
 
@@ -330,6 +335,7 @@ CMPIStatus Linux_DHCPGlobalForService_GetInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -382,6 +388,7 @@ CMPIStatus Linux_DHCPGlobalForService_CreateInstance(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -424,6 +431,7 @@ CMPIStatus Linux_DHCPGlobalForService_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -453,6 +461,7 @@ CMPIStatus Linux_DHCPGlobalForService_DeleteInstance(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -482,6 +491,7 @@ CMPIStatus Linux_DHCPGlobalForService_DeleteInstance(
     goto exit;
     
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -619,6 +629,7 @@ static CMPIStatus Linux_DHCPGlobalForService_AssociatorNames(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -668,6 +679,7 @@ static CMPIStatus Linux_DHCPGlobalForService_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -725,6 +737,7 @@ static CMPIStatus Linux_DHCPGlobalForService_Associators(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -758,6 +771,7 @@ static CMPIStatus Linux_DHCPGlobalForService_Associators(
 	ra_status = Linux_DHCPGlobalForService_getNextResource( resources, &resource);
 	if ( ra_status.rc != RA_RC_OK ) {
 	    build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get resource data"), ra_status);
+            free_ra_status(ra_status);
 	    goto clean_on_error;
 	}
     }
@@ -781,6 +795,7 @@ static CMPIStatus Linux_DHCPGlobalForService_Associators(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -828,6 +843,7 @@ static CMPIStatus Linux_DHCPGlobalForService_ReferenceNames(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
     /** Enumerate thru the list of system resources and return a CMPIInstance for each. */
@@ -910,6 +926,7 @@ static CMPIStatus Linux_DHCPGlobalForService_ReferenceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 
@@ -956,6 +973,7 @@ static CMPIStatus Linux_DHCPGlobalForService_References(
     ra_status = Linux_DHCPGlobalForService_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -1030,6 +1048,7 @@ static CMPIStatus Linux_DHCPGlobalForService_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPGlobalForService_freeResource( resource );
     ra_status = Linux_DHCPGlobalForService_freeResources( resources );
 

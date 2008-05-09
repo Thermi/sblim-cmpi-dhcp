@@ -71,7 +71,8 @@ CMPIStatus Linux_DHCPSubnetsForEntity_EnumInstanceNames(
     /** Get a handle to the list of system resources. */
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
-        build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status ); 
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -136,6 +137,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -166,6 +168,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_EnumInstances(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+         free_ra_status(ra_status);
         goto exit;
     }
 
@@ -231,6 +234,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_EnumInstances(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -262,6 +266,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_GetInstance(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -326,6 +331,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_GetInstance(
     goto exit;
 
 clean_on_error:	
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -380,6 +386,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_CreateInstance(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -423,6 +430,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -453,6 +461,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_DeleteInstance(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -483,6 +492,7 @@ CMPIStatus Linux_DHCPSubnetsForEntity_DeleteInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -629,6 +639,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_AssociatorNames(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -681,6 +692,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -749,6 +761,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_Associators(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -813,6 +826,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_Associators(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -853,6 +867,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_ReferenceNames(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -911,6 +926,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_ReferenceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 
@@ -952,6 +968,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_References(
     ra_status = Linux_DHCPSubnetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -1009,6 +1026,7 @@ static CMPIStatus Linux_DHCPSubnetsForEntity_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSubnetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSubnetsForEntity_freeResources( resources );
 

@@ -72,6 +72,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_EnumInstanceNames(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -136,6 +137,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -166,6 +168,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_EnumInstances(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -231,6 +234,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_EnumInstances(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -262,6 +266,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_GetInstance(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -326,6 +331,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_GetInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -380,6 +386,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_CreateInstance(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -422,6 +429,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -452,6 +460,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_DeleteInstance(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -481,6 +490,7 @@ CMPIStatus Linux_DHCPOptionsForEntity_DeleteInstance(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -601,6 +611,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_AssociatorNames(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -654,6 +665,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -693,8 +705,10 @@ static CMPIStatus Linux_DHCPOptionsForEntity_Associators(
 
     /** Get a handle to the list of system resources. */
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
-    if ( ra_status.rc != RA_RC_OK ) {
+    
+if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -760,6 +774,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_Associators(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -800,6 +815,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_ReferenceNames(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -858,6 +874,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_ReferenceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 
@@ -899,6 +916,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_References(
     ra_status = Linux_DHCPOptionsForEntity_getResources(_BROKER, context, reference, &resources);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -956,6 +974,7 @@ static CMPIStatus Linux_DHCPOptionsForEntity_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPOptionsForEntity_freeResource( resource );
     ra_status = Linux_DHCPOptionsForEntity_freeResources( resources );
 

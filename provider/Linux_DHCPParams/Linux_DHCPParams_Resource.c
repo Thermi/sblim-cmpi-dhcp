@@ -47,6 +47,8 @@ _RA_STATUS Linux_DHCPParams_getResources( _RESOURCES** resources  ) {
         return ra_status;
     }
 
+    
+    ra_lockRaData();
     (*resources)->Array = ra_getAllEntity(NOOPTIONF | PARAMSF | SUPPORTF, NULL, &ra_status);
     if( (*resources)->Array == NULL) {
         setRaStatus( &ra_status, RA_RC_FAILED, ENTITY_NOT_FOUND, _("Entity Not Found") );
@@ -162,6 +164,8 @@ _RA_STATUS Linux_DHCPParams_freeResources( _RESOURCES* resources ) {
 	free( resources);
 	resources = NULL;
     }
+    
+    ra_unlockRaData();
     return ra_status;
 }
 

@@ -45,6 +45,8 @@ _RA_STATUS Linux_DHCPSubnet_getResources( _RESOURCES** resources  ) {
         setRaStatus( &ra_status, RA_RC_FAILED, DYNAMIC_MEMORY_ALLOCATION_FAILED, _("Dynamic Memory Allocation Failed") );
         return ra_status;
     }
+    
+    ra_lockRaData();
 
     (*resources)->Array = ra_getAllEntity(SUBNETF, NULL, &ra_status);
     if( (*resources)->Array == NULL) {
@@ -160,6 +162,8 @@ _RA_STATUS Linux_DHCPSubnet_freeResources( _RESOURCES* resources ) {
 	free( resources);
         resources = NULL;
     }
+    
+    ra_unlockRaData();
     return ra_status;
 }
 

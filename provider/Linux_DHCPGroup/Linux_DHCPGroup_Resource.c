@@ -46,6 +46,7 @@ _RA_STATUS Linux_DHCPGroup_getResources( _RESOURCES** resources  ) {
         return ra_status;
     }
 
+    ra_lockRaData();
     (*resources)->Array = ra_getAllEntity(GROUPF, NULL, &ra_status);
 
     if( (*resources)->Array == NULL) {
@@ -160,6 +161,7 @@ _RA_STATUS Linux_DHCPGroup_freeResources( _RESOURCES* resources ) {
 	free( resources);
         resources = NULL;
     }
+    ra_unlockRaData();
     return ra_status;
 }
 

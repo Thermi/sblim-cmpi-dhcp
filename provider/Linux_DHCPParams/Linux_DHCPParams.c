@@ -84,6 +84,7 @@ CMPIStatus Linux_DHCPParams_EnumInstanceNames(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -148,7 +149,7 @@ CMPIStatus Linux_DHCPParams_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
-
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -186,6 +187,7 @@ CMPIStatus Linux_DHCPParams_EnumInstances(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -249,7 +251,7 @@ CMPIStatus Linux_DHCPParams_EnumInstances(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -286,6 +288,7 @@ CMPIStatus Linux_DHCPParams_GetInstance(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -349,7 +352,7 @@ CMPIStatus Linux_DHCPParams_GetInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -394,6 +397,7 @@ CMPIStatus Linux_DHCPParams_ModifyInstance(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -452,7 +456,7 @@ CMPIStatus Linux_DHCPParams_ModifyInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -497,6 +501,7 @@ CMPIStatus Linux_DHCPParams_CreateInstance(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -565,7 +570,7 @@ CMPIStatus Linux_DHCPParams_CreateInstance(
     goto exit;
 
 clean_on_error:
-
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -605,6 +610,7 @@ CMPIStatus Linux_DHCPParams_DeleteInstance(
     ra_status = Linux_DHCPParams_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -662,7 +668,7 @@ CMPIStatus Linux_DHCPParams_DeleteInstance(
 
 
 clean_on_error:
-
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPParams_freeResource( resource );
     ra_status = Linux_DHCPParams_freeResources( resources );
 
@@ -743,6 +749,7 @@ CMPIStatus Linux_DHCPParams_Initialize(
     ra_status = Linux_DHCPParams_InstanceProviderInitialize( &ra_status);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to initialize instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 
@@ -770,6 +777,7 @@ static CMPIStatus Linux_DHCPParams_Cleanup(
     ra_status = Linux_DHCPParams_InstanceProviderCleanUp(lTerminating);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to cleanup instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 

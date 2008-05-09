@@ -73,6 +73,7 @@ CMPIStatus Linux_DHCPHostsForEntity_EnumInstanceNames(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -135,6 +136,7 @@ CMPIStatus Linux_DHCPHostsForEntity_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -165,6 +167,7 @@ CMPIStatus Linux_DHCPHostsForEntity_EnumInstances(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+	 free_ra_status(ra_status);
         goto exit;
     }
 
@@ -228,6 +231,7 @@ CMPIStatus Linux_DHCPHostsForEntity_EnumInstances(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -259,6 +263,7 @@ CMPIStatus Linux_DHCPHostsForEntity_GetInstance(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -320,6 +325,7 @@ CMPIStatus Linux_DHCPHostsForEntity_GetInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -374,6 +380,7 @@ CMPIStatus Linux_DHCPHostsForEntity_CreateInstance(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -416,6 +423,7 @@ CMPIStatus Linux_DHCPHostsForEntity_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -445,6 +453,7 @@ CMPIStatus Linux_DHCPHostsForEntity_DeleteInstance(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -474,6 +483,7 @@ CMPIStatus Linux_DHCPHostsForEntity_DeleteInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -617,6 +627,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_AssociatorNames(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -673,6 +684,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -738,6 +750,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_Associators(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -802,6 +815,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_Associators(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -842,6 +856,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_ReferenceNames(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -900,6 +915,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_ReferenceNames(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 
@@ -941,6 +957,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_References(
     ra_status = Linux_DHCPHostsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -998,6 +1015,7 @@ static CMPIStatus Linux_DHCPHostsForEntity_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPHostsForEntity_freeResource( resource );
     ra_status = Linux_DHCPHostsForEntity_freeResources( resources );
 

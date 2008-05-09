@@ -83,6 +83,7 @@ CMPIStatus Linux_DHCPSharednet_EnumInstanceNames(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -147,7 +148,7 @@ CMPIStatus Linux_DHCPSharednet_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -185,6 +186,7 @@ CMPIStatus Linux_DHCPSharednet_EnumInstances(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -248,7 +250,7 @@ CMPIStatus Linux_DHCPSharednet_EnumInstances(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -285,6 +287,7 @@ CMPIStatus Linux_DHCPSharednet_GetInstance(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -348,7 +351,7 @@ CMPIStatus Linux_DHCPSharednet_GetInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -392,6 +395,7 @@ CMPIStatus Linux_DHCPSharednet_ModifyInstance(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -452,7 +456,7 @@ CMPIStatus Linux_DHCPSharednet_ModifyInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -498,6 +502,7 @@ CMPIStatus Linux_DHCPSharednet_CreateInstance(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+         free_ra_status(ra_status);
         goto exit;
     }
 
@@ -569,7 +574,7 @@ CMPIStatus Linux_DHCPSharednet_CreateInstance(
     goto exit;
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -609,6 +614,7 @@ CMPIStatus Linux_DHCPSharednet_DeleteInstance(
     ra_status = Linux_DHCPSharednet_getResources( &resources );
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -666,7 +672,7 @@ CMPIStatus Linux_DHCPSharednet_DeleteInstance(
 
 
 clean_on_error:
-
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednet_freeResource( resource );
     ra_status = Linux_DHCPSharednet_freeResources( resources );
 
@@ -751,6 +757,7 @@ CMPIStatus Linux_DHCPSharednet_Initialize(
     ra_status = Linux_DHCPSharednet_InstanceProviderInitialize( &ra_status);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to initialize instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 
@@ -778,6 +785,7 @@ static CMPIStatus Linux_DHCPSharednet_Cleanup(
     ra_status = Linux_DHCPSharednet_InstanceProviderCleanUp(lTerminating);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to cleanup instance provider"), ra_status );
+        free_ra_status(ra_status);
     }
 
 

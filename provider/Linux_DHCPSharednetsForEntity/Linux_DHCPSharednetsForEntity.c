@@ -72,6 +72,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_EnumInstanceNames(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -136,6 +137,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_EnumInstanceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -166,6 +168,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_EnumInstances(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3); 
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -231,6 +234,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_EnumInstances(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -262,6 +266,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_GetInstance(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -326,6 +331,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_GetInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -380,6 +386,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_CreateInstance(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -423,6 +430,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_CreateInstance(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -453,6 +461,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_DeleteInstance(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -483,6 +492,7 @@ CMPIStatus Linux_DHCPSharednetsForEntity_DeleteInstance(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -626,6 +636,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_AssociatorNames(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -679,6 +690,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_AssociatorNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -744,6 +756,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_Associators(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, returnResult);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -809,6 +822,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_Associators(
     goto exit;
 
 clean_on_error:
+     free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -849,6 +863,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_ReferenceNames(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -907,6 +922,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_ReferenceNames(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
@@ -948,6 +964,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_References(
     ra_status = Linux_DHCPSharednetsForEntity_getResources(_BROKER, context, reference, &resources, 3);
     if ( ra_status.rc != RA_RC_OK ) {
         build_ra_error_msg ( _BROKER, &status, CMPI_RC_ERR_FAILED, _("Failed to get list of system resources"), ra_status );
+        free_ra_status(ra_status);
         goto exit;
     }
 
@@ -1005,6 +1022,7 @@ static CMPIStatus Linux_DHCPSharednetsForEntity_References(
     goto exit;
 
 clean_on_error:
+    free_ra_status(ra_status);
     ra_status = Linux_DHCPSharednetsForEntity_freeResource( resource );
     ra_status = Linux_DHCPSharednetsForEntity_freeResources( resources );
 
