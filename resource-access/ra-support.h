@@ -89,6 +89,7 @@ typedef struct _NODE {
 extern NODE * dhcp_conf_tree ;
 extern pthread_mutex_t dsLock;
 extern pthread_mutex_t fileLock;
+extern pthread_mutex_t raLock;
 
 extern NODE * ra_createNode(); /** Method to create a node */
 extern void ra_deleteNode(NODE * ); /** Method to delete a node */
@@ -134,4 +135,6 @@ extern NODE * parseConfigFile (char *, char *);  /** Method used to parse the co
 extern unsigned long long ra_getInsertKey(); /** Method to generate the key to be inserted */
 extern void ra_deletedEntity(); /** Method to indicate the deleted entity for the hashing library */
 extern void ra_modifiedEntity(); /** Method to indicate the modified entity for the hashing library */
+extern void ra_lockRaData();
+extern void ra_unlockRaData();
 #endif

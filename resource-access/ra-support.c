@@ -29,6 +29,7 @@
 NODE *dhcp_conf_tree = NULL;  /** dhcp_conf_tree - the head node pointer for the conf tree structure */
 pthread_mutex_t dsLock;       /** mutex lock for the conf tree structure */
 pthread_mutex_t fileLock;     /** mutex lock for the conf file */
+pthread_mutex_t raLock;
 
 /** Method used to create a new node for the dhcp conf tree */
 NODE *ra_createNode()
@@ -724,3 +725,12 @@ void ra_CleanUp()
 
     return;
 }
+
+void ra_lockRaData(){
+    pthread_mutex_lock(&raLock);
+}
+
+void ra_unlockRaData(){
+    pthread_mutex_unlock(&raLock);
+}
+
