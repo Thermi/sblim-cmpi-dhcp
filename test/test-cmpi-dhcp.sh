@@ -13,7 +13,7 @@
 #           Riyashmon Haneefa <riyashh1 (at) in.ibm.com>
 # ==================================================================
 
-
+SCRIPT_PATH=`dirname ${BASH_SOURCE}`
 #*****************************************************************************#
 export DHCPCONFFILE=/etc/dhcpd.conf 
 
@@ -77,16 +77,17 @@ CLASSNAMES=(
 
 init
 
+cd $SCRIPT_PATH
+
 declare -i max=19;
 declare -i i=1;
 
-
-. ./run.sh Linux_DHCPRegisteredProfile -n /root/PG_InterOp || exit 1;
-. ./run.sh Linux_DHCPElementConformsToProfile -n /root/PG_InterOp || exit 1;
+. ${SCRIPT_PATH}/run.sh Linux_DHCPRegisteredProfile -n /root/PG_InterOp || exit 1;
+. ${SCRIPT_PATH}/run.sh Linux_DHCPElementConformsToProfile -n /root/PG_InterOp || exit 1;
 
 while(($i<=$max))
 do
- . ./run.sh ${CLASSNAMES[$i]} || exit 1;
+ . ${SCRIPT_PATH}/run.sh ${CLASSNAMES[$i]} || exit 1;
   i=$i+1;
 done
 

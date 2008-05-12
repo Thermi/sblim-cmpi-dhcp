@@ -33,6 +33,7 @@ testsuiteconfdir=@TESTSUITEDIR@/
 testsuite_SCRIPTS=test-cmpi-dhcp.sh
 
 testsuitecim_DATA=\
+	cim/Linux_DHCPElementConformsToProfile.cim \
     cim/Linux_DHCPRegisteredProfile.cim \
     cim/Linux_DHCPGroup.cim \
     cim/Linux_DHCPHost.cim \
@@ -55,22 +56,25 @@ testsuitecim_DATA=\
     cim/Linux_DHCPSubnetsForEntity.cim
 
 testsuitesystem_DATA=\
-    system/linux/Linux_DHCPGlobalForService.system \
+	system/linux/Linux_DHCPElementConformsToProfile.system \
     system/linux/Linux_DHCPGlobal.system \
-    system/linux/Linux_DHCPGroupsForEntity.system \
+    system/linux/Linux_DHCPGlobalForService.system \
     system/linux/Linux_DHCPGroup.system \
-    system/linux/Linux_DHCPHostsForEntity.system \
+    system/linux/Linux_DHCPGroupsForEntity.system \
     system/linux/Linux_DHCPHost.system \
-    system/linux/Linux_DHCPOptionsForEntity.system \
+    system/linux/Linux_DHCPHostsForEntity.system \
     system/linux/Linux_DHCPOptions.system \
-    system/linux/Linux_DHCPParams.system  \
-    system/linux/Linux_DHCPPool.system  \
+    system/linux/Linux_DHCPOptionsForEntity.system \
+    system/linux/Linux_DHCPParams.system \
+    system/linux/Linux_DHCPParamsForEntity.system \
+    system/linux/Linux_DHCPPool.system \
+    system/linux/Linux_DHCPPoolsForEntity.system \
     system/linux/Linux_DHCPRegisteredProfile.system \
-    system/linux/Linux_DHCPServiceConfigurationForService.system \
-    system/linux/Linux_DHCPServiceConfiguration.system \
     system/linux/Linux_DHCPService.system \
-    system/linux/Linux_DHCPSharednetsForEntity.system \
+    system/linux/Linux_DHCPServiceConfiguration.system \
+    system/linux/Linux_DHCPServiceConfigurationForService.system \
     system/linux/Linux_DHCPSharednet.system \
+    system/linux/Linux_DHCPSharednetsForEntity.system \
     system/linux/Linux_DHCPSubnetsForEntity.system \
     system/linux/Linux_DHCPSubnet.system
 
