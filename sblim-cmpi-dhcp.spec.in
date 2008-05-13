@@ -166,5 +166,13 @@ fi
 
 ###############################################################################
 %changelog
+* Mon May 12 2008 Saravanan Kannan <skanan(at)us.ibm.com> 0.5.5-1
+    o Fixes for cimom crash, testsuite issues.
+
+* Wed Apr 30 2008 Saravanan Kannan <skanan(at)us.ibm.com>  0.5.4-1
+    o Added Registered Profile support
+    o Added Indication support
+    o Lots of bug fixes
+	 
 * Thu Nov 15 2007 Wolfgang Taphorn <taphorn@de.ibm.com> 0.5.2-CVS
     o initial support

@@ -1,3 +1,7 @@
+2008-05-12  skannan  <skannan@skannanlaptop.ibm.com>
+	
+	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
+	
 2008-04-30 16:21  skanan
 
 	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
