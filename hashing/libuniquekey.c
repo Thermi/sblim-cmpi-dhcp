@@ -35,6 +35,10 @@
 #define LOG(s,t)
 #endif
 
+#ifndef SYSCONFDIR
+#define SYSCONFDIR "/usr/local/etc"
+#endif
+
 /** The structure _UQ_linkedList is a linked list. Each node in this list would carry */
 /** the line number and the line itself from a file that this list points to.  */
 typedef struct _UQ_linkedList{
@@ -164,7 +168,7 @@ void _UQ_setupFiles(char * filepath, char * filename, char * wbemname, char * ke
 	    free(line);
 
         /** A file is created to store the final key value so that it stores the next value to start */
-	sprintf(idfile,"/usr/local/etc/UniqueKey/.%s.Id", filename);
+	sprintf(idfile,SYSCONFDIR "/UniqueKey/.%s.Id", filename);
 
 	fclose(fconf);
 	fclose(fwbem);
@@ -227,7 +231,7 @@ void _UQ_insertEntity(char * filename, _UQ_linkedList * lptr, int i, int j)
     first = (_UQ_linkedList *)malloc(sizeof(_UQ_linkedList));
     memset(first, '\0', sizeof(_UQ_linkedList));
 
-    sprintf(idFile,"/usr/local/etc/UniqueKey/.%s.Id",filename); /** get the Id file */
+    sprintf(idFile,SYSCONFDIR "/UniqueKey/.%s.Id",filename); /** get the Id file */
 
     fd = fopen(idFile, "r"); /** Read the Id file to retrieve the value of the key stored */
     cptr = fgets(value, 19, fd);
@@ -265,7 +269,7 @@ void _UQ_reCreateKeys(char * filename,char * conffile, char * wbemfile, char *ke
 	LOG("reCreateKeys", "Entered");
 
 	/** picks up the seed from the .Id file */
-	sprintf(idFile, "/usr/local/etc/UniqueKey/.%s.Id", filename);
+	sprintf(idFile, SYSCONFDIR "/UniqueKey/.%s.Id", filename);
 	fd = fopen(idFile, "r");
 	line = fgets(value, 19, fd);
 	line = NULL;
@@ -475,13 +479,13 @@ int getUniqueKey(char * filepath, int lineno, unsigned long long * uniqueKey)
 	    return 0;
 
 	/** if the said directory does not exist, create one - access() checks the users permissions for the specified file */
-        if(access("/usr/local/etc/UniqueKey",F_OK))
-		mkdir("/usr/local/etc/UniqueKey", 0777);
+        if(access(SYSCONFDIR "/UniqueKey",F_OK))
+		mkdir(SYSCONFDIR "/UniqueKey", 0777);
 	
 	filename = _UQ_extractServiceName(filepath); /** derive the filename */
-	sprintf( wbemname,"/usr/local/etc/UniqueKey/.%s.wbem",filename); /** create the names of the files preceeding with a . */
-	sprintf( keyname,"/usr/local/etc/UniqueKey/.%s.key",filename);
-	sprintf(tmpfile,"/usr/local/etc/UniqueKey/.%s.tmp",filename);
+	sprintf( wbemname,SYSCONFDIR "/UniqueKey/.%s.wbem",filename); /** create the names of the files preceeding with a . */
+	sprintf( keyname,SYSCONFDIR "/UniqueKey/.%s.key",filename);
+	sprintf(tmpfile,SYSCONFDIR "/UniqueKey/.%s.tmp",filename);
 
 	if( access(filepath, R_OK))  /** check the users permissions to read the conf file */
 		return -1;
@@ -506,7 +510,7 @@ int getUniqueKey(char * filepath, int lineno, unsigned long long * uniqueKey)
 		    LOG("getUniqueKey", "Forked - in the child process");
 			for (i=getdtablesize();i>=0;--i)  /** close all the opened files for this process */
 				close(i); 
-			i=open(tmpfile, O_RDWR|O_CREAT|O_TRUNC); 
+			i=open(tmpfile, O_RDWR|O_CREAT|O_TRUNC, 0600);
 			i = dup(i); 
 			execlp("diff","diff", wbemname, filepath,(char *) 0); /** check if there exists any differences
 										  between the copy of the config file and the
@@ -545,7 +549,7 @@ unsigned long long * getAllUniqueKey(char * filepath)
 
     getUniqueKey(filepath, 1, &hashId);
     filename = _UQ_extractServiceName(filepath); /** get the conf file name */
-    sprintf( keyfile,"/usr/local/etc/UniqueKey/.%s.key",filename); /** create the keyfile depending on the conf file name */
+    sprintf( keyfile,SYSCONFDIR "/UniqueKey/.%s.key",filename); /** create the keyfile depending on the conf file name */
 
     stat(keyfile, &fileStat);      /** get the status and size of keyfile */
     fsize = (int)fileStat.st_size;
@@ -579,7 +583,7 @@ void modifiedEntity(char * filePath)
 	LOG("modifEntity", "Entered");
 
 	filename = _UQ_extractServiceName(filePath); /** get the conf file name from the path */
-	sprintf( wbemname,"/usr/local/etc/UniqueKey/.%s.wbem",filename); /** prepare the wbemname to retain a copy of the conf file */
+	sprintf( wbemname,SYSCONFDIR "/UniqueKey/.%s.wbem",filename); /** prepare the wbemname to retain a copy of the conf file */
 
 	fconf = fopen(filePath, "r");  /** open conf file in read and wbemname file in write mode */
 	fwbem = fopen(wbemname, "w");
@@ -631,10 +635,10 @@ void resetFileData(char * filePath)
 						     set the respective file names of files created to support hashing
 						     delete all the files created */
 
-    sprintf( wbemfile,"/usr/local/etc/UniqueKey/.%s.wbem",filename);
-    sprintf( keyfile,"/usr/local/etc/UniqueKey/.%s.key",filename);
-    sprintf( tmpfile,"/usr/local/etc/UniqueKey/.%s.tmp",filename);
-    sprintf( idfile, "/usr/local/etc/UniqueKey/.%s.Id", filename);
+    sprintf( wbemfile,SYSCONFDIR "/UniqueKey/.%s.wbem",filename);
+    sprintf( keyfile,SYSCONFDIR "/UniqueKey/.%s.key",filename);
+    sprintf( tmpfile,SYSCONFDIR "/UniqueKey/.%s.tmp",filename);
+    sprintf( idfile, SYSCONFDIR "/UniqueKey/.%s.Id", filename);
 
     free(filename);
     remove(wbemfile);

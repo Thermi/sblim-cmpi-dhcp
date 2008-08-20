@@ -25,7 +25,8 @@ AM_CPPFLAGS = \
     -D_GNU_SOURCE \
 	-DDEBUG \
     -DSBLIM_DEBUG\
-    -D_COMPILE_UNIX 
+    -D_COMPILE_UNIX \
+    -DSYSCONFDIR='"$(sysconfdir)"'
 
 
 ################################################################################
