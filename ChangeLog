@@ -1,10 +1,93 @@
-2008-05-12  skannan  <skannan@skannanlaptop.ibm.com>
-	
-	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
-	
+2009-06-17 15:00  jbongio
+
+	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Maintenance release
+	  0.5.6-1
+
+2008-12-18 10:39  skanan
+
+	* test/test-cmpi-dhcp.sh: Changed to ascii file
+
+2008-08-20 06:45  omsairam
+
+	* hashing/: Makefile.am, libuniquekey.c: patches for Bugs 2049850 &
+	  2049846 updated
+
+2008-05-12 22:08  skanan
+
+	* ChangeLog, NEWS, configure.ac, sblim-cmpi-dhcp.spec.in:
+	  Maintenance release 0.5.5-1
+
+2008-05-12 18:10  skanan
+
+	* hashing/.cvsignore: ignore files list
+
+2008-05-12 16:14  skanan
+
+	* test/: Makefile.am, test-cmpi-dhcp.sh: Fix for testsuite issues
+
+2008-05-12 16:13  skanan
+
+	* resource-access/: ra-support.c, ra-support.h: Updated
+	  implementation including locks to resolve crash issues
+
+2008-05-08 20:56  riyashh1
+
+	* provider/: Linux_DHCPGroup/Linux_DHCPGroup.c,
+	  Linux_DHCPGroup/Linux_DHCPGroup_Resource.c,
+	  Linux_DHCPOptions/Linux_DHCPOptions.c,
+	  Linux_DHCPOptions/Linux_DHCPOptions_Resource.c,
+	  Linux_DHCPParams/Linux_DHCPParams.c,
+	  Linux_DHCPParams/Linux_DHCPParams_Resource.c,
+	  Linux_DHCPPool/Linux_DHCPPool.c,
+	  Linux_DHCPPool/Linux_DHCPPool_Resource.c,
+	  Linux_DHCPSharednet/Linux_DHCPSharednet.c,
+	  Linux_DHCPSharednet/Linux_DHCPSharednet_Resource.c,
+	  Linux_DHCPSubnet/Linux_DHCPSubnet.c,
+	  Linux_DHCPSubnet/Linux_DHCPSubnet_Resource.c,
+	  Linux_DHCPSubnetsForEntity/Linux_DHCPSubnetsForEntity.c,
+	  Linux_DHCPGlobalForService/Linux_DHCPGlobalForService.c,
+	  Linux_DHCPHost/Linux_DHCPHost.c,
+	  Linux_DHCPHost/Linux_DHCPHost_Resource.c,
+	  Linux_DHCPHostsForEntity/Linux_DHCPHostsForEntity.c,
+	  Linux_DHCPOptionsForEntity/Linux_DHCPOptionsForEntity.c,
+	  Linux_DHCPParamsForEntity/Linux_DHCPParamsForEntity.c,
+	  Linux_DHCPPoolsForEntity/Linux_DHCPPoolsForEntity.c,
+	  Linux_DHCPService/Linux_DHCPService.c,
+	  Linux_DHCPServiceConfiguration/Linux_DHCPServiceConfiguration.c,
+	  Linux_DHCPServiceConfigurationForService/Linux_DHCPServiceConfigurationForService.c,
+	  Linux_DHCPSharednetsForEntity/Linux_DHCPSharednetsForEntity.c:
+	  sync'ing with the CS CVS
+
+2008-05-08 12:44  riyashh1
+
+	* provider/Linux_DHCPGlobal/Linux_DHCPGlobal.c: sync'ing with the
+	  CS CVS
+
+2008-05-08 11:38  riyashh1
+
+	* provider/Linux_DHCPGroupsForEntity/Linux_DHCPGroupsForEntity.c:
+	  sync'ing with the CS CVS
+
+2008-05-08 11:26  riyashh1
+
+	* hashing/libuniquekey.c, include/sblim-dhcp.h.pre.in,
+	  resource-access/provider-support.c: sync'ing with the CS CVS
+
+2008-05-07 21:44  riyashh1
+
+	* README: [no log message]
+
+2008-04-30 16:27  skanan
+
+	* ChangeLog: Updated ChangeLog
+
 2008-04-30 16:21  skanan
 
-	* NEWS, configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
+	* NEWS: Updated Version info
+
+2008-04-30 15:06  skanan
+
+	* configure.ac, sblim-cmpi-dhcp.spec.in: Updated Version info
 
 2008-04-29 21:07  skanan
 
@@ -172,6 +255,11 @@
 	* hashing/.cvsignore, hashing/Makefile.am, hashing/libuniquekey.c,
 	  hashing/libuniquekey.h, .settings/org.eclipse.cdt.core.prefs:
 	  Hashkey Implementation
+
+2007-12-11 11:12  skanan
+
+	* ChangeLog:
+	  Updates to ChangeLog for version 0.5.3-1
 
 2007-12-11 10:35  skanan
 
