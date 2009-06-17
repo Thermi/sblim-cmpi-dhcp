@@ -166,6 +166,9 @@ fi
 
 ###############################################################################
 %changelog
+* Wed Jun 17 2009 Jeremy Bongio <jbongio@us.ibm.com> 0.5.6-1
+    o Maintenance release
+
 * Mon May 12 2008 Saravanan Kannan <skanan(at)us.ibm.com> 0.5.5-1
     o Fixes for cimom crash, testsuite issues.
 

@@ -1,3 +1,7 @@
+Changes in 0.5.6-1
+==============================================================================
+- Maintenance release
+
 Changes in 0.5.5-1
 ==============================================================================
 - cmpi-dhcp: Includes fixes for crash and testsuite issues  
