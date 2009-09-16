@@ -14,7 +14,7 @@ Version: @PACKAGE_VERSION@
 Release: 1
 Group: Systems Management/Base
 URL: http://www.sblim.org
-License: CPL
+License: EPL
 Requires: sblim-tools-libra
 Requires: dhcp
 BuildRequires: sblim-tools-libra-devel
@@ -166,6 +166,9 @@ fi
 
 ###############################################################################
 %changelog
+* Tue Sep 15 2009 Jeremy Bongio <jbongio@us.ibm.com> 1.0-1
+    o Changed license from CPL to EPL
+
 * Wed Jun 17 2009 Jeremy Bongio <jbongio@us.ibm.com> 0.5.6-1
     o Maintenance release
 
